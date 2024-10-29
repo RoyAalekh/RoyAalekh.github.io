@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AR</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+</head>
+<body class="bg-gray-100">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between">
+                <div class="flex space-x-7">
+                    <div class="flex items-center py-4">
+                        <span class="font-semibold text-gray-500 text-lg">Home</span>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-1">
+                    <a href="#about" class="py-4 px-2 text-gray-500 hover:text-gray-900">About</a>
+                    <a href="#projects" class="py-4 px-2 text-gray-500 hover:text-gray-900">Projects</a>
+                    <a href="#blog" class="py-4 px-2 text-gray-500 hover:text-gray-900">Blog</a>
+                    <a href="#contact" class="py-4 px-2 text-gray-500 hover:text-gray-900">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="bg-white py-20">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center">
+                <h1 class="text-4xl font-bold text-gray-800 mb-4">Piecewise</h1>
+                <p class="text-gray-600 text-lg mb-8">Data Science | Complexity Science | Machine Learning</p>
+                <a href="https://www.linkedin.com/in/aalekhroy" class="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600">Ping Me</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">About Me</h2>
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="md:w-1/2 mb-8 md:mb-0">
+                    <img src="PP image.jpg" alt="Profile" class="rounded-full mx-auto" />
+                </div>
+                <div class="md:w-1/2 md:pl-8">
+                    <p class="text-gray-600 mb-4">
+                        Hello! I'm a Data Scientist and a Complexity Science enthusiast based in New Delhi, India. I
+                        enjoy working on challenging problems and building data-driven solutions. I have experience
+                        working with Python, R, SQL and Julia. I have a strong theoretical foundation in Statistical
+                        Learning, Machine Learning and Optimization.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-white p-4 rounded-lg shadow">
+                            <h3 class="font-bold text-lg mb-2">Skills</h3>
+                            <ul class="list-disc list-inside text-gray-600">
+                                <li>Python</li>
+                                <li>SQL</li>
+                                <li>R</li>
+                                <li>Julia</li>
+                                <li>Git</li>
+                                <li>AWS</li>
+                                <li>scikit-learn</li>
+                                <li>Statsforecast</li>
+                                <li>Tensorflow</li>
+                                <li>PyTorch</li>
+                                <li>Langchain</li>
+                                <li>Numpy, Pandas, Polars, Plotly</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow">
+                            <h3 class="font-bold text-lg mb-2">Interests</h3>
+                            <ul class="list-disc list-inside text-gray-600">
+                                <li>Data Centric ML</li>
+                                <li>Complex Networks</li>
+                                <li>Graph ML</li>
+                                <li>Optimization</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project Card Template -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <img src="/api/placeholder/400/200" alt="Project" class="w-full" />
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-2">Project Name</h3>
+                        <p class="text-gray-600 mb-4">Brief description of the project and its key features.</p>
+                        <div class="flex justify-between items-center">
+                            <a href="#" class="text-blue-500 hover:text-blue-600">View Project</a>
+                            <a href="#" class="text-gray-500 hover:text-gray-600">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Repeat project cards as needed -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="py-20 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">Blog Posts</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Blog Post Template -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <img src="/api/placeholder/400/200" alt="Blog" class="w-full" />
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-2">Blog Post Title</h3>
+                        <p class="text-gray-600 mb-4">Preview of the blog post content...</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-500">Date</span>
+                            <a href="#" class="text-blue-500 hover:text-blue-600">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Repeat blog posts as needed -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">Get in Touch</h2>
+            <div class="max-w-lg mx-auto">
+                <div class="flex flex-col space-y-4">
+                    <a href="roy.aalekh@gmail.com" class="text-center text-blue-500 hover:text-blue-600">
+                        roy.aalekh@gmail.com
+                    </a>
+                    <div class="flex justify-center space-x-4">
+                        <a href="https://github.com/RoyAalekh" class="text-gray-500 hover:text-gray-600">GitHub</a>
+                        <a href="https://www.linkedin.com/in/aalekhroy" class="text-gray-500 hover:text-gray-600">LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <p>&copy; 2024 Aalekh Roy. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
