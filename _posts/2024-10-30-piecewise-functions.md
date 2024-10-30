@@ -65,30 +65,33 @@ Not all piecewise functions are created equal. Let's explore three levels of reg
 
 2. **Continuous Piecewise Functions**
    - The famous ReLU function:
-     
-     $$
-     \text{ReLU}(x) = \max(0, x) = \begin{cases}
-     0 & \text{if } x < 0 \\ 
-     x & \text{if } x \geq 0 
-     \end{cases}
-     $$
+
+    $$
+    \text{ReLU}(x) = \max(0, x) = \begin{cases}
+    0 & \text{if } x < 0 \\ 
+    x & \text{if } x \geq 0 
+    \end{cases}
+    $$
+   
+
    ![Activation Functions](../assets/images/blog/piecewise/activations.png)
     *Figure 2: Common neural network activation functions*
    
-  - Properties:
-    - Continuous everywhere
-    - Not differentiable at \( x = 0 \)
-    - Linear behavior in the positive regime
+     - Properties:
+       - Continuous everywhere
+       - Not differentiable at \( x = 0 \)
+       - Linear behavior in the positive regime
 
 3. **Smooth Piecewise Functions**
-   - Cubic splines with mathematical form:
+- Cubic splines with mathematical form:
      
-     $$
-     S_i(x) = a_i(x - x_i)^3 + b_i(x - x_i)^2 + c_i(x - x_i) + d_i
-     $$
+    $$
+    S_i(x) = a_i(x - x_i)^3 + b_i(x - x_i)^2 + c_i(x - x_i) + d_i
+    $$
 
-    ![Cubic Spline](../assets/images/blog/piecewise/spline.png)
-*Figure 4: A cubic spline showing smooth piecewise behavior*
+
+   ![Cubic Spline](../assets/images/blog/piecewise/spline.png)
+    *Figure 4: A cubic spline showing smooth piecewise behavior*
    
   - Properties:
     - Continuous up to the second derivative

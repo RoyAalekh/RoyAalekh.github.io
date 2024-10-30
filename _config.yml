@@ -2,6 +2,10 @@ title: "AR | Data Science"
 description: "Aalekh Roy's Portfolio and Blog on Data Science and Machine Learning"
 theme: jekyll-theme-minimal
 
+include:
+  - blog.html
+
+
 markdown: kramdown
 kramdown:
   math_engine: mathjax
@@ -14,4 +18,4 @@ mathjax:
     displayMath: [['$$', '$$']]
 
 url: "https://royaalekh.github.io"
-permalink: /:title/
+permalink: pretty
