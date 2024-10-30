@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }} | AR</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Header or Navigation (optional) -->
+    <nav class="bg-white/80 backdrop-blur-sm fixed w-full z-10">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <a href="/" class="text-2xl font-light text-gray-800">AR</a>
+                <div class="flex space-x-8">
+                    <a href="/#about" class="text-gray-600 hover:text-blue-500 transition-colors">About</a>
+                    <a href="/#projects" class="text-gray-600 hover:text-blue-500 transition-colors">Projects</a>
+                    <a href="/blog.html" class="text-gray-600 hover:text-blue-500 transition-colors">Blog</a>
+                    <a href="/#contact" class="text-gray-600 hover:text-blue-500 transition-colors">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-24">
+        {{ content }}
+    </main>
+
+    <!-- Footer (optional) -->
+    <footer class="py-8 bg-gray-50">
+        <div class="max-w-5xl mx-auto px-4 text-center text-gray-500">
+            <p>© 2024 Aalekh Roy</p>
+        </div>
+    </footer>
+</body>
+</html>
