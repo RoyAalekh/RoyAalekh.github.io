@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - main  # Adjust if your default branch is different
+      - main
 
 permissions:
   contents: read
