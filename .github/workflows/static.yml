@@ -1,7 +1,9 @@
-name: Deploy static content to Pages
+name: Deploy Jekyll site to Pages
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - main
 
 permissions:
   contents: read
@@ -10,21 +12,29 @@ permissions:
   actions: write
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '2.7'  # Use a Ruby version compatible with Jekyll
+
+      - name: Install Jekyll and Bundler
+        run: |
+          gem install bundler
+          bundle install
+
+      - name: Build Jekyll Site
+        run: bundle exec jekyll build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
+          path: ./_site  # Jekyll outputs the built site to the _site directory
 
       - name: Deploy to GitHub Pages
         id: deployment

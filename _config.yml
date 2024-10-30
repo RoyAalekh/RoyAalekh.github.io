@@ -1,0 +1,17 @@
+title: "AR | Data Science"
+description: "Aalekh Roy's Portfolio and Blog on Data Science and Machine Learning"
+theme: jekyll-theme-minimal
+
+markdown: kramdown
+kramdown:
+  math_engine: mathjax
+
+mathjax:
+  path: https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js
+  config: TeX-AMS-MML_HTMLorMML
+  tex2jax:
+    inlineMath: [['$', '$']]
+    displayMath: [['$$', '$$']]
+
+url: "https://royaalekh.github.io"
+permalink: /:title/
