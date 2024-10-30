@@ -3,81 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AR</title>
+    <title>AR | Data Science</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-<body class="bg-gray-100">
-    <!-- Navigation -->
-    <nav class="bg-white shadow-lg">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="flex justify-between">
-                <div class="flex space-x-7">
-                    <div class="flex items-center py-4">
-                        <span class="font-semibold text-gray-500 text-lg">Home</span>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-1">
-                    <a href="#about" class="py-4 px-2 text-gray-500 hover:text-gray-900">About</a>
-                    <a href="#projects" class="py-4 px-2 text-gray-500 hover:text-gray-900">Projects</a>
-                    <a href="#blog" class="py-4 px-2 text-gray-500 hover:text-gray-900">Blog</a>
-                    <a href="#contact" class="py-4 px-2 text-gray-500 hover:text-gray-900">Contact</a>
+<body class="bg-gray-50">
+    <!-- Navigation - Simplified -->
+    <nav class="bg-white/80 backdrop-blur-sm fixed w-full z-10">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <a href="#" class="text-2xl font-light text-gray-800">AR</a>
+                <div class="flex space-x-8">
+                    <a href="#about" class="text-gray-600 hover:text-blue-500 transition-colors">About</a>
+                    <a href="#projects" class="text-gray-600 hover:text-blue-500 transition-colors">Projects</a>
+                    <a href="#blog" class="text-gray-600 hover:text-blue-500 transition-colors">Blog</a>
+                    <a href="#contact" class="text-gray-600 hover:text-blue-500 transition-colors">Contact</a>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <div class="bg-white py-20">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="text-center">
-                <h1 class="text-4xl font-bold text-gray-800 mb-4">Piecewise</h1>
-                <p class="text-gray-600 text-lg mb-8">Data Science | Complexity Science | Machine Learning</p>
-                <a href="https://www.linkedin.com/in/aalekhroy" class="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600">Ping Me</a>
+    <!-- Hero Section - More Minimal -->
+    <div class="min-h-screen flex items-center justify-center bg-gradient-to-b from-white to-gray-50 pt-16">
+        <div class="max-w-3xl mx-auto px-4 text-center">
+            <h1 class="text-5xl font-light text-gray-800 mb-6">Piecewise</h1>
+            <p class="text-xl text-gray-600 mb-8 font-light tracking-wide">Data Science · Complexity Science · Machine Learning</p>
+            <div class="flex justify-center space-x-4">
+                <a href="https://www.linkedin.com/in/aalekhroy" class="bg-blue-500 text-white px-8 py-3 rounded-lg hover:bg-blue-600 transition-colors">Connect</a>
+                <a href="#projects" class="border border-gray-300 text-gray-600 px-8 py-3 rounded-lg hover:bg-gray-50 transition-colors">View Work</a>
             </div>
         </div>
     </div>
 
-    <!-- About Section -->
-    <section id="about" class="py-20 bg-gray-50">
-        <div class="max-w-6xl mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">About Me</h2>
-            <div class="flex flex-col md:flex-row items-center justify-between">
-                <div class="md:w-1/2 mb-8 md:mb-0">
-                    <img src="PP image.jpg" alt="Profile" class="rounded-full mx-auto" />
+    <!-- About Section - Refined -->
+    <section id="about" class="py-24 bg-white">
+        <div class="max-w-5xl mx-auto px-4">
+            <h2 class="text-3xl font-light text-center text-gray-800 mb-16">About Me</h2>
+            <div class="flex flex-col md:flex-row items-center justify-between gap-16">
+                <div class="md:w-1/2">
+                    <img src="PP image.jpg" alt="Profile" class="rounded-lg shadow-lg w-full max-w-md mx-auto" />
                 </div>
-                <div class="md:w-1/2 md:pl-8">
-                    <p class="text-gray-600 mb-4">
-                        Hello! I'm a Data Scientist and a Complexity Science enthusiast based in New Delhi, India. I
-                        enjoy working on challenging problems and building data-driven solutions. I have experience
-                        working with Python, R, SQL and Julia. I have a strong theoretical foundation in Statistical
-                        Learning, Machine Learning and Optimization.
+                <div class="md:w-1/2">
+                    <p class="text-gray-600 text-lg leading-relaxed mb-8">
+                        Hello! I'm a Data Scientist and Complexity Science enthusiast based in New Delhi, India. I craft data-driven solutions and explore the fascinating world of complex systems through code and mathematics.
                     </p>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="bg-white p-4 rounded-lg shadow">
-                            <h3 class="font-bold text-lg mb-2">Skills</h3>
-                            <ul class="list-disc list-inside text-gray-600">
-                                <li>Python</li>
-                                <li>SQL</li>
-                                <li>R</li>
-                                <li>Julia</li>
-                                <li>Git</li>
-                                <li>AWS</li>
-                                <li>scikit-learn</li>
-                                <li>Statsforecast</li>
-                                <li>Tensorflow</li>
-                                <li>PyTorch</li>
-                                <li>Langchain</li>
-                                <li>Numpy, Pandas, Polars, Plotly</li>
-                            </ul>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-lg font-medium text-gray-800 mb-4">Technical Stack</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-sm">Python</span>
+                                <span class="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-sm">SQL</span>
+                                <span class="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-sm">R</span>
+                                <span class="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-sm">Julia</span>
+                                <span class="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-sm">AWS</span>
+                                <span class="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-sm">PyTorch</span>
+                                <span class="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-sm">TensorFlow</span>
+                            </div>
                         </div>
-                        <div class="bg-white p-4 rounded-lg shadow">
-                            <h3 class="font-bold text-lg mb-2">Interests</h3>
-                            <ul class="list-disc list-inside text-gray-600">
-                                <li>Data Centric ML</li>
-                                <li>Complex Networks</li>
-                                <li>Graph ML</li>
-                                <li>Optimization</li>
-                            </ul>
+                        <div>
+                            <h3 class="text-lg font-medium text-gray-800 mb-4">Focus Areas</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-sm">Data Centric ML</span>
+                                <span class="px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-sm">Complex Networks</span>
+                                <span class="px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-sm">Graph ML</span>
+                                <span class="px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-sm">Optimization</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -85,72 +75,53 @@
         </div>
     </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="py-20">
-        <div class="max-w-6xl mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">Projects</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Project Card Template -->
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-                    <img src="/api/placeholder/400/200" alt="Project" class="w-full" />
-                    <div class="p-6">
-                        <h3 class="font-bold text-xl mb-2">Project Name</h3>
-                        <p class="text-gray-600 mb-4">Brief description of the project and its key features.</p>
-                        <div class="flex justify-between items-center">
-                            <a href="#" class="text-blue-500 hover:text-blue-600">View Project</a>
-                            <a href="#" class="text-gray-500 hover:text-gray-600">GitHub</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Repeat project cards as needed -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Blog Section -->
-    <section id="blog" class="py-20 bg-gray-50">
-        <div class="max-w-6xl mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">Blog Posts</h2>
+    <!-- Projects Section - Enhanced -->
+    <section id="projects" class="py-24 bg-gray-50">
+        <div class="max-w-5xl mx-auto px-4">
+            <h2 class="text-3xl font-light text-center text-gray-800 mb-16">Featured Projects</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Blog Post Template -->
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-                    <img src="/api/placeholder/400/200" alt="Blog" class="w-full" />
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
                     <div class="p-6">
-                        <h3 class="font-bold text-xl mb-2">Blog Post Title</h3>
-                        <p class="text-gray-600 mb-4">Preview of the blog post content...</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-gray-500">Date</span>
-                            <a href="#" class="text-blue-500 hover:text-blue-600">Read More</a>
+                        <h3 class="font-medium text-xl mb-2">Project Name</h3>
+                        <p class="text-gray-600 mb-4">A brief description of the project highlighting the key features and technologies used.</p>
+                        <div class="flex gap-2">
+                            <span class="px-2 py-1 bg-gray-100 text-gray-600 rounded text-sm">Python</span>
+                            <span class="px-2 py-1 bg-gray-100 text-gray-600 rounded text-sm">PyTorch</span>
+                        </div>
+                        <div class="flex justify-between items-center mt-4">
+                            <a href="#" class="text-blue-500 hover:text-blue-600">View Project →</a>
+                            <a href="#" class="text-gray-400 hover:text-gray-600"><i class="fab fa-github text-lg"></i></a>
                         </div>
                     </div>
                 </div>
-                <!-- Repeat blog posts as needed -->
+                <!-- Add more project cards as needed -->
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-20">
-        <div class="max-w-6xl mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">Get in Touch</h2>
-            <div class="max-w-lg mx-auto">
-                <div class="flex flex-col space-y-4">
-                    <a href="roy.aalekh@gmail.com" class="text-center text-blue-500 hover:text-blue-600">
-                        roy.aalekh@gmail.com
-                    </a>
-                    <div class="flex justify-center space-x-4">
-                        <a href="https://github.com/RoyAalekh" class="text-gray-500 hover:text-gray-600">GitHub</a>
-                        <a href="https://www.linkedin.com/in/aalekhroy" class="text-gray-500 hover:text-gray-600">LinkedIn</a>
-                    </div>
-                </div>
+    <!-- Contact Section - Minimalist -->
+    <section id="contact" class="py-24 bg-white">
+        <div class="max-w-3xl mx-auto px-4 text-center">
+            <h2 class="text-3xl font-light text-gray-800 mb-8">Let's Connect</h2>
+            <p class="text-gray-600 mb-8">Open for collaborations and interesting discussions</p>
+            <div class="flex justify-center space-x-6">
+                <a href="mailto:roy.aalekh@gmail.com" class="text-gray-600 hover:text-blue-500 transition-colors">
+                    <i class="fas fa-envelope text-2xl"></i>
+                </a>
+                <a href="https://github.com/RoyAalekh" class="text-gray-600 hover:text-blue-500 transition-colors">
+                    <i class="fab fa-github text-2xl"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/aalekhroy" class="text-gray-600 hover:text-blue-500 transition-colors">
+                    <i class="fab fa-linkedin text-2xl"></i>
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-8">
-        <div class="max-w-6xl mx-auto px-4 text-center">
-            <p>&copy; 2024 Aalekh Roy. All rights reserved.</p>
+    <!-- Footer - Minimal -->
+    <footer class="py-8 bg-gray-50">
+        <div class="max-w-5xl mx-auto px-4 text-center text-gray-500">
+            <p>© 2024 Aalekh Roy · Built with passion</p>
         </div>
     </footer>
 </body>
