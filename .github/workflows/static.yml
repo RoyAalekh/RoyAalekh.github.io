@@ -1,9 +1,10 @@
 name: Deploy Jekyll site to Pages
 
 on:
+  workflow_dispatch:
   push:
     branches:
-      - main
+      - main  # Adjust if your default branch is different
 
 permissions:
   contents: read
@@ -23,10 +24,11 @@ jobs:
         with:
           ruby-version: '2.7'  # Use a Ruby version compatible with Jekyll
 
-      - name: Install Jekyll and Bundler
-        run: |
-          gem install bundler
-          bundle install
+      - name: Install Compatible Bundler
+        run: gem install bundler -v 2.4.22  # Specify compatible Bundler version
+
+      - name: Install Jekyll Dependencies
+        run: bundle install
 
       - name: Build Jekyll Site
         run: bundle exec jekyll build
