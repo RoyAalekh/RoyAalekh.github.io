@@ -10,12 +10,17 @@ permissions:
   pages: write
   id-token: write
 
+# Make concurrency more strict
 concurrency:
   group: "pages"
   cancel-in-progress: true
 
 jobs:
   deploy:
+    # Add concurrency at job level too
+    concurrency:
+      group: deploy-group
+      cancel-in-progress: true
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
