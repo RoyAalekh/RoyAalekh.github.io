@@ -47,7 +47,7 @@ Not all piecewise functions are created equal. Let's explore three levels of reg
 
 1. **Discontinuous Piecewise Functions**
    - Classic example: The Heaviside function
-     
+
     $$
     H(x) = \begin{cases} 
     0 & \text{if } x < 0 \\ 
@@ -55,7 +55,7 @@ Not all piecewise functions are created equal. Let's explore three levels of reg
     \end{cases}
     $$
 
-    ![Heaviside Function](../assets/images/blog/piecewise/heaviside.png)
+   ![Heaviside Function](/assets/images/blog/piecewise/heaviside.png)
     *Figure 1: The Heaviside function demonstrating discontinuous behavior at x = 0*
    
    - Applications: 
@@ -72,9 +72,8 @@ Not all piecewise functions are created equal. Let's explore three levels of reg
     x & \text{if } x \geq 0 
     \end{cases}
     $$
-   
 
-   ![Activation Functions](../assets/images/blog/piecewise/activations.png)
+![Activation Functions](/assets/images/blog/piecewise/activations.png)
     *Figure 2: Common neural network activation functions*
    
      - Properties:
@@ -89,8 +88,7 @@ Not all piecewise functions are created equal. Let's explore three levels of reg
     S_i(x) = a_i(x - x_i)^3 + b_i(x - x_i)^2 + c_i(x - x_i) + d_i
     $$
 
-
-   ![Cubic Spline](../assets/images/blog/piecewise/spline.png)
+![Cubic Spline](/assets/images/blog/piecewise/spline.png)
     *Figure 4: A cubic spline showing smooth piecewise behavior*
    
   - Properties:
@@ -148,7 +146,7 @@ $$
 \sup_{x \in [a, b]} |f(x) - N(x)| < \epsilon
 $$
 
-![Universal Approximation](../assets/images/blog/piecewise/approximation.png)
+![Universal Approximation](/assets/images/blog/piecewise/approximation.png)
 *Figure 3: Example of universal approximation using ReLU networks*
 
 This is achieved through:

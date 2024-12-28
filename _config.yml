@@ -4,6 +4,7 @@ theme: jekyll-theme-minimal
 
 include:
   - blog.html
+  - assets
 
 portfolio_repos:
   - Snap2Sketch
@@ -19,5 +20,8 @@ mathjax:
   tex2jax:
     inlineMath: [['$', '$']]
     displayMath: [['$$', '$$']]
+
+plugins:
+  - jekyll-github-metadata
 
 url: "https://royaalekh.github.io"
