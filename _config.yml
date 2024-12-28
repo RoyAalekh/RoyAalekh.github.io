@@ -5,6 +5,9 @@ theme: jekyll-theme-minimal
 include:
   - blog.html
 
+portfolio_repos:
+  - Snap2Sketch
+
 
 markdown: kramdown
 kramdown:
