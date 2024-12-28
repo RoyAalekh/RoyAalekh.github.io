@@ -24,6 +24,6 @@ mathjax:
 plugins:
   - jekyll-github-metadata
 
-
+repository: RoyAalekh/royaalekh.github.io
 
 url: "https://royaalekh.github.io"
