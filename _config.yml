@@ -6,9 +6,6 @@ include:
   - blog.html
   - assets
 
-portfolio_repos:
-  - Snap2Sketch
-
 
 markdown: kramdown
 kramdown:
@@ -20,10 +17,5 @@ mathjax:
   tex2jax:
     inlineMath: [['$', '$']]
     displayMath: [['$$', '$$']]
-
-plugins:
-  - jekyll-github-metadata
-
-repository: RoyAalekh/Snap2Sketch
 
 url: "https://royaalekh.github.io"
