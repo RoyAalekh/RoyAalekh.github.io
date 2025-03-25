@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AR | Data Science</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-<body class="bg-gray-50">
+<body class="bg-gray-50 relative overflow-hidden">
+    <div id="tsparticles" class="absolute inset-0 z-0"></div>
+
     <!-- Navigation - Simplified -->
     <nav class="bg-white/80 backdrop-blur-sm fixed w-full z-10">
         <div class="max-w-5xl mx-auto px-4">
@@ -85,47 +88,54 @@
 
 <script>
   const username = "RoyAalekh";
-  const reposToShow = ["Snap2Sketch", "PyPI-Lens"];
-  const container = document.getElementById("repo-container");
+const reposToShow = ["Snap2Sketch", "PyPI-Lens"];
+const streamlitLinks = {
+  Snap2Sketch: "https://snap2sketch.streamlit.app",
+  "PyPI-Lens": "https://pypi-lens.streamlit.app",
+};
+const container = document.getElementById("repo-container");
 
-  async function fetchRepos() {
-    try {
-      const response = await fetch(`https://api.github.com/users/${username}/repos`);
-      const repos = await response.json();
+async function fetchRepos() {
+  try {
+    const response = await fetch(`https://api.github.com/users/${username}/repos`);
+    const repos = await response.json();
 
-      repos
-        .filter(repo => reposToShow.includes(repo.name)) // Filter only the desired repos
-        .forEach(repo => {
-          const repoCard = `
-            <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
-              <div class="p-6">
-                <h3 class="font-medium text-xl mb-2">${repo.name}</h3>
-                <p class="text-gray-600 mb-4">${repo.description || "No description available"}</p>
-                <div class="flex gap-2">
-                  <span class="px-2 py-1 bg-gray-100 text-gray-600 rounded text-sm">${repo.language || "Unknown"}</span>
-                </div>
-                <div class="flex justify-between items-center mt-4">
-                  <a href="${repo.html_url}" class="text-blue-500 hover:text-blue-600" target="_blank">View Project →</a>
-                  <a href="${repo.html_url}" class="text-gray-400 hover:text-gray-600" target="_blank">
-                    <i class="fab fa-github text-lg"></i>
-                  </a>
-                </div>
+    repos
+      .filter(repo => reposToShow.includes(repo.name)) // Filter only the desired repos
+      .forEach(repo => {
+        const repoCard = `
+          <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+            <div class="p-6">
+              <h3 class="font-medium text-xl mb-2">${repo.name}</h3>
+              <p class="text-gray-600 mb-4">${repo.description || "No description available"}</p>
+              <div class="flex gap-2">
+                <span class="px-2 py-1 bg-gray-100 text-gray-600 rounded text-sm">${repo.language || "Unknown"}</span>
+              </div>
+              <div class="flex justify-between items-center mt-4">
+                <a href="${repo.html_url}" class="text-blue-500 hover:text-blue-600" target="_blank">View on GitHub →</a>
+                ${
+                  streamlitLinks[repo.name]
+                    ? `<a href="${streamlitLinks[repo.name]}" class="text-green-500 hover:text-green-600" target="_blank">View App →</a>`
+                    : ""
+                }
               </div>
             </div>
-          `;
-          container.innerHTML += repoCard; // Append to the container
-        });
+          </div>
+        `;
+        container.innerHTML += repoCard; // Append to the container
+      });
 
-      if (container.innerHTML === "") {
-        container.innerHTML = `<p class="text-center text-gray-500">No projects found.</p>`;
-      }
-    } catch (error) {
-      console.error("Error fetching GitHub repositories:", error);
-      container.innerHTML = `<p class="text-center text-red-500">Failed to load projects.</p>`;
+    if (container.innerHTML === "") {
+      container.innerHTML = `<p class="text-center text-gray-500">No projects found.</p>`;
     }
+  } catch (error) {
+    console.error("Error fetching GitHub repositories:", error);
+    container.innerHTML = `<p class="text-center text-red-500">Failed to load projects.</p>`;
   }
+}
 
-  fetchRepos();
+fetchRepos();
+
 </script>
 
 
@@ -156,4 +166,61 @@
         </div>
     </footer>
 </body>
+<script>
+  tsParticles.load("tsparticles", {
+    background: {
+      color: {
+        value: "#ffffff"
+      }
+    },
+    fullScreen: {
+      enable: false
+    },
+    particles: {
+      number: {
+        value: 600
+      },
+      color: {
+        value: "#7c3aed"
+      },
+      shape: {
+        type: "circle"
+      },
+      opacity: {
+        value: 0.9
+      },
+      size: {
+        value: { min: 1, max: 4 }
+      },
+      move: {
+        enable: true,
+        speed: 2,
+        direction: "none",
+        outModes: {
+          default: "out"
+        }
+      },
+      links: {
+        enable: true,
+        distance: 100,
+        color: "#3b82f6",
+        opacity: 0.5,
+        width: 1.3
+      }
+    },
+    interactivity: {
+      events: {
+        onHover: {
+          enable: true,
+          mode: "repulse"
+        }
+      },
+      modes: {
+        repulse: {
+          distance: 100
+        }
+      }
+    }
+  });
+</script>
 </html>
