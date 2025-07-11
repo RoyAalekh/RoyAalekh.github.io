@@ -12,6 +12,10 @@ permissions:
   id-token: write
   actions: write
 
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -22,24 +26,23 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '2.7'  # Use a Ruby version compatible with Jekyll
+          ruby-version: '3.1'  # Use newer Ruby version for better performance
+          bundler-cache: true   # Enable automatic bundle caching
 
-      - name: Install Compatible Bundler
-        run: gem install bundler -v 2.4.22  # Specify compatible Bundler version
-
-      - name: Install Jekyll Dependencies
-        run: bundle install
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v5
 
       - name: Build Jekyll Site
-        run: bundle exec jekyll build
+        run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
+        env:
+          JEKYLL_ENV: production
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./_site  # Jekyll outputs the built site to the _site directory
+          path: ./_site
 
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
