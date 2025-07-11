@@ -55,6 +55,22 @@
       .timeline-item:nth-child(odd) > .timeline-content {
         text-align: right;
       }
+
+      /* Animation */
+      .timeline-item {
+        transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        opacity: 0;
+      }
+      .timeline-item.is-visible {
+        opacity: 1;
+        transform: none !important;
+      }
+      .timeline-item:nth-child(odd) {
+        transform: translateX(-30px);
+      }
+      .timeline-item:nth-child(even) {
+        transform: translateX(30px);
+      }
     }
   </style>
 </head>
@@ -103,8 +119,8 @@
             <h3 class="text-xl font-semibold text-gray-800 mt-1">Data Scientist</h3>
             <p class="text-gray-600">SmartHelio (YC-22)</p>
             <ul class="list-disc list-inside mt-2 text-gray-600">
-              <li>Driving the development of predictive analytics algorithms for system faults and performance degradation.</li>
-              <li>Leading a team to revamp the fault detection engine, reducing runtime by 30%.</li>
+              <li>Lead the data and analytics team, architecting the intelligent systems that form the data-driven backbone of SmartHelio's SaaS platform.</li>
+              <li>Scaling all data pipelines and models to support a 10x increase in managed assets, from 500 to 5,000 PV plants, in two quarters.</li>
             </ul>
           </div>
         </div>
@@ -115,8 +131,8 @@
             <h3 class="text-xl font-semibold text-gray-800 mt-1">Associate Data Scientist</h3>
             <p class="text-gray-600">SmartHelio (YC-22)</p>
             <ul class="list-disc list-inside mt-2 text-gray-600">
-              <li>Built a predictive maintenance pipeline using XGBoost to forecast soiling rates.</li>
-              <li>Standardized analytics logic through a centralized internal Python library.</li>
+              <li>Developed a predictive maintenance model to forecast soiling-induced energy losses, enabling optimized cleaning schedules and improving energy yield.</li>
+              <li>Authored a centralized Python library for analytics, unifying logic across projects and accelerating development for multiple teams.</li>
             </ul>
           </div>
         </div>
@@ -127,8 +143,8 @@
             <h3 class="text-xl font-semibold text-gray-800 mt-1">Data Analyst</h3>
             <p class="text-gray-600">SmartHelio (YC-22)</p>
             <ul class="list-disc list-inside mt-2 text-gray-600">
-              <li>Developed pipelines for fault detection and soiling diagnostics in utility-scale PV systems.</li>
-              <li>Deployed core analytics modules into SmartHelio’s SaaS platform.</li>
+              <li>Designed and implemented diagnostic pipelines for large-scale solar PV systems by integrating SCADA, IoT, and OEM data streams.</li>
+              <li>Integrated core analytics modules into SmartHelio’s flagship SaaS platform, delivering critical, real-time diagnostic data to clients.</li>
             </ul>
           </div>
         </div>
@@ -326,6 +342,19 @@
           }
         }
       }
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        }
+      });
+    });
+
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    timelineItems.forEach(item => {
+      observer.observe(item);
     });
   </script>
 </body>
