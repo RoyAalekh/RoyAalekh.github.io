@@ -173,21 +173,22 @@
 
   <!-- Contact Section -->
   <section id="contact" class="py-24 bg-white relative z-10">
-    <div class="max-w-3xl mx-auto px-4 text-center">
-      <h2 class="text-3xl font-light text-gray-800 mb-8">Let's Connect</h2>
-      <p class="text-gray-600 mb-8">Open for collaborations and interesting discussions</p>
-      <div class="flex justify-center space-x-6">
-        <a href="mailto:roy.aalekh@gmail.com" class="text-gray-600 hover:text-blue-500 transition-colors">
-          <i class="fas fa-envelope text-2xl"></i>
-        </a>
-        <a href="https://github.com/RoyAalekh" class="text-gray-600 hover:text-blue-500 transition-colors">
-          <i class="fab fa-github text-2xl"></i>
-        </a>
-        <a href="https://www.linkedin.com/in/aalekhroy" class="text-gray-600 hover:text-blue-500 transition-colors">
-          <i class="fab fa-linkedin text-2xl"></i>
-        </a>
+<div class="max-w-3xl mx-auto px-4 text-center">
+        <h2 class="text-3xl font-light text-gray-800 mb-8">Let's Connect</h2>
+        <p class="text-gray-600 mb-8">Open for collaborations and interesting discussions</p>
+        <div class="flex justify-center space-x-6 mb-8">
+          <a href="mailto:roy.aalekh@gmail.com" class="text-gray-600 hover:text-blue-500 transition-colors">
+            <i class="fas fa-envelope text-2xl"></i>
+          </a>
+          <a href="https://github.com/RoyAalekh" class="text-gray-600 hover:text-blue-500 transition-colors">
+            <i class="fab fa-github text-2xl"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/aalekhroy" class="text-gray-600 hover:text-blue-500 transition-colors">
+            <i class="fab fa-linkedin text-2xl"></i>
+          </a>
+        </div>
+        <a href="assets/Aalekh_Roy_Resume.pdf" class="bg-blue-500 text-white px-8 py-3 rounded-lg hover:bg-blue-600 transition-colors" download>Download Resume</a>
       </div>
-    </div>
   </section>
 
   <!-- Footer -->
@@ -201,6 +202,23 @@
   <script>
     const username = "RoyAalekh";
     const reposToShow = ["Snap2Sketch", "PyPI-Lens", "suntimes"];
+    const projectDetails = {
+      Snap2Sketch: {
+        problem: "There was a need for a simple, accessible tool to convert images into sketches without requiring complex software.",
+        solution: "I built a web app using Python and OpenCV to transform images into pencil sketches. The app allows for varying quality levels and shows a step-by-step transformation.",
+        outcome: "A user-friendly tool that makes image sketching easy and accessible to a wide audience."
+      },
+      "PyPI-Lens": {
+        problem: "Discovering relevant Python packages on PyPI can be difficult with simple keyword searches.",
+        solution: "I created a semantic search engine using embeddings and similarity matching to provide more accurate and context-aware package discovery.",
+        outcome: "A search tool that helps developers find the right Python packages more effectively."
+      },
+      suntimes: {
+        problem: "Finding accurate sunrise and sunset times for any location and date can be a challenge.",
+        solution: "I developed a sleek web app with timezone awareness and an interactive map to provide precise sunrise and sunset times.",
+        outcome: "A beautiful and accurate tool for finding sunrise and sunset times globally."
+      }
+    };
     const streamlitLinks = {
       Snap2Sketch: "https://snap2sketch.streamlit.app",
       "PyPI-Lens": "https://pypi-lens.streamlit.app",
@@ -220,7 +238,9 @@
               <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
                 <div class="p-6">
                   <h3 class="font-medium text-xl mb-2">${repo.name}</h3>
-                  <p class="text-gray-600 mb-4">${repo.description || "No description available"}</p>
+                  <p class="text-gray-600 mb-4">${projectDetails[repo.name].problem}</p>
+                  <p class="text-gray-600 mb-4"><strong>Solution:</strong> ${projectDetails[repo.name].solution}</p>
+                  <p class="text-gray-600 mb-4"><strong>Outcome:</strong> ${projectDetails[repo.name].outcome}</p>
                   <div class="flex gap-2">
                     <span class="px-2 py-1 bg-gray-100 text-gray-600 rounded text-sm">${repo.language || "Unknown"}</span>
                   </div>
