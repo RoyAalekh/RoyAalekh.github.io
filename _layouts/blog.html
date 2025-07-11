@@ -1,0 +1,21 @@
+---
+layout: default
+---
+
+<section id="blog" class="py-24 bg-gray-50">
+    <div class="max-w-5xl mx-auto px-4">
+        <h2 class="text-3xl font-light text-center text-gray-800 mb-16">{{ page.title }}</h2>
+        <div class="grid grid-cols-1 gap-8">
+            {% for post in site.posts %}
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow p-6">
+                    <h3 class="font-medium text-xl mb-2">
+                        <a href="{{ post.url }}" class="text-blue-500 hover:text-blue-600">{{ post.title }}</a>
+                    </h3>
+                    <p class="text-gray-600 mb-4">{{ post.excerpt | strip_html }}</p>
+                    <span class="text-gray-400 text-sm">Posted on {{ post.date | date: "%B %d, %Y" }}</span>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+

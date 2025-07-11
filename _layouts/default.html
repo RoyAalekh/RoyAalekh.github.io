@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }} | AR</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Import Google Fonts for better typography */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        /* Apply Inter font to body */
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            font-feature-settings: 'liga' 1, 'calt' 1;
+        }
+        
+        /* Blog specific styles */
+        .blog-post {
+            background: white;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            border: 1px solid #f3f4f6;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .blog-post:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .blog-post-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+        
+        .blog-post-title a {
+            color: #3b82f6;
+            text-decoration: none;
+        }
+        
+        .blog-post-title a:hover {
+            color: #1d4ed8;
+        }
+        
+        .blog-post-excerpt {
+            color: #4b5563;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        
+        .blog-post-date {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .prose {
+            max-width: none;
+            color: #374151;
+            line-height: 1.7;
+        }
+        
+        .prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+            color: #1f2937;
+            font-weight: 600;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .prose h1 {
+            font-size: 2.25rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .prose h2 {
+            font-size: 1.875rem;
+        }
+        
+        .prose h3 {
+            font-size: 1.5rem;
+        }
+        
+        .prose p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .prose ul, .prose ol {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+        
+        .prose li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .prose code {
+            background: #f3f4f6;
+            padding: 0.2rem 0.4rem;
+            border-radius: 0.25rem;
+            font-size: 0.875rem;
+            color: #e53e3e;
+        }
+        
+        .prose pre {
+            background: #1f2937;
+            color: #f9fafb;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            margin-bottom: 1.5rem;
+        }
+        
+        .prose blockquote {
+            border-left: 4px solid #3b82f6;
+            padding-left: 1rem;
+            margin: 1.5rem 0;
+            font-style: italic;
+            color: #6b7280;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white/80 backdrop-blur-sm fixed w-full z-10">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <a href="/" class="text-2xl font-light text-gray-800">AR</a>
+                <div class="flex space-x-8">
+                    <a href="/#about" class="text-gray-600 hover:text-blue-500 transition-colors">About</a>
+                    <a href="/#projects" class="text-gray-600 hover:text-blue-500 transition-colors">Projects</a>
+                    <a href="/blog.html" class="text-gray-600 hover:text-blue-500 transition-colors">Blog</a>
+                    <a href="/#contact" class="text-gray-600 hover:text-blue-500 transition-colors">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Content -->
+    <main class="pt-24">
+        {{ content }}
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-8 bg-gray-50">
+        <div class="max-w-5xl mx-auto px-4 text-center text-gray-500">
+            <p>© 2024 Aalekh Roy</p>
+        </div>
+    </footer>
+</body>
+</html>

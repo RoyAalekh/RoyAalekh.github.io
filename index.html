@@ -8,7 +8,110 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
   <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
-<style>
+  <style>
+    /* Import Google Fonts for better typography */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    
+    /* Apply Inter font to body */
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      font-feature-settings: 'liga' 1, 'calt' 1;
+    }
+    
+    /* Timeline specific styles */
+    .timeline-container {
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    /* Mobile-first timeline */
+    .timeline-item {
+      position: relative;
+      padding-left: 2rem;
+      padding-bottom: 3rem;
+      border-left: 2px solid #e5e7eb;
+    }
+    
+    .timeline-item:last-child {
+      border-left: none;
+    }
+    
+    .timeline-dot {
+      position: absolute;
+      left: -0.5rem;
+      top: 0.5rem;
+      width: 1rem;
+      height: 1rem;
+      border-radius: 50%;
+      background-color: #3b82f6;
+      border: 3px solid white;
+      box-shadow: 0 0 0 3px #e5e7eb;
+    }
+    
+    .timeline-content {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 0.75rem;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      margin-left: 1rem;
+      border: 1px solid #f3f4f6;
+    }
+    
+    .timeline-date {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: #6b7280;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    
+    .timeline-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #1f2937;
+      margin-bottom: 0.25rem;
+      line-height: 1.4;
+    }
+    
+    .timeline-company {
+      font-size: 1rem;
+      font-weight: 500;
+      color: #3b82f6;
+      margin-bottom: 1rem;
+    }
+    
+    .timeline-description {
+      font-size: 0.95rem;
+      color: #4b5563;
+      line-height: 1.6;
+      margin-bottom: 0.75rem;
+    }
+    
+    .timeline-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .timeline-list li {
+      position: relative;
+      padding-left: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: #4b5563;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+    
+    .timeline-list li:before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: #3b82f6;
+      font-weight: 600;
+    }
+    
     /* For medium screens and up, use a centered timeline */
     @media (min-width: 768px) {
       .timeline-container::before {
@@ -18,59 +121,245 @@
         transform: translateX(-50%);
         top: 0;
         bottom: 0;
-        width: 2px;
-        background-color: #3b82f6; /* blue-500 */
+        width: 3px;
+        background: linear-gradient(to bottom, #3b82f6, #1d4ed8);
+        border-radius: 1.5px;
       }
+      
       .timeline-item {
         margin: 0;
         width: 50%;
         position: relative;
+        padding-left: 0;
+        padding-bottom: 4rem;
+        border-left: none;
       }
+      
       .timeline-item:nth-child(odd) {
         padding-right: 3rem;
-        padding-left: 0;
         text-align: right;
       }
+      
       .timeline-item:nth-child(even) {
         margin-left: 50%;
         padding-left: 3rem;
-        padding-right: 0;
         text-align: left;
       }
+      
       .timeline-dot {
         position: absolute;
-        top: 1.25rem;
+        top: 1.5rem;
         left: 50%;
         transform: translateX(-50%);
         width: 1.5rem;
         height: 1.5rem;
-        border-radius: 9999px;
+        border-radius: 50%;
         background-color: white;
-        border-width: 2px;
-        border-color: #3b82f6; /* blue-500 */
+        border: 4px solid #3b82f6;
+        box-shadow: 0 0 0 4px white, 0 0 0 8px #e5e7eb;
+        z-index: 10;
       }
-      .timeline-item:nth-child(even) > .timeline-content {
+      
+      .timeline-content {
+        margin-left: 0;
+        margin-right: 0;
+        position: relative;
+      }
+      
+      .timeline-item:nth-child(even) .timeline-content {
         text-align: left;
       }
-      .timeline-item:nth-child(odd) > .timeline-content {
+      
+      .timeline-item:nth-child(odd) .timeline-content {
         text-align: right;
+      }
+      
+      .timeline-item:nth-child(odd) .timeline-list li {
+        text-align: left;
+      }
+      
+      .timeline-item:nth-child(even) .timeline-list li {
+        text-align: left;
       }
 
       /* Animation */
       .timeline-item {
-        transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+        transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
         opacity: 0;
       }
+      
       .timeline-item.is-visible {
         opacity: 1;
         transform: none !important;
       }
+      
       .timeline-item:nth-child(odd) {
-        transform: translateX(-30px);
+        transform: translateX(-50px);
       }
+      
       .timeline-item:nth-child(even) {
-        transform: translateX(30px);
+        transform: translateX(50px);
       }
+    }
+    
+    /* Hover effects */
+    .timeline-content:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+    
+    /* Tech Stack Constellation */
+    .tech-constellation {
+      position: relative;
+      height: 400px;
+      overflow: hidden;
+      border-radius: 1rem;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+    
+    .tech-node {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    .tech-node:hover {
+      transform: scale(1.2);
+      background: rgba(255, 255, 255, 0.2);
+      border-color: rgba(255, 255, 255, 0.4);
+    }
+    
+    .tech-node i {
+      font-size: 24px;
+      color: white;
+    }
+    
+    .tech-node:nth-child(1) { top: 20%; left: 15%; animation-delay: 0s; }
+    .tech-node:nth-child(2) { top: 10%; left: 45%; animation-delay: 1s; }
+    .tech-node:nth-child(3) { top: 30%; left: 75%; animation-delay: 2s; }
+    .tech-node:nth-child(4) { top: 60%; left: 20%; animation-delay: 3s; }
+    .tech-node:nth-child(5) { top: 50%; left: 50%; animation-delay: 4s; }
+    .tech-node:nth-child(6) { top: 70%; left: 80%; animation-delay: 5s; }
+    .tech-node:nth-child(7) { top: 80%; left: 40%; animation-delay: 1.5s; }
+    .tech-node:nth-child(8) { top: 15%; left: 80%; animation-delay: 2.5s; }
+    .tech-node:nth-child(9) { top: 45%; left: 25%; animation-delay: 3.5s; }
+    .tech-node:nth-child(10) { top: 35%; left: 60%; animation-delay: 4.5s; }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    .tech-constellation::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="stars" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="0.5" fill="rgba(255,255,255,0.3)"/><circle cx="7" cy="7" r="0.3" fill="rgba(255,255,255,0.2)"/></pattern></defs><rect width="100" height="100" fill="url(%23stars)"/></svg>') repeat;
+      opacity: 0.3;
+    }
+    
+    .tech-tooltip {
+      position: absolute;
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 1000;
+    }
+    
+    /* Philosophy Section */
+    .philosophy-card {
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      color: white;
+      padding: 2rem;
+      border-radius: 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .philosophy-card::before {
+      content: '"';
+      position: absolute;
+      top: -10px;
+      left: 20px;
+      font-size: 4rem;
+      opacity: 0.3;
+      font-family: serif;
+    }
+    
+    .philosophy-quote {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+      font-style: italic;
+    }
+    
+    .philosophy-attribution {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+    
+    /* Social Data Science Card */
+    .social-ds-card {
+      background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      color: white;
+      padding: 2rem;
+      border-radius: 1rem;
+      position: relative;
+    }
+    
+    .interests-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    
+    .interest-item {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 1.5rem;
+      border-radius: 0.75rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+    }
+    
+    .interest-item:hover {
+      transform: translateY(-5px);
+      background: rgba(255, 255, 255, 0.15);
+    }
+    
+    .interest-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: rgba(255, 255, 255, 0.9);
+    }
+    
+    .interest-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    
+    .interest-desc {
+      font-size: 0.9rem;
+      opacity: 0.9;
+      line-height: 1.5;
     }
   </style>
 </head>
@@ -83,6 +372,8 @@
         <a href="#" class="text-2xl font-light text-gray-800">AR</a>
         <div class="flex space-x-8">
           <a href="#about" class="text-gray-600 hover:text-blue-500 transition-colors">About</a>
+          <a href="#tech-stack" class="text-gray-600 hover:text-blue-500 transition-colors">Tech</a>
+          <a href="#philosophy" class="text-gray-600 hover:text-blue-500 transition-colors">Philosophy</a>
           <a href="#projects" class="text-gray-600 hover:text-blue-500 transition-colors">Projects</a>
           <a href="/blog.html" class="text-gray-600 hover:text-blue-500 transition-colors">Blog</a>
           <a href="#contact" class="text-gray-600 hover:text-blue-500 transition-colors">Contact</a>
@@ -114,11 +405,11 @@
         <!-- SmartHelio -->
         <div class="timeline-item">
           <div class="timeline-dot"></div>
-          <div class="timeline-content md:py-8">
-            <p class="text-gray-500 text-sm">Jan 2024 – Present</p>
-            <h3 class="text-xl font-semibold text-gray-800 mt-1">Data Scientist</h3>
-            <p class="text-gray-600">SmartHelio (YC-22)</p>
-            <ul class="list-disc list-inside mt-2 text-gray-600">
+          <div class="timeline-content">
+            <p class="timeline-date">Jan 2024 – Present</p>
+            <h3 class="timeline-title">Data Scientist</h3>
+            <p class="timeline-company">SmartHelio (YC-22)</p>
+            <ul class="timeline-list">
               <li>Lead the data and analytics team, architecting the intelligent systems that form the data-driven backbone of SmartHelio's SaaS platform.</li>
               <li>Scaling all data pipelines and models to support a 10x increase in managed assets, from 500 to 5,000 PV plants, in two quarters.</li>
             </ul>
@@ -126,11 +417,11 @@
         </div>
         <div class="timeline-item">
           <div class="timeline-dot"></div>
-          <div class="timeline-content md:py-8">
-            <p class="text-gray-500 text-sm">July 2023 – Dec 2023</p>
-            <h3 class="text-xl font-semibold text-gray-800 mt-1">Associate Data Scientist</h3>
-            <p class="text-gray-600">SmartHelio (YC-22)</p>
-            <ul class="list-disc list-inside mt-2 text-gray-600">
+          <div class="timeline-content">
+            <p class="timeline-date">July 2023 – Dec 2023</p>
+            <h3 class="timeline-title">Associate Data Scientist</h3>
+            <p class="timeline-company">SmartHelio (YC-22)</p>
+            <ul class="timeline-list">
               <li>Developed a predictive maintenance model to forecast soiling-induced energy losses, enabling optimized cleaning schedules and improving energy yield.</li>
               <li>Authored a centralized Python library for analytics, unifying logic across projects and accelerating development for multiple teams.</li>
             </ul>
@@ -138,39 +429,141 @@
         </div>
         <div class="timeline-item">
           <div class="timeline-dot"></div>
-          <div class="timeline-content md:py-8">
-            <p class="text-gray-500 text-sm">Sept 2022 – July 2023</p>
-            <h3 class="text-xl font-semibold text-gray-800 mt-1">Data Analyst</h3>
-            <p class="text-gray-600">SmartHelio (YC-22)</p>
-            <ul class="list-disc list-inside mt-2 text-gray-600">
+          <div class="timeline-content">
+            <p class="timeline-date">Sept 2022 – July 2023</p>
+            <h3 class="timeline-title">Data Analyst</h3>
+            <p class="timeline-company">SmartHelio (YC-22)</p>
+            <ul class="timeline-list">
               <li>Designed and implemented diagnostic pipelines for large-scale solar PV systems by integrating SCADA, IoT, and OEM data streams.</li>
-              <li>Integrated core analytics modules into SmartHelio’s flagship SaaS platform, delivering critical, real-time diagnostic data to clients.</li>
+              <li>Integrated core analytics modules into SmartHelio's flagship SaaS platform, delivering critical, real-time diagnostic data to clients.</li>
             </ul>
           </div>
         </div>
         <!-- Education -->
         <div class="timeline-item">
           <div class="timeline-dot"></div>
-          <div class="timeline-content md:py-8">
-            <p class="text-gray-500 text-sm">Aug 2020 - Aug 2022</p>
-            <h3 class="text-xl font-semibold text-gray-800 mt-1">MSc in Mathematics with Data Science</h3>
-            <p class="text-gray-600">Institute of Mathematics and Applications, Bhubaneswar</p>
+          <div class="timeline-content">
+            <p class="timeline-date">Aug 2020 - Aug 2022</p>
+            <h3 class="timeline-title">MSc in Mathematics with Data Science</h3>
+            <p class="timeline-company">Institute of Mathematics and Applications, Bhubaneswar</p>
           </div>
         </div>
         <div class="timeline-item">
           <div class="timeline-dot"></div>
-          <div class="timeline-content md:py-8">
-            <p class="text-gray-500 text-sm">May 2015 - May 2020</p>
-            <h3 class="text-xl font-semibold text-gray-800 mt-1">BA (Honors) in Mathematics</h3>
-            <p class="text-gray-600">Dr. B.R. Ambedkar University Delhi (AUD)</p>
+          <div class="timeline-content">
+            <p class="timeline-date">May 2015 - May 2020</p>
+            <h3 class="timeline-title">BA (Honors) in Mathematics</h3>
+            <p class="timeline-company">Dr. B.R. Ambedkar University Delhi (AUD)</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- Tech Stack Constellation Section -->
+  <section id="tech-stack" class="py-24 bg-white relative z-10">
+    <div class="max-w-5xl mx-auto px-4">
+      <h2 class="text-3xl font-light text-center text-gray-800 mb-16">Tech Universe</h2>
+      <div class="tech-constellation mx-auto max-w-4xl">
+        <div class="tech-node" data-tech="Python" data-experience="5+ years">
+          <i class="fab fa-python"></i>
+        </div>
+        <div class="tech-node" data-tech="PyTorch" data-experience="2+ years">
+          <i class="fas fa-fire"></i>
+        </div>
+        <div class="tech-node" data-tech="AWS" data-experience="2+ years">
+          <i class="fab fa-aws"></i>
+        </div>
+        <div class="tech-node" data-tech="Docker" data-experience="3+ years">
+          <i class="fab fa-docker"></i>
+        </div>
+        <div class="tech-node" data-tech="MongoDB" data-experience="2+ years">
+          <i class="fas fa-database"></i>
+        </div>
+        <div class="tech-node" data-tech="Git" data-experience="4+ years">
+          <i class="fab fa-git-alt"></i>
+        </div>
+        <div class="tech-node" data-tech="Machine Learning" data-experience="3+ years">
+          <i class="fas fa-brain"></i>
+        </div>
+        <div class="tech-node" data-tech="FastAPI" data-experience="2+ years">
+          <i class="fas fa-code"></i>
+        </div>
+        <div class="tech-node" data-tech="Julia" data-experience="1+ years">
+          <i class="fas fa-calculator"></i>
+        </div>
+        <div class="tech-node" data-tech="Network Analysis" data-experience="3+ years">
+          <i class="fas fa-project-diagram"></i>
+        </div>
+        <div class="tech-tooltip" id="tech-tooltip"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Philosophy & Social Data Science Section -->
+  <section id="philosophy" class="py-24 bg-gray-50 relative z-10">
+    <div class="max-w-5xl mx-auto px-4">
+      <h2 class="text-3xl font-light text-center text-gray-800 mb-16">Philosophy & Interdisciplinary Thinking</h2>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+        <div class="philosophy-card">
+          <div class="philosophy-quote">
+            I'm driven by a deep interest in how data shapes knowledge, decisions, and infrastructure, working at the intersection of research and engineering where algorithms meet real-world systems.
+          </div>
+          <div class="philosophy-attribution">
+            — My approach to Data Science
+          </div>
+        </div>
+        <div class="social-ds-card">
+          <h3 class="text-xl font-semibold mb-4">Epistemology of Data</h3>
+          <p class="text-sm opacity-90 leading-relaxed">
+            How do we know what we know through data? My interdisciplinary background in mathematics, social sciences, and humanities helps me bridge technical depth with social relevance, exploring the science-society interface.
+          </p>
+        </div>
+      </div>
+      
+      <div class="interests-grid">
+        <div class="interest-item">
+          <div class="interest-icon">
+            <i class="fas fa-project-diagram"></i>
+          </div>
+          <h4 class="interest-title">Complex Networks</h4>
+          <p class="interest-desc">
+            Researching scale-free networks, co-authoring "Omnipresence of Scale-Free Networks: A Myth?" and exploring network models in computational gastronomy.
+          </p>
+        </div>
+        <div class="interest-item">
+          <div class="interest-icon">
+            <i class="fas fa-balance-scale"></i>
+          </div>
+          <h4 class="interest-title">Social Theory & Data</h4>
+          <p class="interest-desc">
+            Liberal arts education combining mathematical rigor with social sciences, examining how data structures shape social understanding.
+          </p>
+        </div>
+        <div class="interest-item">
+          <div class="interest-icon">
+            <i class="fas fa-brain"></i>
+          </div>
+          <h4 class="interest-title">Behavioral Patterns</h4>
+          <p class="interest-desc">
+            Studying decision-making through game theory, psychology, and statistical methods to understand human behavior in complex systems.
+          </p>
+        </div>
+        <div class="interest-item">
+          <div class="interest-icon">
+            <i class="fas fa-book-open"></i>
+          </div>
+          <h4 class="interest-title">Cultural Analysis</h4>
+          <p class="interest-desc">
+            Exploring video games as cultural artifacts, global music traditions, and the intersection of technology with society and philosophy.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Projects Section -->
-  <section id="projects" class="py-24 bg-gray-50 relative z-10">
+  <section id="projects" class="py-24 bg-white relative z-10">
     <div class="max-w-5xl mx-auto px-4">
       <h2 class="text-3xl font-light text-center text-gray-800 mb-16">Featured Projects</h2>
       <div id="repo-container" class="grid grid-cols-1 md:grid-cols-2 gap-8"></div>
@@ -357,6 +750,50 @@
     const timelineItems = document.querySelectorAll('.timeline-item');
     timelineItems.forEach(item => {
       observer.observe(item);
+    });
+    
+    // Tech constellation interactivity
+    const techNodes = document.querySelectorAll('.tech-node');
+    const techTooltip = document.getElementById('tech-tooltip');
+    
+    techNodes.forEach(node => {
+      node.addEventListener('mouseenter', (e) => {
+        const tech = e.target.closest('.tech-node').getAttribute('data-tech');
+        const experience = e.target.closest('.tech-node').getAttribute('data-experience');
+        
+        techTooltip.innerHTML = `<strong>${tech}</strong><br>Experience: ${experience}`;
+        techTooltip.style.opacity = '1';
+        
+        const rect = e.target.getBoundingClientRect();
+        const container = document.querySelector('.tech-constellation');
+        const containerRect = container.getBoundingClientRect();
+        
+        techTooltip.style.left = (rect.left - containerRect.left + rect.width / 2 - techTooltip.offsetWidth / 2) + 'px';
+        techTooltip.style.top = (rect.top - containerRect.top - 40) + 'px';
+      });
+      
+      node.addEventListener('mouseleave', () => {
+        techTooltip.style.opacity = '0';
+      });
+    });
+    
+    // Add scroll-based animations for new sections
+    const newSections = document.querySelectorAll('.philosophy-card, .social-ds-card, .interest-item, .tech-node');
+    
+    const newObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+    
+    newSections.forEach(section => {
+      section.style.opacity = '0';
+      section.style.transform = 'translateY(20px)';
+      section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      newObserver.observe(section);
     });
   </script>
 </body>
