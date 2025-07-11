@@ -8,6 +8,55 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
   <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+<style>
+    /* For medium screens and up, use a centered timeline */
+    @media (min-width: 768px) {
+      .timeline-container::before {
+        content: '';
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background-color: #e5e7eb; /* gray-200 */
+      }
+      .timeline-item {
+        margin: 0;
+        width: 50%;
+        position: relative;
+      }
+      .timeline-item:nth-child(odd) {
+        padding-right: 3rem;
+        padding-left: 0;
+        text-align: right;
+      }
+      .timeline-item:nth-child(even) {
+        margin-left: 50%;
+        padding-left: 3rem;
+        padding-right: 0;
+        text-align: left;
+      }
+      .timeline-dot {
+        position: absolute;
+        top: 1.25rem;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 1.5rem;
+        height: 1.5rem;
+        border-radius: 9999px;
+        background-color: white;
+        border-width: 2px;
+        border-color: #4b5563; /* gray-600 */
+      }
+      .timeline-item:nth-child(even) > .timeline-content {
+        text-align: left;
+      }
+      .timeline-item:nth-child(odd) > .timeline-content {
+        text-align: right;
+      }
+    }
+  </style>
 </head>
 <body class="bg-gray-50 relative overflow-x-hidden">
 
@@ -41,40 +90,63 @@
     </div>
   </div>
 
-  <!-- About Section -->
+<!-- Experience Timeline -->
   <section id="about" class="py-24 bg-white relative z-10">
     <div class="max-w-5xl mx-auto px-4">
-      <h2 class="text-3xl font-light text-center text-gray-800 mb-16">About Me</h2>
-      <div class="flex flex-col md:flex-row items-center justify-between gap-16">
-        <div class="md:w-1/2">
-          <img src="PP image.jpg" alt="Profile" class="rounded-lg shadow-lg w-full max-w-md mx-auto" />
+      <h2 class="text-3xl font-light text-center text-gray-800 mb-16">My Journey</h2>
+      <div class="timeline-container relative">
+        <!-- SmartHelio -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content md:py-8">
+            <p class="text-gray-500 text-sm">Jan 2024 – Present</p>
+            <h3 class="text-xl font-semibold text-gray-800 mt-1">Data Scientist</h3>
+            <p class="text-gray-600">SmartHelio (YC-22)</p>
+            <ul class="list-disc list-inside mt-2 text-gray-600">
+              <li>Driving the development of predictive analytics algorithms for system faults and performance degradation.</li>
+              <li>Leading a team to revamp the fault detection engine, reducing runtime by 30%.</li>
+            </ul>
+          </div>
         </div>
-        <div class="md:w-1/2">
-          <p class="text-gray-600 text-lg leading-relaxed mb-8">
-            Hello! I'm a Data Scientist and Complexity Science enthusiast based in New Delhi, India. I craft data-driven solutions and explore the fascinating world of complex systems through code and mathematics.
-          </p>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div>
-              <h3 class="text-lg font-medium text-gray-800 mb-4">Technical Stack</h3>
-              <div class="flex flex-wrap gap-4 text-4xl">
-                <i class="devicon-python-plain" title="Python"></i>
-                <i class="devicon-postgresql-plain" title="SQL"></i>
-                <i class="devicon-r-original" title="R"></i>
-                <i class="devicon-julia-plain" title="Julia"></i>
-                <i class="devicon-amazonwebservices-original-wordmark" title="AWS"></i>
-                <i class="devicon-pytorch-original" title="PyTorch"></i>
-                <i class="devicon-tensorflow-original" title="TensorFlow"></i>
-              </div>
-            </div>
-            <div>
-              <h3 class="text-lg font-medium text-gray-800 mb-4">Focus Areas</h3>
-              <div class="flex flex-wrap gap-2">
-                <span class="px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-sm">Data Centric ML</span>
-                <span class="px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-sm">Complex Networks</span>
-                <span class="px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-sm">Graph ML</span>
-                <span class="px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-sm">Optimization</span>
-              </div>
-            </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content md:py-8">
+            <p class="text-gray-500 text-sm">July 2023 – Dec 2023</p>
+            <h3 class="text-xl font-semibold text-gray-800 mt-1">Associate Data Scientist</h3>
+            <p class="text-gray-600">SmartHelio (YC-22)</p>
+            <ul class="list-disc list-inside mt-2 text-gray-600">
+              <li>Built a predictive maintenance pipeline using XGBoost to forecast soiling rates.</li>
+              <li>Standardized analytics logic through a centralized internal Python library.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content md:py-8">
+            <p class="text-gray-500 text-sm">Sept 2022 – July 2023</p>
+            <h3 class="text-xl font-semibold text-gray-800 mt-1">Data Analyst</h3>
+            <p class="text-gray-600">SmartHelio (YC-22)</p>
+            <ul class="list-disc list-inside mt-2 text-gray-600">
+              <li>Developed pipelines for fault detection and soiling diagnostics in utility-scale PV systems.</li>
+              <li>Deployed core analytics modules into SmartHelio’s SaaS platform.</li>
+            </ul>
+          </div>
+        </div>
+        <!-- Education -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content md:py-8">
+            <p class="text-gray-500 text-sm">Aug 2020 - Aug 2022</p>
+            <h3 class="text-xl font-semibold text-gray-800 mt-1">MSc in Mathematics with Data Science</h3>
+            <p class="text-gray-600">Institute of Mathematics and Applications, Bhubaneswar</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content md:py-8">
+            <p class="text-gray-500 text-sm">May 2015 - May 2020</p>
+            <h3 class="text-xl font-semibold text-gray-800 mt-1">BA (Honors) in Mathematics</h3>
+            <p class="text-gray-600">Dr. B.R. Ambedkar University Delhi (AUD)</p>
           </div>
         </div>
       </div>
