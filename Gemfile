@@ -1,7 +1,6 @@
 source "https://rubygems.org"
 
 gem "jekyll", "~> 4.3.0"
-gem "bundler", "~> 2.4"
 gem "jekyll-theme-minimal", "~> 0.2.0"
 gem "faraday-retry", "~> 2.0" # For retry middleware
 gem "bigdecimal" # To silence warnings
