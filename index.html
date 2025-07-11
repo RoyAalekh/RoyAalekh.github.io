@@ -183,58 +183,103 @@
       transition: all 0.3s ease;
     }
     
-    /* Tech Stack Constellation */
-    .tech-constellation {
-      position: relative;
-      height: 400px;
-      overflow: hidden;
+    /* New Tech Stack Styles */
+    .tech-category {
+      background: white;
+      padding: 2rem;
       border-radius: 1rem;
-      background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-      border: 1px solid #e2e8f0;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      border: 1px solid #f3f4f6;
+      transition: all 0.3s ease;
     }
     
-    .tech-node {
-      position: absolute;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background: rgba(59, 130, 246, 0.1);
-      backdrop-filter: blur(5px);
-      border: 1px solid rgba(59, 130, 246, 0.2);
+    .tech-category:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+    
+    .tech-item {
       display: flex;
       align-items: center;
-      justify-content: center;
+      padding: 1rem;
+      background: #f8fafc;
+      border-radius: 0.75rem;
+      border: 1px solid #e2e8f0;
+      transition: all 0.3s ease;
       cursor: pointer;
-      transition: all 0.2s ease;
-      animation: float 8s ease-in-out infinite;
+      position: relative;
     }
     
-    .tech-node:hover {
-      transform: scale(1.1);
-      background: rgba(59, 130, 246, 0.15);
-      border-color: rgba(59, 130, 246, 0.3);
-      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+    .tech-item:hover {
+      background: #f1f5f9;
+      border-color: #cbd5e1;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
     
-    .tech-node i {
-      font-size: 24px;
+    .tech-item i {
+      font-size: 1.5rem;
+      margin-right: 0.75rem;
+    }
+    
+    .tech-item span {
+      font-weight: 500;
+      color: #374151;
+    }
+    
+    .tech-item-small {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1.25rem 1rem;
+      background: #f8fafc;
+      border-radius: 0.75rem;
+      border: 1px solid #e2e8f0;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      text-align: center;
+    }
+    
+    .tech-item-small:hover {
+      background: #f1f5f9;
+      border-color: #cbd5e1;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .tech-item-small i {
+      font-size: 1.75rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .tech-item-small span {
+      font-weight: 500;
+      color: #374151;
+      font-size: 0.875rem;
+    }
+    
+    /* Course List Styles */
+    .course-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.75rem 0 0 0;
+    }
+    
+    .course-list li {
+      position: relative;
+      padding-left: 1.25rem;
+      margin-bottom: 0.25rem;
+      color: #6b7280;
+      font-size: 0.875rem;
+      line-height: 1.4;
+    }
+    
+    .course-list li:before {
+      content: '•';
+      position: absolute;
+      left: 0;
       color: #3b82f6;
-    }
-    
-    .tech-node:nth-child(1) { top: 20%; left: 15%; animation-delay: 0s; }
-    .tech-node:nth-child(2) { top: 10%; left: 45%; animation-delay: 1s; }
-    .tech-node:nth-child(3) { top: 30%; left: 75%; animation-delay: 2s; }
-    .tech-node:nth-child(4) { top: 60%; left: 20%; animation-delay: 3s; }
-    .tech-node:nth-child(5) { top: 50%; left: 50%; animation-delay: 4s; }
-    .tech-node:nth-child(6) { top: 70%; left: 80%; animation-delay: 5s; }
-    .tech-node:nth-child(7) { top: 80%; left: 40%; animation-delay: 1.5s; }
-    .tech-node:nth-child(8) { top: 15%; left: 80%; animation-delay: 2.5s; }
-    .tech-node:nth-child(9) { top: 45%; left: 25%; animation-delay: 3.5s; }
-    .tech-node:nth-child(10) { top: 35%; left: 60%; animation-delay: 4.5s; }
-    
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
+      font-weight: 600;
     }
     
     .tech-constellation::before {
@@ -418,6 +463,15 @@
             <p class="timeline-date">Aug 2020 - Aug 2022</p>
             <h3 class="timeline-title">MSc in Mathematics with Data Science</h3>
             <p class="timeline-company">Institute of Mathematics and Applications, Bhubaneswar</p>
+            <p class="text-gray-600 text-sm mb-2 font-medium">Key Coursework:</p>
+            <ul class="course-list">
+              <li>Advanced Statistical Methods & Machine Learning</li>
+              <li>Complex Networks & Graph Theory</li>
+              <li>Computational Mathematics & Numerical Analysis</li>
+              <li>Data Mining & Knowledge Discovery</li>
+              <li>Mathematical Modeling & Optimization</li>
+              <li>Time Series Analysis & Forecasting</li>
+            </ul>
           </div>
         </div>
         <div class="timeline-item">
@@ -425,48 +479,162 @@
             <p class="timeline-date">May 2015 - May 2020</p>
             <h3 class="timeline-title">BA (Honors) in Mathematics</h3>
             <p class="timeline-company">Dr. B.R. Ambedkar University Delhi (AUD)</p>
+            <p class="text-gray-600 text-sm mb-2 font-medium">Interdisciplinary Focus:</p>
+            <ul class="course-list">
+              <li>Real & Complex Analysis, Abstract Algebra</li>
+              <li>Probability Theory & Mathematical Statistics</li>
+              <li>Linear Algebra & Differential Equations</li>
+              <li>Social Theory & Philosophy of Science</li>
+              <li>Research Methodology & Critical Thinking</li>
+              <li>Game Theory & Decision Sciences</li>
+            </ul>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Tech Stack Constellation Section -->
+  <!-- Skills & Technologies Section -->
   <section id="tech-stack" class="py-24 bg-white relative z-10">
-    <div class="max-w-5xl mx-auto px-4">
-      <h2 class="text-3xl font-light text-center text-gray-800 mb-16">Tech Universe</h2>
-      <div class="tech-constellation mx-auto max-w-4xl">
-        <div class="tech-node" data-tech="Python" data-experience="5+ years">
-          <i class="fab fa-python"></i>
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-3xl font-light text-center text-gray-800 mb-16">Skills & Technologies</h2>
+      
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Programming Languages -->
+        <div class="tech-category">
+          <h3 class="text-xl font-semibold text-gray-800 mb-6 flex items-center">
+            <i class="fas fa-code text-blue-500 mr-3"></i>
+            Programming Languages
+          </h3>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="tech-item" data-experience="5+ years">
+              <i class="fab fa-python text-blue-600"></i>
+              <span>Python</span>
+            </div>
+            <div class="tech-item" data-experience="3+ years">
+              <i class="fab fa-r-project text-blue-700"></i>
+              <span>R</span>
+            </div>
+            <div class="tech-item" data-experience="2+ years">
+              <i class="fas fa-calculator text-purple-600"></i>
+              <span>Julia</span>
+            </div>
+            <div class="tech-item" data-experience="4+ years">
+              <i class="fab fa-js text-yellow-500"></i>
+              <span>JavaScript</span>
+            </div>
+            <div class="tech-item" data-experience="3+ years">
+              <i class="fas fa-database text-orange-600"></i>
+              <span>SQL</span>
+            </div>
+            <div class="tech-item" data-experience="2+ years">
+              <i class="fab fa-java text-red-600"></i>
+              <span>Java</span>
+            </div>
+          </div>
         </div>
-        <div class="tech-node" data-tech="PyTorch" data-experience="2+ years">
-          <i class="fas fa-fire"></i>
+
+        <!-- ML & Data Science -->
+        <div class="tech-category">
+          <h3 class="text-xl font-semibold text-gray-800 mb-6 flex items-center">
+            <i class="fas fa-brain text-purple-500 mr-3"></i>
+            ML & Data Science
+          </h3>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="tech-item" data-experience="3+ years">
+              <i class="fas fa-fire text-orange-500"></i>
+              <span>PyTorch</span>
+            </div>
+            <div class="tech-item" data-experience="3+ years">
+              <i class="fas fa-cube text-orange-600"></i>
+              <span>TensorFlow</span>
+            </div>
+            <div class="tech-item" data-experience="4+ years">
+              <i class="fas fa-chart-line text-blue-500"></i>
+              <span>Pandas</span>
+            </div>
+            <div class="tech-item" data-experience="4+ years">
+              <i class="fas fa-square-root-alt text-green-600"></i>
+              <span>NumPy</span>
+            </div>
+            <div class="tech-item" data-experience="3+ years">
+              <i class="fas fa-chart-bar text-purple-500"></i>
+              <span>Scikit-learn</span>
+            </div>
+            <div class="tech-item" data-experience="3+ years">
+              <i class="fas fa-project-diagram text-red-500"></i>
+              <span>NetworkX</span>
+            </div>
+          </div>
         </div>
-        <div class="tech-node" data-tech="AWS" data-experience="2+ years">
-          <i class="fab fa-aws"></i>
+
+        <!-- Tools & Platforms -->
+        <div class="tech-category">
+          <h3 class="text-xl font-semibold text-gray-800 mb-6 flex items-center">
+            <i class="fas fa-tools text-green-500 mr-3"></i>
+            Tools & Platforms
+          </h3>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="tech-item" data-experience="3+ years">
+              <i class="fab fa-aws text-orange-400"></i>
+              <span>AWS</span>
+            </div>
+            <div class="tech-item" data-experience="3+ years">
+              <i class="fab fa-docker text-blue-500"></i>
+              <span>Docker</span>
+            </div>
+            <div class="tech-item" data-experience="4+ years">
+              <i class="fab fa-git-alt text-red-500"></i>
+              <span>Git</span>
+            </div>
+            <div class="tech-item" data-experience="2+ years">
+              <i class="fas fa-database text-green-600"></i>
+              <span>MongoDB</span>
+            </div>
+            <div class="tech-item" data-experience="2+ years">
+              <i class="fas fa-server text-gray-600"></i>
+              <span>FastAPI</span>
+            </div>
+            <div class="tech-item" data-experience="3+ years">
+              <i class="fab fa-linux text-black"></i>
+              <span>Linux</span>
+            </div>
+          </div>
         </div>
-        <div class="tech-node" data-tech="Docker" data-experience="3+ years">
-          <i class="fab fa-docker"></i>
+      </div>
+
+      <!-- Frameworks & Libraries Row -->
+      <div class="mt-12">
+        <h3 class="text-xl font-semibold text-gray-800 mb-6 text-center flex items-center justify-center">
+          <i class="fas fa-layer-group text-indigo-500 mr-3"></i>
+          Frameworks & Libraries
+        </h3>
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+          <div class="tech-item-small" data-experience="2+ years">
+            <i class="fab fa-react text-blue-400"></i>
+            <span>React</span>
+          </div>
+          <div class="tech-item-small" data-experience="3+ years">
+            <i class="fas fa-chart-area text-green-500"></i>
+            <span>Plotly</span>
+          </div>
+          <div class="tech-item-small" data-experience="2+ years">
+            <i class="fas fa-wind text-teal-500"></i>
+            <span>Streamlit</span>
+          </div>
+          <div class="tech-item-small" data-experience="2+ years">
+            <i class="fas fa-book text-orange-500"></i>
+            <span>Jupyter</span>
+          </div>
+          <div class="tech-item-small" data-experience="3+ years">
+            <i class="fas fa-table text-purple-500"></i>
+            <span>Apache Spark</span>
+          </div>
+          <div class="tech-item-small" data-experience="2+ years">
+            <i class="fab fa-node-js text-green-600"></i>
+            <span>Node.js</span>
+          </div>
         </div>
-        <div class="tech-node" data-tech="MongoDB" data-experience="2+ years">
-          <i class="fas fa-database"></i>
-        </div>
-        <div class="tech-node" data-tech="Git" data-experience="4+ years">
-          <i class="fab fa-git-alt"></i>
-        </div>
-        <div class="tech-node" data-tech="Machine Learning" data-experience="3+ years">
-          <i class="fas fa-brain"></i>
-        </div>
-        <div class="tech-node" data-tech="FastAPI" data-experience="2+ years">
-          <i class="fas fa-code"></i>
-        </div>
-        <div class="tech-node" data-tech="Julia" data-experience="1+ years">
-          <i class="fas fa-calculator"></i>
-        </div>
-        <div class="tech-node" data-tech="Network Analysis" data-experience="3+ years">
-          <i class="fas fa-project-diagram"></i>
-        </div>
-        <div class="tech-tooltip" id="tech-tooltip"></div>
       </div>
     </div>
   </section>
