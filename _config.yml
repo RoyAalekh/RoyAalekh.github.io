@@ -43,6 +43,9 @@ exclude:
   - "*.tmp"
   - "*.bak"
   - ".DS_Store"
+  - _typst
+  - scripts
+  - "*.ps1"
 
 # Sass configuration for faster compilation
 sass:
