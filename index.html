@@ -209,6 +209,41 @@
       cursor: pointer;
       position: relative;
     }
+
+    .competence-indicator {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin-right: 10px;
+      flex-shrink: 0;
+    }
+
+    .level-3 { background-color: #4CAF50; } /* Expert */
+    .level-2 { background-color: #2196F3; } /* Comfortable */
+    .level-1 { background-color: #FFC107; } /* Learning */
+    .level-0 { background-color: #F44336; } /* Familiar */
+
+    .tooltip {
+      visibility: hidden;
+      width: 200px;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 5px 0;
+      position: absolute;
+      z-index: 1;
+      bottom: 125%;
+      left: 50%;
+      margin-left: -100px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .tech-item:hover .tooltip, .tech-item-small:hover .tooltip {
+      visibility: visible;
+      opacity: 1;
+    }
     
     .tech-item:hover {
       background: #f1f5f9;
@@ -238,6 +273,7 @@
       transition: all 0.3s ease;
       cursor: pointer;
       text-align: center;
+      position: relative;
     }
     
     .tech-item-small:hover {
@@ -306,12 +342,12 @@
     
     /* Philosophy Section */
     .philosophy-card {
-      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-      color: white;
+      background: #f8fafc;
+      color: #374151;
       padding: 2rem;
       border-radius: 1rem;
-      position: relative;
-      overflow: hidden;
+      border: 1px solid #e2e8f0;
+      transition: all 0.3s ease;
     }
     
     .philosophy-card::before {
@@ -338,11 +374,12 @@
     
     /* Social Data Science Card */
     .social-ds-card {
-      background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-      color: white;
+      background: #f8fafc;
+      color: #374151;
       padding: 2rem;
       border-radius: 1rem;
-      position: relative;
+      border: 1px solid #e2e8f0;
+      transition: all 0.3s ease;
     }
     
     .interests-grid {
@@ -507,29 +544,35 @@
             Programming Languages
           </h3>
           <div class="grid grid-cols-2 gap-4">
-            <div class="tech-item" data-experience="5+ years">
+            <div class="tech-item" data-tooltip="My bread and butter. I can build complex things with this.">
+              <div class="competence-indicator level-3"></div>
               <i class="fab fa-python text-blue-600"></i>
               <span>Python</span>
+              <span class="tooltip">My bread and butter. I can build complex things with this.</span>
             </div>
-            <div class="tech-item" data-experience="3+ years">
+            <div class="tech-item" data-tooltip="I know my way around. I can read, write, and create with this.">
+              <div class="competence-indicator level-2"></div>
               <i class="fab fa-r-project text-blue-700"></i>
               <span>R</span>
+              <span class="tooltip">I know my way around. I can read, write, and create with this.</span>
             </div>
-            <div class="tech-item" data-experience="2+ years">
+            <div class="tech-item" data-tooltip="I'm learning this. I can read it and I'm actively developing my skills.">
+              <div class="competence-indicator level-1"></div>
               <i class="fas fa-calculator text-purple-600"></i>
               <span>Julia</span>
+              <span class="tooltip">I'm learning this. I can read it and I'm actively developing my skills.</span>
             </div>
-            <div class="tech-item" data-experience="4+ years">
+            <div class="tech-item" data-tooltip="I can read and understand this, but I'm not a practitioner.">
+              <div class="competence-indicator level-0"></div>
               <i class="fab fa-js text-yellow-500"></i>
               <span>JavaScript</span>
+              <span class="tooltip">I can read and understand this, but I'm not a practitioner.</span>
             </div>
-            <div class="tech-item" data-experience="3+ years">
+            <div class="tech-item" data-tooltip="A necessary curse for any data scientist.">
+              <div class="competence-indicator level-2"></div>
               <i class="fas fa-database text-orange-600"></i>
               <span>SQL</span>
-            </div>
-            <div class="tech-item" data-experience="2+ years">
-              <i class="fab fa-java text-red-600"></i>
-              <span>Java</span>
+              <span class="tooltip">A necessary curse for any data scientist.</span>
             </div>
           </div>
         </div>
@@ -541,29 +584,47 @@
             ML & Data Science
           </h3>
           <div class="grid grid-cols-2 gap-4">
-            <div class="tech-item" data-experience="3+ years">
+            <div class="tech-item" data-tooltip="I can read, write, and create deep nets. Not an expert, but comfortable.">
+              <div class="competence-indicator level-2"></div>
               <i class="fas fa-fire text-orange-500"></i>
               <span>PyTorch</span>
+              <span class="tooltip">I can read, write, and create deep nets. Not an expert, but comfortable.</span>
             </div>
-            <div class="tech-item" data-experience="3+ years">
+            <div class="tech-item" data-tooltip="I prefer TensorFlow in production, PyTorch for R&D.">
+              <div class="competence-indicator level-2"></div>
               <i class="fas fa-cube text-orange-600"></i>
               <span>TensorFlow</span>
+              <span class="tooltip">I prefer TensorFlow in production, PyTorch for R&D.</span>
             </div>
-            <div class="tech-item" data-experience="4+ years">
+            <div class="tech-item" data-tooltip="Very comfortable, but now shifting to Polars for critical pipelines.">
+              <div class="competence-indicator level-3"></div>
               <i class="fas fa-chart-line text-blue-500"></i>
               <span>Pandas</span>
+              <span class="tooltip">Very comfortable, but now shifting to Polars for critical pipelines.</span>
             </div>
-            <div class="tech-item" data-experience="4+ years">
+            <div class="tech-item" data-tooltip="Very comfortable, a go-to for numerical operations.">
+              <div class="competence-indicator level-3"></div>
               <i class="fas fa-square-root-alt text-green-600"></i>
               <span>NumPy</span>
+              <span class="tooltip">Very comfortable, a go-to for numerical operations.</span>
             </div>
-            <div class="tech-item" data-experience="3+ years">
+            <div class="tech-item" data-tooltip="Comfortable, but now exploring Skrub and Skore.">
+              <div class="competence-indicator level-3"></div>
               <i class="fas fa-chart-bar text-purple-500"></i>
               <span>Scikit-learn</span>
+              <span class="tooltip">Comfortable, but now exploring Skrub and Skore.</span>
             </div>
-            <div class="tech-item" data-experience="3+ years">
+            <div class="tech-item" data-tooltip="Learning and getting more comfortable with it.">
+              <div class="competence-indicator level-1"></div>
               <i class="fas fa-project-diagram text-red-500"></i>
               <span>NetworkX</span>
+              <span class="tooltip">Learning and getting more comfortable with it.</span>
+            </div>
+            <div class="tech-item" data-tooltip="Comfortable with it and actively migrating pipelines to it.">
+              <div class="competence-indicator level-2"></div>
+              <i class="fas fa-table text-blue-500"></i>
+              <span>Polars</span>
+              <span class="tooltip">Comfortable with it and actively migrating pipelines to it.</span>
             </div>
           </div>
         </div>
@@ -575,29 +636,47 @@
             Tools & Platforms
           </h3>
           <div class="grid grid-cols-2 gap-4">
-            <div class="tech-item" data-experience="3+ years">
+            <div class="tech-item" data-tooltip="S3, Timestream, and ECS are my bread and butter.">
+              <div class="competence-indicator level-3"></div>
               <i class="fab fa-aws text-orange-400"></i>
               <span>AWS</span>
+              <span class="tooltip">S3, Timestream, and ECS are my bread and butter.</span>
             </div>
-            <div class="tech-item" data-experience="3+ years">
+            <div class="tech-item" data-tooltip="A necessary tool, thanks to my software engineering colleagues.">
+              <div class="competence-indicator level-2"></div>
               <i class="fab fa-docker text-blue-500"></i>
               <span>Docker</span>
+              <span class="tooltip">A necessary tool, thanks to my software engineering colleagues.</span>
             </div>
-            <div class="tech-item" data-experience="4+ years">
+            <div class="tech-item" data-tooltip="It's like breathing, but I still don't get rebasing.">
+              <div class="competence-indicator level-3"></div>
               <i class="fab fa-git-alt text-red-500"></i>
               <span>Git</span>
+              <span class="tooltip">It's like breathing, but I still don't get rebasing.</span>
             </div>
-            <div class="tech-item" data-experience="2+ years">
+            <div class="tech-item" data-tooltip="Very comfortable with it.">
+              <div class="competence-indicator level-3"></div>
               <i class="fas fa-database text-green-600"></i>
               <span>MongoDB</span>
+              <span class="tooltip">Very comfortable with it.</span>
             </div>
-            <div class="tech-item" data-experience="2+ years">
+            <div class="tech-item" data-tooltip="Learning and have built some APIs to serve data and models.">
+              <div class="competence-indicator level-1"></div>
               <i class="fas fa-server text-gray-600"></i>
               <span>FastAPI</span>
+              <span class="tooltip">Learning and have built some APIs to serve data and models.</span>
             </div>
-            <div class="tech-item" data-experience="3+ years">
+            <div class="tech-item" data-tooltip="A love-hate relationship.">
+              <div class="competence-indicator level-1"></div>
               <i class="fab fa-linux text-black"></i>
               <span>Linux</span>
+              <span class="tooltip">A love-hate relationship.</span>
+            </div>
+            <div class="tech-item" data-tooltip="Currently learning as part of a cloud migration.">
+              <div class="competence-indicator level-1"></div>
+              <i class="fab fa-microsoft text-blue-500"></i>
+              <span>Azure</span>
+              <span class="tooltip">Currently learning as part of a cloud migration.</span>
             </div>
           </div>
         </div>
@@ -610,29 +689,63 @@
           Frameworks & Libraries
         </h3>
         <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-          <div class="tech-item-small" data-experience="2+ years">
-            <i class="fab fa-react text-blue-400"></i>
-            <span>React</span>
-          </div>
-          <div class="tech-item-small" data-experience="3+ years">
+          <div class="tech-item-small" data-tooltip="I just love Plotly, especially graph objects.">
+            <div class="competence-indicator level-3"></div>
             <i class="fas fa-chart-area text-green-500"></i>
             <span>Plotly</span>
+            <span class="tooltip">I just love Plotly, especially graph objects.</span>
           </div>
-          <div class="tech-item-small" data-experience="2+ years">
+          <div class="tech-item-small" data-tooltip="The new kid in town. Building and learning.">
+            <div class="competence-indicator level-2"></div>
             <i class="fas fa-wind text-teal-500"></i>
             <span>Streamlit</span>
+            <span class="tooltip">The new kid in town. Building and learning.</span>
           </div>
-          <div class="tech-item-small" data-experience="2+ years">
+          <div class="tech-item-small" data-tooltip="A lost love.">
+            <div class="competence-indicator level-2"></div>
             <i class="fas fa-book text-orange-500"></i>
             <span>Jupyter</span>
+            <span class="tooltip">A lost love.</span>
           </div>
-          <div class="tech-item-small" data-experience="3+ years">
-            <i class="fas fa-table text-purple-500"></i>
-            <span>Apache Spark</span>
+          <div class="tech-item-small" data-tooltip="Exploring this for data preparation.">
+            <div class="competence-indicator level-1"></div>
+            <i class="fas fa-broom text-purple-500"></i>
+            <span>Skrub</span>
+            <span class="tooltip">Exploring this for data preparation.</span>
           </div>
-          <div class="tech-item-small" data-experience="2+ years">
-            <i class="fab fa-node-js text-green-600"></i>
-            <span>Node.js</span>
+        </div>
+      </div>
+
+      <!-- Generative AI Tools Row -->
+      <div class="mt-12">
+        <h3 class="text-xl font-semibold text-gray-800 mb-6 text-center flex items-center justify-center">
+          <i class="fas fa-magic text-cyan-500 mr-3"></i>
+          Generative AI Tools
+        </h3>
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-4">
+          <div class="tech-item-small" data-tooltip="My coding companion for research, learning, and vibe coding.">
+            <div class="competence-indicator level-2"></div>
+            <i class="fab fa-github"></i>
+            <span>GitHub Copilot</span>
+            <span class="tooltip">My coding companion for research, learning, and vibe coding.</span>
+          </div>
+          <div class="tech-item-small" data-tooltip="My brainstorming partner for ideation and tool creation.">
+            <div class="competence-indicator level-2"></div>
+            <i class="fas fa-robot"></i>
+            <span>ChatGPT</span>
+            <span class="tooltip">My brainstorming partner for ideation and tool creation.</span>
+          </div>
+          <div class="tech-item-small" data-tooltip="Building intelligent applications with LLMs.">
+            <div class="competence-indicator level-2"></div>
+            <i class="fas fa-link"></i>
+            <span>LangChain</span>
+            <span class="tooltip">Building intelligent applications with LLMs.</span>
+          </div>
+          <div class="tech-item-small" data-tooltip="Running and experimenting with local LLMs.">
+            <div class="competence-indicator level-2"></div>
+            <i class="fas fa-cogs"></i>
+            <span>Ollama</span>
+            <span class="tooltip">Running and experimenting with local LLMs.</span>
           </div>
         </div>
       </div>
@@ -640,22 +753,20 @@
   </section>
 
   <!-- Philosophy & Social Data Science Section -->
-  <section id="philosophy" class="py-24 bg-gray-50 relative z-10">
+  <section id="approach" class="py-24 bg-gray-50 relative z-10">
     <div class="max-w-5xl mx-auto px-4">
-      <h2 class="text-3xl font-light text-center text-gray-800 mb-16">Philosophy & Interdisciplinary Thinking</h2>
+      <h2 class="text-3xl font-light text-center text-gray-800 mb-16">My Approach & Perspective</h2>
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
         <div class="philosophy-card">
-          <div class="philosophy-quote">
-            I'm driven by a deep interest in how data shapes knowledge, decisions, and infrastructure, working at the intersection of research and engineering where algorithms meet real-world systems.
-          </div>
-          <div class="philosophy-attribution">
-            — My approach to Data Science
-          </div>
+          <h3 class="text-xl font-semibold mb-4">Bridging Research & Engineering</h3>
+          <p class="text-gray-600 leading-relaxed">
+            I'm driven by a deep interest in how data shapes knowledge, decisions, and infrastructure. I enjoy working at the intersection of research and engineering, where algorithms meet real-world systems to solve practical problems.
+          </p>
         </div>
         <div class="social-ds-card">
-          <h3 class="text-xl font-semibold mb-4">Epistemology of Data</h3>
-          <p class="text-sm opacity-90 leading-relaxed">
-            How do we know what we know through data? My interdisciplinary background in mathematics, social sciences, and humanities helps me bridge technical depth with social relevance, exploring the science-society interface.
+          <h3 class="text-xl font-semibold mb-4">Data in Context</h3>
+          <p class="text-gray-600 leading-relaxed">
+            My interdisciplinary background in mathematics, social sciences, and humanities helps me bridge technical depth with social relevance. I believe in exploring the science-society interface to understand the broader impact of data.
           </p>
         </div>
       </div>
@@ -895,24 +1006,17 @@
     const techNodes = document.querySelectorAll('.tech-node');
     const techTooltip = document.getElementById('tech-tooltip');
     
-    techNodes.forEach(node => {
-      node.addEventListener('mouseenter', (e) => {
-        const tech = e.target.closest('.tech-node').getAttribute('data-tech');
-        const experience = e.target.closest('.tech-node').getAttribute('data-experience');
-        
-        techTooltip.innerHTML = `<strong>${tech}</strong><br>Experience: ${experience}`;
-        techTooltip.style.opacity = '1';
-        
-        const rect = e.target.getBoundingClientRect();
-        const container = document.querySelector('.tech-constellation');
-        const containerRect = container.getBoundingClientRect();
-        
-        techTooltip.style.left = (rect.left - containerRect.left + rect.width / 2 - techTooltip.offsetWidth / 2) + 'px';
-        techTooltip.style.top = (rect.top - containerRect.top - 40) + 'px';
+    const techItems = document.querySelectorAll('.tech-item, .tech-item-small');
+
+    techItems.forEach(item => {
+      const tooltip = item.querySelector('.tooltip');
+      item.addEventListener('mouseenter', () => {
+        tooltip.style.visibility = 'visible';
+        tooltip.style.opacity = '1';
       });
-      
-      node.addEventListener('mouseleave', () => {
-        techTooltip.style.opacity = '0';
+      item.addEventListener('mouseleave', () => {
+        tooltip.style.visibility = 'hidden';
+        tooltip.style.opacity = '0';
       });
     });
     
