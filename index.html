@@ -629,7 +629,7 @@
   <section id="projects" class="py-24 bg-white relative z-10">
     <div class="max-w-5xl mx-auto px-4">
       <h2 class="text-3xl font-light text-center text-gray-800 mb-16">Featured Projects</h2>
-      <div id="repo-container" class="grid grid-cols-1 md:grid-cols-2 gap-8"></div>
+      <div id="repo-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
     </div>
   </section>
 
@@ -671,7 +671,7 @@
   <!-- GitHub Repo Fetch Script -->
   <script>
     const username = "RoyAalekh";
-    const reposToShow = ["Snap2Sketch", "PyPI-Lens", "suntimes"];
+    const reposToShow = ["Snap2Sketch", "PyPI-Lens", "suntimes", "arbor", "ruvo", "network-analysis-nutrients", "one-piece-network-analysis", "virtualize"];
     const projectDetails = {
       Snap2Sketch: {
         problem: "There was a need for a simple, accessible tool to convert images into sketches without requiring complex software.",
@@ -687,19 +687,44 @@
         problem: "Finding accurate sunrise and sunset times for any location and date can be a challenge.",
         solution: "I developed a sleek web app with timezone awareness and an interactive map to provide precise sunrise and sunset times.",
         outcome: "A beautiful and accurate tool for finding sunrise and sunset times globally."
+      },
+      arbor: {
+        problem: "Visualizing directory structures from the command line can be cluttered and difficult to parse.",
+        solution: "I created a blazing-fast and lightweight CLI tool in Rust to visualize directory structures in a clear, tree-like format.",
+        outcome: "A highly-performant and easy-to-use tool for developers to explore file hierarchies with clarity."
+      },
+      ruvo: {
+        problem: "Managing Python virtual environments can be a tedious and error-prone process.",
+        solution: "I developed a fast and lightweight virtual environment manager in Rust to simplify the creation, management, and switching of venvs.",
+        outcome: "A streamlined developer tool that improves workflow and efficiency with minimal hassle."
+      },
+      "network-analysis-nutrients": {
+        problem: "Understanding the relationships between different nutrients in food can be a complex analytical challenge.",
+        solution: "I applied network analysis techniques to a nutrient dataset to visualize and explore the connections between various nutrients.",
+        outcome: "A clear and insightful visualization of nutrient relationships that can aid in nutritional research."
+      },
+      "one-piece-network-analysis": {
+        problem: "Analyzing the vast and complex character relationships in a long-running series like One Piece can be a fun and challenging data problem.",
+        solution: "I performed a network analysis of the One Piece character appearance network to uncover key characters and relationships.",
+        outcome: "A creative and engaging application of network analysis that demonstrates the versatility of data science techniques."
+      },
+      virtualize: {
+        problem: "Managing Python virtual environments from the command line can be a clunky and inefficient experience.",
+        solution: "I built a Textual User Interface (TUI) to provide a more intuitive and user-friendly way to manage Python virtual environments.",
+        outcome: "A polished and practical developer tool that enhances the Python development workflow."
       }
     };
     const streamlitLinks = {
       Snap2Sketch: "https://snap2sketch.streamlit.app",
       "PyPI-Lens": "https://pypi-lens.streamlit.app",
-      suntimes: "https://suntimes-mmiw.onrender.com",
+      suntimes: "https://suntimes-mmiw.onrender.com/",
+      arbor: "",
+      ruvo: "",
+      "network-analysis-nutrients": "",
+      "one-piece-network-analysis": "",
+      virtualize: ""
     };
     const container = document.getElementById("repo-container");
-
-    GitHubCalendar(".calendar", "RoyAalekh", {
-        responsive: true,
-        tooltips: true
-    });
 
     async function fetchRepos() {
       try {
@@ -741,6 +766,13 @@
         container.innerHTML = `<p class="text-center text-red-500">Failed to load projects.</p>`;
       }
     }
+
+    fetchRepos();
+
+GitHubCalendar(".calendar", "AR-smarthelio", {
+        responsive: true,
+        tooltips: true
+    });
 
     fetchRepos();
   </script>
