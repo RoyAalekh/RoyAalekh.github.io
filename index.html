@@ -620,22 +620,8 @@
           </p>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- A Glimpse into Complexity Section -->
-  <section id="complexity" class="py-24 bg-white relative z-10">
-    <div class="max-w-4xl mx-auto px-4 text-center">
-      <h2 class="text-3xl font-light text-gray-800 mb-4">A Glimpse into Complexity</h2>
-      <p class="text-gray-600 mb-8 max-w-2xl mx-auto">
-        Conway's Game of Life is a simple cellular automaton that demonstrates how complex, life-like patterns can emerge from a few simple rules. Click the buttons to see it in action—a small window into the world of complexity science.
-      </p>
-      <div class="bg-white rounded-lg shadow-inner p-4 inline-block border border-gray-200">
-        <canvas id="gameOfLifeCanvas"></canvas>
-      </div>
-      <div class="mt-6 flex justify-center gap-4">
-        <button id="startStopButton" class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition-colors w-28">Start</button>
-        <button id="resetButton" class="border border-gray-300 text-gray-600 px-6 py-2 rounded-lg hover:bg-gray-100 transition-colors w-28">Randomize</button>
+       <div class="text-center mt-12">
+        <a href="/game-of-life.html" class="bg-blue-500 text-white px-8 py-3 rounded-lg hover:bg-blue-600 transition-colors">Explore a Simulation</a>
       </div>
     </div>
   </section>
@@ -691,120 +677,81 @@
   <!-- GitHub Repo Fetch Script -->
   <script>
     document.addEventListener('DOMContentLoaded', (event) => {
-      // Your existing script content here...
+      const username = "RoyAalekh";
+      const reposToShow = ["Snap2Sketch", "PyPI-Lens", "suntimes", "arbor", "ruvo", "network-analysis-nutrients", "one-piece-network-analysis", "virtualize"];
+      const projectDetails = {
+        Snap2Sketch: {
+          description: "A simple web app to convert images into pencil sketches with adjustable quality levels."
+        },
+        "PyPI-Lens": {
+          description: "A semantic search engine for PyPI to help developers find the right packages more effectively."
+        },
+        suntimes: {
+          description: "A sleek web app to find accurate sunrise and sunset times for any location with timezone awareness."
+        },
+        arbor: {
+          description: "A blazing-fast CLI tool in Rust to visualize directory structures in a clear, tree-like format."
+        },
+        ruvo: {
+          description: "A lightweight virtual environment manager in Rust to simplify Python venv management."
+        },
+        "network-analysis-nutrients": {
+          description: "An application of network analysis to visualize and explore the relationships between various nutrients."
+        },
+        "one-piece-network-analysis": {
+          description: "A creative network analysis of One Piece character appearances to uncover key relationships."
+        },
+        virtualize: {
+          description: "A Textual User Interface (TUI) to provide a more intuitive way to manage Python virtual environments."
+        }
+      };
+      const streamlitLinks = {
+        Snap2Sketch: "https://snap2sketch.streamlit.app",
+        "PyPI-Lens": "https://pypi-lens.streamlit.app",
+        suntimes: "https://suntimes-mmiw.onrender.com/",
+      };
+      const container = document.getElementById("repo-container");
 
-      // Game of Life Logic
-      const canvas = document.getElementById('gameOfLifeCanvas');
-      const ctx = canvas.getContext('2d');
+      async function fetchRepos() {
+        try {
+          const response = await fetch(`https://api.github.com/users/${username}/repos`);
+          const repos = await response.json();
 
-      const resolution = 10;
-      canvas.width = 600;
-      canvas.height = 400;
+          repos
+            .filter((repo) => reposToShow.includes(repo.name))
+            .forEach((repo) => {
+              const repoCard = `
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow flex flex-col">
+                  <div class="p-4 flex-grow">
+                    <h3 class="font-semibold text-lg mb-2">${repo.name}</h3>
+                    <p class="text-gray-600 text-sm mb-4">${projectDetails[repo.name].description || repo.description}</p>
+                  </div>
+                  <div class="p-4 bg-gray-50 flex justify-between items-center">
+                    <span class="text-xs text-gray-500">${repo.language || "Unknown"}</span>
+                    <div class="flex gap-3">
+                      <a href="${repo.html_url}" class="text-gray-500 hover:text-blue-500" target="_blank"><i class="fab fa-github"></i></a>
+                      ${
+                        streamlitLinks[repo.name]
+                          ? `<a href="${streamlitLinks[repo.name]}" class="text-gray-500 hover:text-green-500" target="_blank"><i class="fas fa-external-link-alt"></i></a>`
+                          : ""
+                      }
+                    </div>
+                  </div>
+                </div>
+              `;
+              container.innerHTML += repoCard;
+            });
 
-      const COLS = canvas.width / resolution;
-      const ROWS = canvas.height / resolution;
-
-      let grid;
-      let animationId;
-      let isRunning = false;
-
-      function buildGrid() {
-        return new Array(COLS).fill(null)
-          .map(() => new Array(ROWS).fill(0));
-      }
-
-      function randomizeGrid(grid) {
-        for (let col = 0; col < COLS; col++) {
-          for (let row = 0; row < ROWS; row++) {
-            grid[col][row] = Math.random() > 0.8 ? 1 : 0; // Sparsely populated
+          if (container.innerHTML === "") {
+            container.innerHTML = `<p class="text-center text-gray-500 col-span-3">No projects found.</p>`;
           }
+        } catch (error) {
+          console.error("Error fetching GitHub repositories:", error);
+          container.innerHTML = `<p class="text-center text-red-500 col-span-3">Failed to load projects.</p>`;
         }
       }
 
-      function render(grid) {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        for (let col = 0; col < COLS; col++) {
-          for (let row = 0; row < ROWS; row++) {
-            const cell = grid[col][row];
-            if (cell) {
-                ctx.beginPath();
-                ctx.rect(col * resolution, row * resolution, resolution, resolution);
-                ctx.fillStyle = '#3b82f6';
-                ctx.fill();
-            }
-          }
-        }
-      }
-
-      function nextGen(grid) {
-        const nextGrid = buildGrid();
-        for (let col = 0; col < COLS; col++) {
-          for (let row = 0; row < ROWS; row++) {
-            const cell = grid[col][row];
-            let numNeighbours = 0;
-            for (let i = -1; i < 2; i++) {
-              for (let j = -1; j < 2; j++) {
-                if (i === 0 && j === 0) continue;
-                const x_cell = col + i;
-                const y_cell = row + j;
-
-                if (x_cell >= 0 && y_cell >= 0 && x_cell < COLS && y_cell < ROWS) {
-                  numNeighbours += grid[x_cell][y_cell];
-                }
-              }
-            }
-
-            // Rules of Life
-            if (cell === 1 && numNeighbours < 2) {
-              nextGrid[col][row] = 0;
-            } else if (cell === 1 && numNeighbours > 3) {
-              nextGrid[col][row] = 0;
-            } else if (cell === 0 && numNeighbours === 3) {
-              nextGrid[col][row] = 1;
-            } else {
-              nextGrid[col][row] = cell;
-            }
-          }
-        }
-        return nextGrid;
-      }
-
-      function gameLoop() {
-        if (!isRunning) return;
-        grid = nextGen(grid);
-        render(grid);
-        animationId = setTimeout(() => {
-            requestAnimationFrame(gameLoop);
-        }, 100); // Update every 100ms
-      }
-
-      const startStopButton = document.getElementById('startStopButton');
-      const resetButton = document.getElementById('resetButton');
-
-      startStopButton.addEventListener('click', () => {
-        isRunning = !isRunning;
-        if (isRunning) {
-          startStopButton.textContent = 'Stop';
-          gameLoop();
-        } else {
-          startStopButton.textContent = 'Start';
-          clearTimeout(animationId);
-        }
-      });
-
-      resetButton.addEventListener('click', () => {
-        isRunning = false;
-        startStopButton.textContent = 'Start';
-        clearTimeout(animationId);
-        grid = buildGrid();
-        randomizeGrid(grid);
-        render(grid);
-      });
-
-      // Initial setup
-      grid = buildGrid();
-      randomizeGrid(grid);
-      render(grid);
+      fetchRepos();
     });
       const username = "RoyAalekh";
       const reposToShow = ["Snap2Sketch", "PyPI-Lens", "suntimes", "arbor", "ruvo", "network-analysis-nutrients", "one-piece-network-analysis", "virtualize"];

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Conway's Game of Life</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background-color: #f9fafb;
+    }
+  </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen bg-gray-50 p-4">
+  <div class="max-w-4xl w-full text-center">
+    <h1 class="text-4xl font-light text-gray-800 mb-2">Conway's Game of Life</h1>
+    <p class="text-gray-600 mb-6 max-w-2xl mx-auto">
+      A zero-player game where cells evolve based on a few simple rules, demonstrating how complex patterns can emerge from simple conditions.
+    </p>
+    <div class="bg-white rounded-lg shadow-inner p-4 inline-block border border-gray-200">
+      <canvas id="gameOfLifeCanvas"></canvas>
+    </div>
+    <div class="mt-6 flex justify-center gap-4">
+      <button id="startStopButton" class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition-colors w-32">Start</button>
+      <button id="resetButton" class="border border-gray-300 text-gray-600 px-6 py-2 rounded-lg hover:bg-gray-100 transition-colors w-32">Randomize</button>
+      <a href="/" class="border border-gray-300 text-gray-600 px-6 py-2 rounded-lg hover:bg-gray-100 transition-colors">Back to Portfolio</a>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      const canvas = document.getElementById('gameOfLifeCanvas');
+      const ctx = canvas.getContext('2d');
+
+      const resolution = 10;
+      canvas.width = 800;
+      canvas.height = 600;
+
+      const COLS = canvas.width / resolution;
+      const ROWS = canvas.height / resolution;
+
+      let grid;
+      let animationId;
+      let isRunning = false;
+
+      function buildGrid() {
+        return new Array(COLS).fill(null)
+          .map(() => new Array(ROWS).fill(0));
+      }
+
+      function randomizeGrid(grid) {
+        for (let col = 0; col < COLS; col++) {
+          for (let row = 0; row < ROWS; row++) {
+            grid[col][row] = Math.random() > 0.8 ? 1 : 0;
+          }
+        }
+      }
+
+      function render(grid) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for (let col = 0; col < COLS; col++) {
+          for (let row = 0; row < ROWS; row++) {
+            const cell = grid[col][row];
+            if (cell) {
+                ctx.beginPath();
+                ctx.rect(col * resolution, row * resolution, resolution, resolution);
+                ctx.fillStyle = '#3b82f6';
+                ctx.fill();
+            }
+          }
+        }
+      }
+
+      function nextGen(grid) {
+        const nextGrid = buildGrid();
+        for (let col = 0; col < COLS; col++) {
+          for (let row = 0; row < ROWS; row++) {
+            const cell = grid[col][row];
+            let numNeighbours = 0;
+            for (let i = -1; i < 2; i++) {
+              for (let j = -1; j < 2; j++) {
+                if (i === 0 && j === 0) continue;
+                const x_cell = col + i;
+                const y_cell = row + j;
+
+                if (x_cell >= 0 && y_cell >= 0 && x_cell < COLS && y_cell < ROWS) {
+                  numNeighbours += grid[x_cell][y_cell];
+                }
+              }
+            }
+
+            if (cell === 1 && numNeighbours < 2) {
+              nextGrid[col][row] = 0;
+            } else if (cell === 1 && numNeighbours > 3) {
+              nextGrid[col][row] = 0;
+            } else if (cell === 0 && numNeighbours === 3) {
+              nextGrid[col][row] = 1;
+            } else {
+              nextGrid[col][row] = cell;
+            }
+          }
+        }
+        return nextGrid;
+      }
+
+      function gameLoop() {
+        if (!isRunning) return;
+        grid = nextGen(grid);
+        render(grid);
+        animationId = setTimeout(() => {
+            requestAnimationFrame(gameLoop);
+        }, 100);
+      }
+
+      const startStopButton = document.getElementById('startStopButton');
+      const resetButton = document.getElementById('resetButton');
+
+      startStopButton.addEventListener('click', () => {
+        isRunning = !isRunning;
+        if (isRunning) {
+          startStopButton.textContent = 'Stop';
+          gameLoop();
+        } else {
+          startStopButton.textContent = 'Start';
+          clearTimeout(animationId);
+        }
+      });
+
+      resetButton.addEventListener('click', () => {
+        isRunning = false;
+        startStopButton.textContent = 'Start';
+        clearTimeout(animationId);
+        grid = buildGrid();
+        randomizeGrid(grid);
+        render(grid);
+      });
+
+      grid = buildGrid();
+      randomizeGrid(grid);
+      render(grid);
+    });
+  </script>
+</body>
+</html>
+
