@@ -183,75 +183,104 @@
       transition: all 0.3s ease;
     }
     
-    /* New Tech Stack Styles */
-    .tech-category-new {
-      background: white;
-      padding: 2rem;
-      border-radius: 1rem;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-      border: 1px solid #e2e8f0;
-      transition: all 0.3s ease;
-      display: flex;
-      flex-direction: column;
-    }
-    .tech-category-new:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-    }
-    .category-title {
-      font-size: 1.25rem;
-      font-weight: 600;
-      color: #1f2937;
-      margin-bottom: 1.5rem;
-      display: flex;
-      align-items: center;
-    }
-    .competence-tier {
-      margin-bottom: 1.5rem;
-    }
-    .competence-tier:last-child {
-      margin-bottom: 0;
-    }
-    .tier-title {
-      font-size: 0.8rem;
-      font-weight: 700;
-      color: #6b7280;
-      text-transform: uppercase;
-      letter-spacing: 0.07em;
-      margin-bottom: 0.75rem;
-      border-bottom: 2px solid #f3f4f6;
-      padding-bottom: 0.5rem;
-    }
-    .tier-title.virtuoso { border-color: #10B981; }
-    .tier-title.journeyman { border-color: #3B82F6; }
-    .tier-title.explorer { border-color: #F59E0B; }
+      /* Unified Skills Section */
+.skills-container {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e2e8f0;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 2rem;
+}
 
-    .skills-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
+@media (min-width: 1024px) {
+    .skills-container {
+        grid-template-columns: repeat(2, 1fr);
     }
-    .skill-item {
-      display: flex;
-      align-items: center;
-      background: #f8fafc;
-      padding: 0.4rem 0.8rem;
-      border-radius: 9999px;
-      border: 1px solid #f8fafc;
-      font-weight: 500;
-      font-size: 0.875rem;
-      color: #374151;
-      transition: all 0.2s ease;
-    }
-    .skill-item:hover {
-      background: #f1f5f9;
-      border-color: #e2e8f0;
-    }
-    .skill-item i {
-      margin-right: 0.5rem;
-      font-size: 1rem;
-      color: #6b7280;
-    }
+}
+
+.skills-legend {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.legend-box {
+    width: 14px;
+    height: 14px;
+    border-radius: 4px;
+}
+
+.skills-category {
+    /* No special styling needed, just a container */
+}
+
+.category-title-new {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.skills-grid-new {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.skill-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+}
+.skill-badge i {
+    margin-right: 0.5rem;
+    color: inherit;
+    opacity: 0.8;
+}
+
+/* Competence Tiers Styling */
+.skill-badge.virtuoso {
+    background-color: #E0F2F1;
+    color: #00796B;
+    border-color: #B2DFDB;
+}
+.legend-box.virtuoso { background-color: #E0F2F1; border: 1px solid #B2DFDB; }
+
+.skill-badge.journeyman {
+    background-color: #E3F2FD;
+    color: #1E88E5;
+    border-color: #BBDEFB;
+}
+.legend-box.journeyman { background-color: #E3F2FD; border: 1px solid #BBDEFB; }
+
+.skill-badge.explorer {
+    background-color: #FFF8E1;
+    color: #F9A825;
+    border-color: #FFECB3;
+}
+.legend-box.explorer { background-color: #FFF8E1; border: 1px solid #FFECB3; }
+
+.skill-badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.07);
+}
     
     /* Course List Styles */
     .course-list {
@@ -491,128 +520,77 @@
   </section>
 
   <!-- Skills & Technologies Section -->
-<section id="tech-stack" class="py-24 bg-gray-50 relative z-10">
+<section id="tech-stack" class="py-24 bg-white relative z-10">
     <div class="max-w-6xl mx-auto px-4">
       <h2 class="text-3xl font-light text-center text-gray-800 mb-16">Skills & Technologies</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      
+      <!-- Legend -->
+      <div class="skills-legend">
+        <div class="legend-item"><span class="legend-box virtuoso"></span> Virtuoso</div>
+        <div class="legend-item"><span class="legend-box journeyman"></span> Journeyman</div>
+        <div class="legend-item"><span class="legend-box explorer"></span> Explorer</div>
+      </div>
 
+      <div class="skills-container">
         <!-- Programming Languages -->
-        <div class="tech-category-new">
-          <h3 class="category-title"><i class="fas fa-code text-blue-500 mr-3"></i>Programming Languages</h3>
-          <div class="competence-tier">
-            <h4 class="tier-title virtuoso">Virtuoso</h4>
-            <div class="skills-grid">
-              <div class="skill-item"><i class="devicon-python-plain"></i><span>Python</span></div>
-              <div class="skill-item"><i class="fas fa-database"></i><span>SQL</span></div>
+        <div class="skills-category">
+            <h3 class="category-title-new">Programming Languages</h3>
+            <div class="skills-grid-new">
+                <div class="skill-badge virtuoso"><i class="devicon-python-plain"></i> Python</div>
+                <div class="skill-badge virtuoso"><i class="fas fa-database"></i> SQL</div>
+                <div class="skill-badge journeyman"><i class="devicon-r-original"></i> R</div>
+                <div class="skill-badge explorer"><i class="devicon-julia-plain"></i> Julia</div>
+                <div class="skill-badge explorer"><i class="devicon-javascript-plain"></i> JavaScript</div>
             </div>
-          </div>
-          <div class="competence-tier">
-            <h4 class="tier-title journeyman">Journeyman</h4>
-            <div class="skills-grid">
-                <div class="skill-item"><i class="devicon-r-original"></i><span>R</span></div>
-            </div>
-          </div>
-          <div class="competence-tier">
-            <h4 class="tier-title explorer">Explorer</h4>
-            <div class="skills-grid">
-                <div class="skill-item"><i class="devicon-julia-plain"></i><span>Julia</span></div>
-                <div class="skill-item"><i class="devicon-javascript-plain"></i><span>JavaScript</span></div>
-            </div>
-          </div>
         </div>
 
         <!-- ML & Data Science -->
-        <div class="tech-category-new">
-            <h3 class="category-title"><i class="fas fa-brain text-purple-500 mr-3"></i>ML & Data Science</h3>
-            <div class="competence-tier">
-              <h4 class="tier-title virtuoso">Virtuoso</h4>
-              <div class="skills-grid">
-                <div class="skill-item"><span>Pandas</span></div>
-                <div class="skill-item"><span>NumPy</span></div>
-                <div class="skill-item"><span>Scikit-learn</span></div>
-              </div>
-            </div>
-            <div class="competence-tier">
-              <h4 class="tier-title journeyman">Journeyman</h4>
-              <div class="skills-grid">
-                <div class="skill-item"><i class="devicon-pytorch-original"></i><span>PyTorch</span></div>
-                <div class="skill-item"><i class="devicon-tensorflow-original"></i><span>TensorFlow</span></div>
-                <div class="skill-item"><span>Polars</span></div>
-              </div>
-            </div>
-            <div class="competence-tier">
-              <h4 class="tier-title explorer">Explorer</h4>
-              <div class="skills-grid">
-                <div class="skill-item"><span>NetworkX</span></div>
-              </div>
-            </div>
-          </div>
-
-        <!-- Tools & Platforms -->
-        <div class="tech-category-new">
-            <h3 class="category-title"><i class="fas fa-tools text-green-500 mr-3"></i>Tools & Platforms</h3>
-            <div class="competence-tier">
-              <h4 class="tier-title virtuoso">Virtuoso</h4>
-              <div class="skills-grid">
-                <div class="skill-item"><i class="devicon-amazonwebservices-original"></i><span>AWS</span></div>
-                <div class="skill-item"><i class="devicon-git-plain"></i><span>Git</span></div>
-                <div class="skill-item"><i class="devicon-mongodb-plain"></i><span>MongoDB</span></div>
-              </div>
-            </div>
-            <div class="competence-tier">
-              <h4 class="tier-title journeyman">Journeyman</h4>
-              <div class="skills-grid">
-                <div class="skill-item"><i class="devicon-docker-plain"></i><span>Docker</span></div>
-              </div>
-            </div>
-            <div class="competence-tier">
-              <h4 class="tier-title explorer">Explorer</h4>
-              <div class="skills-grid">
-                <div class="skill-item"><span>FastAPI</span></div>
-                <div class="skill-item"><i class="devicon-linux-plain"></i><span>Linux</span></div>
-                <div class="skill-item"><i class="devicon-azure-plain"></i><span>Azure</span></div>
-              </div>
+        <div class="skills-category">
+            <h3 class="category-title-new">ML & Data Science</h3>
+            <div class="skills-grid-new">
+                <div class="skill-badge virtuoso">Pandas</div>
+                <div class="skill-badge virtuoso">NumPy</div>
+                <div class="skill-badge virtuoso">Scikit-learn</div>
+                <div class="skill-badge journeyman"><i class="devicon-pytorch-original"></i> PyTorch</div>
+                <div class="skill-badge journeyman"><i class="devicon-tensorflow-original"></i> TensorFlow</div>
+                <div class="skill-badge journeyman">Polars</div>
+                <div class="skill-badge explorer">NetworkX</div>
             </div>
         </div>
-      </div>
 
-      <!-- Second Row for other skills -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+        <!-- Tools & Platforms -->
+        <div class="skills-category">
+            <h3 class="category-title-new">Tools & Platforms</h3>
+            <div class="skills-grid-new">
+                <div class="skill-badge virtuoso"><i class="devicon-amazonwebservices-original"></i> AWS</div>
+                <div class="skill-badge virtuoso"><i class="devicon-git-plain"></i> Git</div>
+                <div class="skill-badge virtuoso"><i class="devicon-mongodb-plain"></i> MongoDB</div>
+                <div class="skill-badge journeyman"><i class="devicon-docker-plain"></i> Docker</div>
+                <div class="skill-badge explorer">FastAPI</div>
+                <div class="skill-badge explorer"><i class="devicon-linux-plain"></i> Linux</div>
+                <div class="skill-badge explorer"><i class="devicon-azure-plain"></i> Azure</div>
+            </div>
+        </div>
+
         <!-- Frameworks & Libraries -->
-        <div class="tech-category-new">
-            <h3 class="category-title"><i class="fas fa-layer-group text-indigo-500 mr-3"></i>Frameworks & Libraries</h3>
-            <div class="competence-tier">
-              <h4 class="tier-title virtuoso">Virtuoso</h4>
-              <div class="skills-grid">
-                <div class="skill-item"><span>Plotly</span></div>
-              </div>
-            </div>
-            <div class="competence-tier">
-              <h4 class="tier-title journeyman">Journeyman</h4>
-              <div class="skills-grid">
-                <div class="skill-item"><span>Streamlit</span></div>
-                <div class="skill-item"><i class="devicon-jupyter-plain"></i><span>Jupyter</span></div>
-              </div>
-            </div>
-            <div class="competence-tier">
-              <h4 class="tier-title explorer">Explorer</h4>
-              <div class="skills-grid">
-                <div class="skill-item"><span>Skrub</span></div>
-              </div>
+        <div class="skills-category">
+            <h3 class="category-title-new">Frameworks & Libraries</h3>
+            <div class="skills-grid-new">
+                <div class="skill-badge virtuoso">Plotly</div>
+                <div class="skill-badge journeyman">Streamlit</div>
+                <div class="skill-badge journeyman"><i class="devicon-jupyter-plain"></i> Jupyter</div>
+                <div class="skill-badge explorer">Skrub</div>
             </div>
         </div>
 
         <!-- Generative AI -->
-        <div class="tech-category-new">
-            <h3 class="category-title"><i class="fas fa-magic text-cyan-500 mr-3"></i>Generative AI</h3>
-            <div class="competence-tier">
-              <h4 class="tier-title journeyman">Journeyman</h4>
-              <div class="skills-grid">
-                <div class="skill-item"><i class="devicon-github-original"></i><span>Copilot</span></div>
-                <div class="skill-item"><span>ChatGPT</span></div>
-                <div class="skill-item"><span>LangChain</span></div>
-                <div class="skill-item"><span>Ollama</span></div>
-              </div>
+        <div class="skills-category">
+            <h3 class="category-title-new">Generative AI</h3>
+            <div class="skills-grid-new">
+                <div class="skill-badge journeyman"><i class="devicon-github-original"></i> Copilot</div>
+                <div class="skill-badge journeyman">ChatGPT</div>
+                <div class="skill-badge journeyman">LangChain</div>
+                <div class="skill-badge journeyman">Ollama</div>
             </div>
         </div>
       </div>
@@ -638,44 +616,6 @@
         </div>
       </div>
       
-      <div class="interests-grid">
-        <div class="interest-item">
-          <div class="interest-icon">
-            <i class="fas fa-project-diagram"></i>
-          </div>
-          <h4 class="interest-title">Complex Networks</h4>
-          <p class="interest-desc">
-            Researching scale-free networks, co-authoring "Omnipresence of Scale-Free Networks: A Myth?" and exploring network models in computational gastronomy.
-          </p>
-        </div>
-        <div class="interest-item">
-          <div class="interest-icon">
-            <i class="fas fa-balance-scale"></i>
-          </div>
-          <h4 class="interest-title">Social Theory & Data</h4>
-          <p class="interest-desc">
-            Liberal arts education combining mathematical rigor with social sciences, examining how data structures shape social understanding.
-          </p>
-        </div>
-        <div class="interest-item">
-          <div class="interest-icon">
-            <i class="fas fa-brain"></i>
-          </div>
-          <h4 class="interest-title">Behavioral Patterns</h4>
-          <p class="interest-desc">
-            Studying decision-making through game theory, psychology, and statistical methods to understand human behavior in complex systems.
-          </p>
-        </div>
-        <div class="interest-item">
-          <div class="interest-icon">
-            <i class="fas fa-book-open"></i>
-          </div>
-          <h4 class="interest-title">Cultural Analysis</h4>
-          <p class="interest-desc">
-            Exploring video games as cultural artifacts, global music traditions, and the intersection of technology with society and philosophy.
-          </p>
-        </div>
-      </div>
     </div>
   </section>
 
