@@ -129,3 +129,50 @@ newSections.forEach(section => {
   section.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
   newObserver.observe(section);
 });
+
+// Visitor Counter using CountAPI
+async function loadVisitorCount() {
+  const counterElement = document.getElementById('visitor-count');
+  
+  try {
+    // Add loading class for animation
+    counterElement.classList.add('loading');
+    
+    // Generate a unique key for this site
+    const siteKey = 'royaalekh-portfolio';
+    
+    // Fetch visitor count from CountAPI
+    const response = await fetch(`https://api.countapi.xyz/hit/${siteKey}/visits`);
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
+    const data = await response.json();
+    
+    if (data.value !== undefined) {
+      // Format the number with commas for better readability
+      const formattedCount = data.value.toLocaleString();
+      counterElement.textContent = formattedCount;
+      
+      // Add a subtle celebration animation for milestones
+      if (data.value % 100 === 0 && data.value > 0) {
+        counterElement.style.animation = 'bounce 0.6s ease-in-out';
+        setTimeout(() => {
+          counterElement.style.animation = '';
+        }, 600);
+      }
+    } else {
+      counterElement.textContent = 'Error';
+    }
+  } catch (error) {
+    console.error('Error fetching visitor count:', error);
+    counterElement.textContent = 'Unavailable';
+  } finally {
+    // Remove loading class
+    counterElement.classList.remove('loading');
+  }
+}
+
+// Load visitor count when page loads
+document.addEventListener('DOMContentLoaded', loadVisitorCount);
