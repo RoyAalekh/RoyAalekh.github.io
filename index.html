@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
   <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
-  <link rel="stylesheet" href="https://unpkg.com/github-calendar@latest/dist/github-calendar-responsive.css" />
   <style>
     /* Import Google Fonts for better typography */
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
@@ -635,9 +634,11 @@
 
   <!-- Contribution Graph Section -->
   <section id="contributions" class="py-24 bg-white relative z-10">
-    <div class="max-w-6xl mx-auto px-4">
+    <div class="max-w-5xl mx-auto px-4">
       <h2 class="text-3xl font-light text-center text-gray-800 mb-16">Work Contributions</h2>
-      <div class="calendar"></div>
+      <div class="flex justify-center">
+        <img src="https://ghchart.rshah.org/AR-smarthelio" alt="AR-smarthelio's contribution calendar" />
+      </div>
     </div>
   </section>
 
@@ -749,15 +750,9 @@
       }
 
       fetchRepos();
-
-      GitHubCalendar(".calendar", "AR-smarthelio", {
-          responsive: true,
-          tooltips: true
-      });
     });
   </script>
 
-  <script src="https://unpkg.com/github-calendar@latest/dist/github-calendar.min.js"></script>
   <!-- tsParticles Script -->
   <script>
     tsParticles.load("tsparticles", {
