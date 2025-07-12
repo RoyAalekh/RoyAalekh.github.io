@@ -296,47 +296,6 @@ body {
   font-weight: 600;
 }
 
-/* Visitor Counter Styles */
-#visitor-count {
-  transition: all 0.3s ease;
-  position: relative;
-}
-
-#visitor-count:hover {
-  transform: scale(1.05);
-}
-
-/* Loading animation for visitor counter */
-#visitor-count.loading {
-  animation: pulse 1.5s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes bounce {
-  0%, 20%, 53%, 80%, 100% {
-    transform: scale(1);
-  }
-  40%, 43% {
-    transform: scale(1.2);
-  }
-  70% {
-    transform: scale(1.1);
-  }
-  90% {
-    transform: scale(1.05);
-  }
-}
 
 .tech-constellation::before {
   content: '';
