@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art Gallery</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+        }
+        #gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            padding: 1rem;
+        }
+        .artwork {
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .artwork img {
+            width: 100%;
+            height: auto;
+        }
+        .artwork-info {
+            padding: 1rem;
+        }
+        .artwork-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        .artwork-artist {
+            font-size: 1rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Art Gallery</h1>
+        <p>A curated collection of art from The Metropolitan Museum of Art</p>
+    </header>
+    <main>
+        <div id="gallery"></div>
+    </main>
+    <script>
+        const gallery = document.getElementById('gallery');
+
+        async function getArtworks() {
+            try {
+                // First, get a list of highlighted objects with images
+                const response = await fetch('https://collectionapi.metmuseum.org/public/collection/v1/search?isHighlight=true&hasImages=true&q=a');
+                const data = await response.json();
+                const objectIDs = data.objectIDs;
+
+                if (!objectIDs) {
+                    gallery.innerHTML = '<p>No artworks found.</p>';
+                    return;
+                }
+
+                // Fetch details for a selection of artworks
+                const artworks = await Promise.all(objectIDs.slice(0, 20).map(async (id) => {
+                    const res = await fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`);
+                    return res.json();
+                }));
+
+                // Display the artworks
+                artworks.forEach(artwork => {
+                    if (artwork.primaryImageSmall) {
+                        const artworkElement = document.createElement('div');
+                        artworkElement.classList.add('artwork');
+                        artworkElement.innerHTML = `
+                            <img src="${artwork.primaryImageSmall}" alt="${artwork.title}">
+                            <div class="artwork-info">
+                                <div class="artwork-title">${artwork.title}</div>
+                                <div class="artwork-artist">${artwork.artistDisplayName}</div>
+                            </div>
+                        `;
+                        gallery.appendChild(artworkElement);
+                    }
+                });
+            } catch (error) {
+                console.error('Error fetching artworks:', error);
+                gallery.innerHTML = '<p>There was an error fetching the artworks. Please try again later.</p>';
+            }
+        }
+
+        getArtworks();
+    </script>
+</body>
+</html>
