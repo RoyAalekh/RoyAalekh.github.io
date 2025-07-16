@@ -388,6 +388,45 @@
     </div>
   </footer>
 
+  <!-- Chatbot container -->
+  <div id="chatbot-container" class="fixed bottom-5 right-5 z-20">
+    <!-- Chatbot bubble -->
+    <div id="chatbot-bubble" class="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center cursor-pointer shadow-lg hover:bg-blue-600 transition-colors">
+      <i class="fas fa-robot text-white text-2xl"></i>
+    </div>
+    <!-- Chat window -->
+    <div id="chat-window" class="hidden absolute bottom-20 right-0 w-80 bg-white rounded-lg shadow-xl border border-gray-200 flex flex-col">
+      <!-- Header -->
+      <div class="p-4 bg-gray-100 rounded-t-lg flex justify-between items-center">
+        <h3 class="text-lg font-semibold text-gray-800">Chat with my Portfolio</h3>
+        <button id="close-chat" class="text-gray-500 hover:text-gray-800">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <!-- Messages -->
+      <div id="chat-messages" class="p-4 h-80 overflow-y-auto">
+        <!-- Bot message example -->
+        <div class="flex items-start mb-4">
+          <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center mr-3">
+            <i class="fas fa-robot text-white text-sm"></i>
+          </div>
+          <div class="bg-gray-200 p-3 rounded-lg max-w-xs">
+            <p class="text-sm text-gray-800">Hello! I'm a bot. Ask me anything about Aalekh's portfolio.</p>
+          </div>
+        </div>
+      </div>
+      <!-- Input -->
+      <div class="p-4 bg-gray-50 rounded-b-lg border-t border-gray-200">
+        <div class="flex">
+          <input type="text" id="chat-input" class="w-full px-3 py-2 border rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Type your message...">
+          <button id="chat-send" class="bg-blue-500 text-white px-4 py-2 rounded-r-md hover:bg-blue-600">
+            <i class="fas fa-paper-plane"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Scripts -->
   <script src="assets/js/main.js"></script>
   <script src="assets/js/particles.js"></script>
