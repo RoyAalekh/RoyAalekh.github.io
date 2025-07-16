@@ -1,0 +1,85 @@
+Aalekh Roy
+New Delhi, India
+Ħ +91-8800961923 | ć roy.aalekh@gmail.com | Ƣ Nov 21st, 1995 | u royaalekh.github.io | ^ RoyAalekh | ] aalekhroy
+PersonalProfile
+Postgraduateinmathematicsanddatasciencewithhands‑onexperienceinappliedmachinelearning, time‑seriesmodeling, andcomplexnet‑
+works. Ienjoyworkingattheintersectionofresearchandengineering,wherealgorithmsmeetreal‑worldsystems. I’mdrivenbyadeepinterest
+in how data shapes knowledge, decisions, and infrastructure, and I’m looking to grow through interdisciplinary research that bridges technical
+depthwithsocialrelevance.
+Education
+InstituteofMathematicsandApplications,Bhubaneswar Odisha,India
+MScinMathematicswithDataScience Aug2020‑Aug2022
+• AwardedNBHMscholarshipforacademicexcellence(Top3rankers).
+• FounderandHeadCoordinatoroftheDataScienceSociety,promotinginterdisciplinarycollaborationandtechnicalworkshops.
+• SelectedCoursework: GraduateAlgebra,LinearAlgebra,VectorCalculus,FunctionalAnalysis,Topology,StochasticCalculus,MachineLearn‑
+ing,StatisticalLearning,NLP,Optimization(ConvexandNon‑Convex),DeepLearning,PythonforDataScience.
+Dr. B.R.AmbedkarUniversityDelhi(AUD) Delhi,India
+BA(Honors)inMathematics May2015‑May2020
+• Receivedsemester‑wisemeritscholarshipsforacademicdistinction(Top5rankers).
+• Interdisciplinaryliberalartseducationcombiningmathematicalrigorwithsocialsciencesandhumanities.
+• Selected Coursework:Real Analysis, Calculus, Abstract Algebra, Optimization Theory, Game Theory, Social Theory, Psychology, Statistical
+MethodsinEconomics.
+GovernmentSarvodyaVidyalaya,Dharampura NewDelhi,India
+HighSchoolCertificate(Physics,Chemistry,Mathematics,ComputerScience) Apr2013
+• GraduatedwithDistinction.
+WorkExperience
+SmartHelio(YC‑22) Noida,India
+DataScientist Jan2024–Present
+• Drivingthedevelopmentofpredictiveanalyticsalgorithmsacrosssystemfaults,performancedegradation,andenvironmentalforecasting.
+• Leadinga5‑memberteamtorevampthefaultdetectionengine,reducingruntimeby30%andimprovingaccuracy.
+• BuiltanLLM‑basedinternalreportingtoolandleddevelopmentofanalyticsdashboardsformultiplestakeholders.
+• Establishedtest‑drivendevelopmentandCI/CDpracticestoenhancethereliabilityofMLworkflows.
+• Co‑developedanANN‑LSTMmodelforweatherforecastingunderthe CRAProject.
+• Stack:Python,PyTorch,Langchain,FastAPI,Ollama,AWS,Azure,MongoDB,Scikitlearn,Stumpy,Nixtla
+SmartHelio(YC‑22) Noida,India
+AssociateDataScientist July2023–Dec2023
+• BuiltapredictivemaintenancepipelineusingXGBoosttoforecastsoilingratesandoptimizecleaningschedules.
+• StandardizedanalyticslogicthroughacentralizedinternalPythonlibraryusedacrossteams.
+• CollaboratedwithCustomerSuccesstoalignmodelinsightswithoperationalworkflows.
+• Stack:Python,XGBoost,Scikit‑learn,Stumpy,GitHubActions,AWS
+SmartHelio(YC‑22) Noida,India
+DataAnalyst Sept2022–July2023
+• Contributedtoearly‑stageanalyticsinfrastructureasthe7 th hireduringSmartHelio’sgrowthphase.
+• Developedpipelinesforfaultdetectionandsoilingdiagnosticsinutility‑scalePVsystems.
+• DeployedcoreanalyticsmodulesintoSmartHelio’sSaaSplatform (Autopilot)forreal‑timediagnostics.
+• Stack:Python,Pandas,SciPy,PVlib,Plotly,Docker,AWS
+AcademicInternships&Projects
+ReadingProject: ComplexNetworks India
+IndianInstituteofInformationTechnologyKottayam May2021–July2021
+• Completedanindependentreadingprojectunderthementorshipof Dr. DivyaSindhuLekha,focusedoncomplexsystemsandfoundational
+networkmodels.
+• Engagedwithkeyresearchpapersongraphtheoryandnetworkscience,coveringstructuralmodelsandhistoricalevolution.
+• Submittedawrittensynthesisoftheoreticalinsightsandconceptualdebates.
+• Skills: NetworkScience,AcademicWriting,LaTeX(Overleaf).
+1ReadingProject: NetworkAnalysisinComputationalGastronomy Delhi,India
+ComplexSystemsLaboratory,IIITDelhi Jan2022–March2022
+• Workedwith Dr. GaneshBaglertoexplorenetwork‑basedapproachesincomputationalgastronomy.
+• Analyzedco‑occurrenceandinteractionnetworksoffoodingredientsusingNetworkXandempiricaldata.
+• Presentedcriticalevaluationsofnetworkmodelsandtheirculinaryimplicationstoresearchpeers.
+• Skills: Python(Pandas,NetworkX),AppliedNetworkAnalysis,ResearchInterpretation.
+SummerResearchIntern: Scale‑FreeNetworks India
+IndianInstituteofInformationTechnologyKottayam May2022–July2022
+• Conductedcriticalresearchunder Dr. DivyaSindhuLekhaonthestatisticalfoundationsandempiricalclaimsofscale‑freenetworkstructures.
+• Engagedwithcontemporarydebatesaroundpower‑lawdistributionsandtheirmisinterpretationsinreal‑worldsystems.
+• Co‑authoredareviewarticletitled ”OmnipresenceofScale‑FreeNetworks: AMyth?” ,currentlyunderreview.
+• Skills: ResearchSynthesis,LiteratureCritique,ScientificWriting,LaTeX.
+Skills
+ProgrammingLanguages Python(Pandas,NumPy,SciPy,Plotly,PyTorch,Scikit‑learn,Pytest),R(dplyr,tidyverse),Julia,SQL
+Tools&Platforms Git,GitHub,Docker,MySQL,AWS(TimestreamDB,S3,EC2),L ATEX(Overleaf,RMarkdown),Notion,Jira.
+TechnicalDomains MachineLearning,DeepLearning,StatisticalModeling,Time‑SeriesAnalysis,NetworkAnalysis,NLP
+SoftSkills TimeManagement,Teamwork,Leadership,Communication,AnalyticalProblem‑Solving,ResearchWriting.
+Achievements
+2021 NBHMScholarshipforAcademicExcellence(Top3Ranker) ,MScinMathematicswithDataScience IOMA,Odisha,India
+2015‑2018Semester‑wiseMeritScholarshipsforAcademicDistinction(Top5Ranker) ,BA(Honors)inMathematics AUD,India
+2011 IndiraAwardforAcademicExcellence(Top1%nationally) ,Class10BoardExaminations NewDelhi,India
+Interests
+IntellectualCuriosity Readingacrosstechnology,society,philosophy,andmathematics,withafocusontheepistemologyofdataandthe
+science‑societyinterface.
+InteractiveMedia Exploringvideogamesasculturalartifactsandevolvingstorytellingmediumssince2007.
+MusicandCulture Passionateaboutglobalmusictraditions,from70sJapanesepunkjazztoTuaregsongwritingfromAfrica’sSahelregion.
+Football Enthusiasticfollowerandplayer,inspiredbythesport’screativityandsocialhistory,includingfigureslike Sócrates.
+Languages
+English Professionalproficiency
+Hindi Nativeproficiency
+Referencesavailableuponrequest.
+2
