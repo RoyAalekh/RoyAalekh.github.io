@@ -3,64 +3,171 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Art Gallery</title>
+    <title>Art Gallery | AR</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="stylesheet" href="assets/css/main.css">
     <style>
-        body {
-            font-family: sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
+        /* Art Gallery specific styles */
+        .collection-btn {
+            @apply px-4 py-2 rounded-lg border border-gray-300 text-gray-600 hover:bg-gray-50 transition-colors text-sm font-medium;
         }
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 1rem;
-            text-align: center;
+        .collection-btn.active {
+            @apply bg-blue-500 text-white border-blue-500 hover:bg-blue-600;
         }
-        #gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1rem;
-            padding: 1rem;
+        .artwork-card {
+            @apply bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-all duration-300;
         }
-        .artwork {
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
+        .artwork-card:hover {
+            transform: translateY(-2px);
         }
-        .artwork img {
-            width: 100%;
-            height: auto;
+        .artwork-image {
+            @apply w-full h-64 object-cover;
         }
-        .artwork-info {
-            padding: 1rem;
+        .filter-section {
+            @apply mb-8 flex flex-wrap gap-3 justify-center;
         }
-        .artwork-title {
-            font-size: 1.2rem;
-            font-weight: bold;
+        .loading-shimmer {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
         }
-        .artwork-artist {
-            font-size: 1rem;
-            color: #666;
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
         }
     </style>
 </head>
-<body>
-    <header>
-        <h1>Art Gallery</h1>
-        <p>A curated collection of art from The Metropolitan Museum of Art</p>
-    </header>
-    <main>
-        <div id="gallery"></div>
-        <div id="loading-indicator" style="text-align: center; padding: 2rem;">Loading...</div>
-    </main>
+<body class="bg-gray-50 relative overflow-x-hidden">
+    <!-- Navigation -->
+    <nav class="bg-white/80 backdrop-blur-sm fixed w-full z-10">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <a href="/" class="text-2xl font-light text-gray-800">AR</a>
+                <div class="flex space-x-8">
+                    <a href="/#about" class="text-gray-600 hover:text-blue-500 transition-colors">About</a>
+                    <a href="/#tech-stack" class="text-gray-600 hover:text-blue-500 transition-colors">Tech</a>
+                    <a href="/#interests" class="text-gray-600 hover:text-blue-500 transition-colors">Interests</a>
+                    <a href="/#projects" class="text-gray-600 hover:text-blue-500 transition-colors">Projects</a>
+                    <a href="/art.html" class="text-blue-500 font-medium transition-colors">The Art Corner</a>
+                    <a href="/blog.html" class="text-gray-600 hover:text-blue-500 transition-colors">Blog</a>
+                    <a href="/#contact" class="text-gray-600 hover:text-blue-500 transition-colors">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-24 pb-16 bg-white relative z-10">
+        <div class="max-w-5xl mx-auto px-4 text-center">
+            <h1 class="text-4xl font-light text-gray-800 mb-4">The Art Corner</h1>
+            <p class="text-xl text-gray-600 font-light mb-8">
+                Curated collections from The Metropolitan Museum of Art
+            </p>
+            <div class="flex items-center justify-center text-gray-500">
+                <i class="fas fa-palette text-blue-500 mr-2"></i>
+                <span class="text-sm">Discover masterpieces across cultures and centuries</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Collections Filter -->
+    <section class="py-8 bg-gray-50 relative z-10">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="filter-section">
+                <button class="collection-btn active" data-collection="impressionist" data-search="Monet OR Renoir OR Degas OR Pissarro">
+                    <i class="fas fa-brush mr-2"></i>Impressionist Masters
+                </button>
+                <button class="collection-btn" data-collection="renaissance" data-search="Renaissance OR Raphael OR Leonardo">
+                    <i class="fas fa-church mr-2"></i>Renaissance
+                </button>
+                <button class="collection-btn" data-collection="ancient" data-search="Greek OR Roman OR Egyptian OR sculpture">
+                    <i class="fas fa-landmark mr-2"></i>Ancient Art
+                </button>
+                <button class="collection-btn" data-collection="american" data-search="American OR United States">
+                    <i class="fas fa-flag-usa mr-2"></i>American Art
+                </button>
+                <button class="collection-btn" data-collection="asian" data-search="Chinese OR Japanese OR Asian">
+                    <i class="fas fa-torii-gate mr-2"></i>Asian Art
+                </button>
+                <button class="collection-btn" data-collection="modern" data-search="Picasso OR modern OR abstract">
+                    <i class="fas fa-shapes mr-2"></i>Modern Art
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="py-12 bg-gray-50 relative z-10">
+        <div class="max-w-6xl mx-auto px-4">
+            <div id="collection-title" class="text-center mb-8">
+                <h2 class="text-2xl font-light text-gray-800 mb-2">Impressionist Masters</h2>
+                <p class="text-gray-600">Pioneers of light, color, and modern art</p>
+            </div>
+            <div id="loading-indicator" class="text-center py-8" style="display: none;">
+                <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+                <p class="text-gray-600 mt-4">Curating artworks...</p>
+            </div>
+            <div id="gallery" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 bg-gray-50 relative z-10">
+        <div class="max-w-5xl mx-auto px-4 text-center text-gray-500">
+            <p class="mb-2">Artworks courtesy of The Metropolitan Museum of Art</p>
+            <p class="text-sm">© 2024 Aalekh Roy</p>
+        </div>
+    </footer>
     <script>
         const gallery = document.getElementById('gallery');
         const loadingIndicator = document.getElementById('loading-indicator');
+        const collectionTitle = document.getElementById('collection-title');
         
-        // Utility function to create timeout for fetch requests
-        function fetchWithTimeout(url, timeout = 10000) {
+        // Collection configurations
+        const collections = {
+            impressionist: {
+                title: 'Impressionist Masters',
+                description: 'Pioneers of light, color, and modern art',
+                search: 'Monet OR Renoir OR Degas OR Pissarro OR Manet OR Cezanne',
+                icon: 'fas fa-brush'
+            },
+            renaissance: {
+                title: 'Renaissance Art',
+                description: 'Masterpieces from the rebirth of classical art',
+                search: 'Renaissance OR Raphael OR Leonardo OR Michelangelo OR Botticelli',
+                icon: 'fas fa-church'
+            },
+            ancient: {
+                title: 'Ancient Civilizations',
+                description: 'Treasures from Greek, Roman, and Egyptian cultures',
+                search: 'Greek OR Roman OR Egyptian OR Ancient OR sculpture',
+                icon: 'fas fa-landmark'
+            },
+            american: {
+                title: 'American Art',
+                description: 'Celebrating American artistic heritage',
+                search: 'American OR "United States" OR "American painting"',
+                icon: 'fas fa-flag-usa'
+            },
+            asian: {
+                title: 'Asian Art',
+                description: 'Rich traditions from across Asia',
+                search: 'Chinese OR Japanese OR Korean OR Asian OR "East Asian"',
+                icon: 'fas fa-torii-gate'
+            },
+            modern: {
+                title: 'Modern & Contemporary',
+                description: 'Innovative works from the 20th century onwards',
+                search: 'Picasso OR modern OR abstract OR contemporary',
+                icon: 'fas fa-shapes'
+            }
+        };
+        
+        let currentCollection = 'impressionist';
+        
+        // Utility functions
+        function fetchWithTimeout(url, timeout = 12000) {
             return Promise.race([
                 fetch(url),
                 new Promise((_, reject) => {
@@ -69,44 +176,54 @@
             ]);
         }
         
-        // Utility function to safely parse JSON from localStorage
         function safeJSONParse(jsonString) {
             try {
                 return JSON.parse(jsonString);
             } catch (error) {
                 console.warn('Failed to parse cached data:', error);
-                // Clear corrupted cache
-                localStorage.removeItem('artworks');
-                localStorage.removeItem('artworks_timestamp');
                 return null;
             }
         }
         
-        // Function to delay between requests to avoid overwhelming the API
         function delay(ms) {
             return new Promise(resolve => setTimeout(resolve, ms));
         }
-
-        async function getArtworks() {
+        
+        // Update collection title and description
+        function updateCollectionTitle(collectionKey) {
+            const collection = collections[collectionKey];
+            collectionTitle.innerHTML = `
+                <h2 class="text-2xl font-light text-gray-800 mb-2">${collection.title}</h2>
+                <p class="text-gray-600">${collection.description}</p>
+            `;
+        }
+        
+        // Main function to get curated artworks
+        async function getCuratedArtworks(collectionKey) {
+            const collection = collections[collectionKey];
+            const cacheKey = `artworks_${collectionKey}`;
+            const timestampKey = `timestamp_${collectionKey}`;
+            
             try {
-                // Check for cached data
-                const cachedArtworks = localStorage.getItem('artworks');
-                const cacheTimestamp = localStorage.getItem('artworks_timestamp');
-
-                if (cachedArtworks && cacheTimestamp && (Date.now() - cacheTimestamp < 1000 * 60 * 60 * 24)) {
-                    // Use cached data if it's less than a day old
+                // Check cache first
+                const cachedArtworks = localStorage.getItem(cacheKey);
+                const cacheTimestamp = localStorage.getItem(timestampKey);
+                
+                if (cachedArtworks && cacheTimestamp && (Date.now() - parseInt(cacheTimestamp) < 1000 * 60 * 60 * 24)) {
                     const artworks = safeJSONParse(cachedArtworks);
-                    if (artworks) {
+                    if (artworks && artworks.length > 0) {
                         displayArtworks(artworks);
                         return;
                     }
                 }
-
-                // Fetch new data
-                loadingIndicator.style.display = 'block';
-                gallery.innerHTML = '<p style="text-align: center; color: #666; padding: 2rem;">Loading artworks from The Met Museum...</p>';
                 
-                const response = await fetchWithTimeout('https://collectionapi.metmuseum.org/public/collection/v1/search?isHighlight=true&hasImages=true&q=painting');
+                // Show loading state
+                loadingIndicator.style.display = 'block';
+                gallery.innerHTML = '';
+                
+                // Search for artworks
+                const searchUrl = `https://collectionapi.metmuseum.org/public/collection/v1/search?isHighlight=true&hasImages=true&q=${encodeURIComponent(collection.search)}`;
+                const response = await fetchWithTimeout(searchUrl);
                 
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
@@ -114,15 +231,14 @@
                 
                 const data = await response.json();
                 const objectIDs = data.objectIDs;
-
+                
                 if (!objectIDs || !Array.isArray(objectIDs) || objectIDs.length === 0) {
-                    gallery.innerHTML = '<p style="text-align: center; color: #666; padding: 2rem;">No artworks found. The museum collection may be temporarily unavailable.</p>';
-                    return;
+                    throw new Error('No artworks found for this collection');
                 }
-
-                // Fetch artwork details in smaller batches to avoid overwhelming the API
-                const batchSize = 10;
-                const maxArtworks = 30;
+                
+                // Fetch artwork details in batches
+                const batchSize = 8;
+                const maxArtworks = 24;
                 const selectedIDs = objectIDs.slice(0, maxArtworks);
                 const artworks = [];
                 
@@ -130,9 +246,14 @@
                     const batch = selectedIDs.slice(i, i + batchSize);
                     const batchPromises = batch.map(async (id) => {
                         try {
-                            const res = await fetchWithTimeout(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`, 8000);
+                            const res = await fetchWithTimeout(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`, 10000);
                             if (!res.ok) return null;
-                            return await res.json();
+                            const artwork = await res.json();
+                            // Only include if it has image and basic info
+                            if (artwork.primaryImageSmall && artwork.title) {
+                                return artwork;
+                            }
+                            return null;
                         } catch (error) {
                             console.warn(`Failed to fetch artwork ${id}:`, error);
                             return null;
@@ -144,102 +265,111 @@
                     
                     // Small delay between batches
                     if (i + batchSize < selectedIDs.length) {
-                        await delay(500);
+                        await delay(600);
                     }
                 }
-
+                
                 if (artworks.length === 0) {
-                    gallery.innerHTML = '<p style="text-align: center; color: #666; padding: 2rem;">Unable to load artwork details. Please try again later.</p>';
-                    return;
+                    throw new Error('No valid artworks found');
                 }
-
-                // Cache the new data
+                
+                // Cache the results
                 try {
-                    localStorage.setItem('artworks', JSON.stringify(artworks));
-                    localStorage.setItem('artworks_timestamp', Date.now().toString());
+                    localStorage.setItem(cacheKey, JSON.stringify(artworks));
+                    localStorage.setItem(timestampKey, Date.now().toString());
                 } catch (storageError) {
                     console.warn('Failed to cache artworks:', storageError);
-                    // Continue without caching if storage is full
                 }
-
+                
                 displayArtworks(artworks);
-
+                
             } catch (error) {
-                console.error('Error fetching artworks:', error);
-                
-                // Try to show cached data as fallback
-                const cachedArtworks = localStorage.getItem('artworks');
-                if (cachedArtworks) {
-                    const artworks = safeJSONParse(cachedArtworks);
-                    if (artworks) {
-                        gallery.innerHTML = '<p style="text-align: center; color: #ff6b6b; padding: 1rem; background: #ffe6e6; border-radius: 5px; margin: 1rem;">⚠️ Showing cached artworks due to connection issues</p>';
-                        displayArtworks(artworks);
-                        return;
-                    }
-                }
-                
-                // Final fallback
-                gallery.innerHTML = `
-                    <div style="text-align: center; color: #666; padding: 3rem;">
-                        <h3>Unable to load artworks</h3>
-                        <p>There was an error connecting to The Metropolitan Museum API.</p>
-                        <p style="font-size: 0.9em; color: #999;">Error: ${error.message}</p>
-                        <button onclick="location.reload()" style="background: #333; color: white; padding: 0.5rem 1rem; border: none; border-radius: 3px; cursor: pointer; margin-top: 1rem;">Try Again</button>
-                    </div>
-                `;
+                console.error('Error fetching curated artworks:', error);
+                showErrorState(error.message);
             } finally {
                 loadingIndicator.style.display = 'none';
             }
         }
-
+        
         function displayArtworks(artworks) {
             gallery.innerHTML = '';
             
             if (!Array.isArray(artworks) || artworks.length === 0) {
-                gallery.innerHTML = '<p style="text-align: center; color: #666; padding: 2rem;">No artworks to display.</p>';
+                showErrorState('No artworks to display');
                 return;
             }
             
-            let displayedCount = 0;
-            
             artworks.forEach(artwork => {
-                // Validate artwork data
-                if (!artwork || typeof artwork !== 'object') {
-                    return;
-                }
+                if (!artwork || !artwork.primaryImageSmall || !artwork.title) return;
                 
-                if (artwork.primaryImageSmall && artwork.title) {
-                    const artworkElement = document.createElement('div');
-                    artworkElement.classList.add('artwork');
-                    
-                    // Safely escape HTML content
-                    const title = (artwork.title || 'Untitled').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-                    const artist = (artwork.artistDisplayName || 'Unknown Artist').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-                    const altText = `${title} by ${artist}`.replace(/"/g, '&quot;');
-                    
-                    artworkElement.innerHTML = `
-                        <img src="${artwork.primaryImageSmall}" alt="${altText}" 
-                             onerror="this.parentNode.style.display='none';"
-                             onload="this.style.opacity='1';"
+                const artworkCard = document.createElement('div');
+                artworkCard.className = 'artwork-card';
+                
+                // Safely escape HTML content
+                const title = (artwork.title || 'Untitled').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+                const artist = (artwork.artistDisplayName || 'Unknown Artist').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+                const date = artwork.objectDate ? artwork.objectDate.replace(/</g, '&lt;').replace(/>/g, '&gt;') : '';
+                const medium = artwork.medium ? artwork.medium.replace(/</g, '&lt;').replace(/>/g, '&gt;') : '';
+                const altText = `${title} by ${artist}`.replace(/"/g, '&quot;');
+                
+                artworkCard.innerHTML = `
+                    <div class="relative overflow-hidden">
+                        <img src="${artwork.primaryImageSmall}" 
+                             alt="${altText}" 
+                             class="artwork-image loading-shimmer"
+                             onerror="this.closest('.artwork-card').style.display='none';"
+                             onload="this.classList.remove('loading-shimmer'); this.style.opacity='1';"
                              style="opacity: 0; transition: opacity 0.3s ease;">
-                        <div class="artwork-info">
-                            <div class="artwork-title">${title}</div>
-                            <div class="artwork-artist">${artist}</div>
-                            ${artwork.objectDate ? `<div style="font-size: 0.9em; color: #999; margin-top: 0.5rem;">${artwork.objectDate}</div>` : ''}
-                        </div>
-                    `;
-                    gallery.appendChild(artworkElement);
-                    displayedCount++;
-                }
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-gray-800 text-sm mb-1 line-clamp-2">${title}</h3>
+                        <p class="text-gray-600 text-xs mb-1">${artist}</p>
+                        ${date ? `<p class="text-gray-500 text-xs mb-1">${date}</p>` : ''}
+                        ${medium ? `<p class="text-gray-400 text-xs line-clamp-1">${medium}</p>` : ''}
+                    </div>
+                `;
+                
+                gallery.appendChild(artworkCard);
+            });
+        }
+        
+        function showErrorState(message) {
+            gallery.innerHTML = `
+                <div class="col-span-full text-center py-12">
+                    <i class="fas fa-exclamation-circle text-gray-400 text-4xl mb-4"></i>
+                    <h3 class="text-lg font-medium text-gray-700 mb-2">Unable to load collection</h3>
+                    <p class="text-gray-500 mb-4">${message}</p>
+                    <button onclick="getCuratedArtworks(currentCollection)" 
+                            class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition-colors">
+                        <i class="fas fa-redo mr-2"></i>Try Again
+                    </button>
+                </div>
+            `;
+        }
+        
+        // Collection button event listeners
+        document.addEventListener('DOMContentLoaded', () => {
+            const collectionButtons = document.querySelectorAll('.collection-btn');
+            
+            collectionButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Update active state
+                    collectionButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    
+                    // Get collection and update
+                    const collectionKey = button.dataset.collection;
+                    currentCollection = collectionKey;
+                    updateCollectionTitle(collectionKey);
+                    getCuratedArtworks(collectionKey);
+                });
             });
             
-            if (displayedCount === 0) {
-                gallery.innerHTML = '<p style="text-align: center; color: #666; padding: 2rem;">No valid artworks found to display.</p>';
-            }
-        }
-
-        // Initialize the gallery
-        getArtworks();
+            // Load default collection
+            updateCollectionTitle(currentCollection);
+            getCuratedArtworks(currentCollection);
+        });
     </script>
 </body>
 </html>
