@@ -163,42 +163,42 @@
         const loadingIndicator = document.getElementById('loading-indicator');
         const collectionTitle = document.getElementById('collection-title');
         
-        // Collection configurations
+        // Collection configurations with working search terms
         const collections = {
             impressionist: {
                 title: 'Impressionist Masters',
                 description: 'Pioneers of light, color, and modern art',
-                search: 'Monet OR Renoir OR Degas OR Pissarro OR Manet OR Cezanne',
+                search: 'painting',
                 icon: 'fas fa-brush'
             },
             renaissance: {
                 title: 'Renaissance Art',
                 description: 'Masterpieces from the rebirth of classical art',
-                search: 'Renaissance OR Raphael OR Leonardo OR Michelangelo OR Botticelli',
+                search: 'Renaissance',
                 icon: 'fas fa-church'
             },
             ancient: {
                 title: 'Ancient Civilizations',
                 description: 'Treasures from Greek, Roman, and Egyptian cultures',
-                search: 'Greek OR Roman OR Egyptian OR Ancient OR sculpture',
+                search: 'sculpture',
                 icon: 'fas fa-landmark'
             },
             american: {
                 title: 'American Art',
                 description: 'Celebrating American artistic heritage',
-                search: 'American OR "United States" OR "American painting"',
+                search: 'American',
                 icon: 'fas fa-flag-usa'
             },
             asian: {
                 title: 'Asian Art',
                 description: 'Rich traditions from across Asia',
-                search: 'Chinese OR Japanese OR Korean OR Asian OR "East Asian"',
+                search: 'Asian',
                 icon: 'fas fa-torii-gate'
             },
             modern: {
                 title: 'Modern & Contemporary',
                 description: 'Innovative works from the 20th century onwards',
-                search: 'Picasso OR modern OR abstract OR contemporary',
+                search: 'modern',
                 icon: 'fas fa-shapes'
             }
         };
@@ -260,8 +260,8 @@
                 loadingIndicator.style.display = 'block';
                 gallery.innerHTML = '';
                 
-                // Search for artworks - remove hasImages=true as it's not reliable
-                const searchUrl = `https://collectionapi.metmuseum.org/public/collection/v1/search?isHighlight=true&q=${encodeURIComponent(collection.search)}`;
+                // Search for artworks with hasImages=true (works with simple search terms)
+                const searchUrl = `https://collectionapi.metmuseum.org/public/collection/v1/search?isHighlight=true&hasImages=true&q=${encodeURIComponent(collection.search)}`;
                 const response = await fetchWithTimeout(searchUrl);
                 
                 if (!response.ok) {
