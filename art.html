@@ -355,17 +355,17 @@
                 // Create card with placeholder first
                 artworkCard.innerHTML = `
                     <div class="relative overflow-hidden">
-                        <div class="image-placeholder" id="placeholder-${index}">
+                        <div class="image-placeholder absolute inset-0 z-0" id="placeholder-${index}">
                             <i class="fas fa-image text-gray-400 text-2xl"></i>
                         </div>
                         <img src="${artwork.primaryImageSmall}" 
                              alt="${altText}" 
-                             class="artwork-image"
+                             class="artwork-image absolute inset-0 w-full h-64 object-cover z-10"
                              loading="lazy"
-                             style="opacity: 0; position: absolute; top: 0; left: 0; transition: opacity 0.5s ease;"
-                             onload="this.style.opacity='1'; document.getElementById('placeholder-${index}').style.display='none';"
+                             style="opacity: 0; transition: opacity 0.5s ease;"
+                             onload="this.style.opacity='1'; document.getElementById('placeholder-${index}').style.opacity='0';"
                              onerror="this.closest('.artwork-card').style.display='none';">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 z-20"></div>
                     </div>
                     <div class="p-4">
                         <h3 class="font-semibold text-gray-800 text-sm mb-1 line-clamp-2">${title}</h3>
