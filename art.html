@@ -163,42 +163,42 @@
         const loadingIndicator = document.getElementById('loading-indicator');
         const collectionTitle = document.getElementById('collection-title');
         
-        // Collection configurations - using 'a' for all since it's proven to work
+        // Collection configurations with unique search terms
         const collections = {
             impressionist: {
                 title: 'Impressionist Masters',
                 description: 'Pioneers of light, color, and modern art',
-                search: 'a',
+                search: 'impressionist',
                 icon: 'fas fa-brush'
             },
             renaissance: {
                 title: 'Renaissance Art',
                 description: 'Masterpieces from the rebirth of classical art',
-                search: 'a',
+                search: 'renaissance',
                 icon: 'fas fa-church'
             },
             ancient: {
                 title: 'Ancient Civilizations',
                 description: 'Treasures from Greek, Roman, and Egyptian cultures',
-                search: 'a',
+                search: 'ancient',
                 icon: 'fas fa-landmark'
             },
             american: {
                 title: 'American Art',
                 description: 'Celebrating American artistic heritage',
-                search: 'a',
+                search: 'american',
                 icon: 'fas fa-flag-usa'
             },
             asian: {
                 title: 'Asian Art',
                 description: 'Rich traditions from across Asia',
-                search: 'a',
+                search: 'asian',
                 icon: 'fas fa-torii-gate'
             },
             modern: {
                 title: 'Modern & Contemporary',
                 description: 'Innovative works from the 20th century onwards',
-                search: 'a',
+                search: 'modern',
                 icon: 'fas fa-shapes'
             }
         };
@@ -325,8 +325,13 @@
                 
                 console.log(`🔄 Fetching fresh ${collectionKey} artworks from Met Museum API...`);
                 
-                // Ultra-simple API call - no complex batching
-                const searchResponse = await fetch('https://collectionapi.metmuseum.org/public/collection/v1/search?isHighlight=true&hasImages=true&q=painting', {
+                // Use collection-specific search terms
+                const collection = collections[collectionKey];
+                const searchQuery = collection.search || 'painting';
+                
+                console.log(`🔍 Searching for: '${searchQuery}'`);
+                
+                const searchResponse = await fetch(`https://collectionapi.metmuseum.org/public/collection/v1/search?isHighlight=true&hasImages=true&q=${encodeURIComponent(searchQuery)}`, {
                     headers: { 'Accept': 'application/json' }
                 });
                 
