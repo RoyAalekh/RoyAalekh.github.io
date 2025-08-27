@@ -237,36 +237,69 @@
             `;
         }
         
-        // Simple working approach based on user's example
+        // Simple working approach with better error handling
         async function getCuratedArtworks(collectionKey) {
             try {
                 // Show loading state
                 loadingIndicator.style.display = 'block';
                 gallery.innerHTML = '';
                 
+                console.log('Attempting to fetch from Met Museum API...');
+                
                 // Use the exact same approach as the working example
                 const response = await fetch('https://collectionapi.metmuseum.org/public/collection/v1/search?isHighlight=true&hasImages=true&q=a');
+                
+                console.log('Response status:', response.status, response.statusText);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
                 const data = await response.json();
+                console.log('Search data received:', data);
+                
                 const objectIDs = data.objectIDs;
 
-                if (!objectIDs) {
-                    showErrorState('No artworks found');
+                if (!objectIDs || objectIDs.length === 0) {
+                    showErrorState('No artworks found in the Met Museum collection');
                     return;
                 }
 
+                console.log(`Found ${objectIDs.length} artworks, fetching first 20...`);
+
                 // Fetch details for a selection of artworks (exactly like the working example)
                 const artworks = await Promise.all(objectIDs.slice(0, 20).map(async (id) => {
-                    const res = await fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`);
-                    return res.json();
+                    try {
+                        const res = await fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`);
+                        if (!res.ok) return null;
+                        return res.json();
+                    } catch (err) {
+                        console.warn(`Failed to fetch artwork ${id}:`, err);
+                        return null;
+                    }
                 }));
 
                 // Filter and display only artworks with images
-                const validArtworks = artworks.filter(artwork => artwork.primaryImageSmall);
+                const validArtworks = artworks.filter(artwork => artwork && artwork.primaryImageSmall);
+                console.log(`Found ${validArtworks.length} artworks with images`);
+                
+                if (validArtworks.length === 0) {
+                    showErrorState('No artworks with images available at this time');
+                    return;
+                }
+                
                 displayArtworks(validArtworks);
                 
             } catch (error) {
                 console.error('Error fetching artworks:', error);
-                showErrorState('There was an error fetching the artworks. Please try again later.');
+                
+                if (error.message.includes('HTTP 403') || error.message.includes('Incapsula')) {
+                    showErrorState('The Met Museum API is temporarily unavailable due to security restrictions. Please try again in a few minutes.');
+                } else if (error.message.includes('NetworkError') || error.message.includes('Failed to fetch')) {
+                    showErrorState('Unable to connect to the Met Museum API. Please check your internet connection and try again.');
+                } else {
+                    showErrorState(`API Error: ${error.message}. Please try again later.`);
+                }
             } finally {
                 loadingIndicator.style.display = 'none';
             }
