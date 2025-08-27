@@ -237,7 +237,63 @@
             `;
         }
         
-        // Simple working approach with better error handling
+        // Sample artworks for fallback when API is down
+        const sampleArtworks = {
+            impressionist: [
+                {
+                    title: "Water Lilies",
+                    artistDisplayName: "Claude Monet",
+                    primaryImageSmall: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=400&h=300&fit=crop&auto=format"
+                },
+                {
+                    title: "The Starry Night",
+                    artistDisplayName: "Vincent van Gogh",
+                    primaryImageSmall: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop&auto=format"
+                },
+                {
+                    title: "Impression, Sunrise",
+                    artistDisplayName: "Claude Monet",
+                    primaryImageSmall: "https://images.unsplash.com/photo-1578321272176-b7bbc0679853?w=400&h=300&fit=crop&auto=format"
+                }
+            ],
+            renaissance: [
+                {
+                    title: "The Birth of Venus",
+                    artistDisplayName: "Sandro Botticelli",
+                    primaryImageSmall: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop&auto=format"
+                }
+            ],
+            ancient: [
+                {
+                    title: "Greek Sculpture",
+                    artistDisplayName: "Ancient Greek Artist",
+                    primaryImageSmall: "https://images.unsplash.com/photo-1594736797933-d0119c4fec96?w=400&h=300&fit=crop&auto=format"
+                }
+            ],
+            american: [
+                {
+                    title: "American Gothic",
+                    artistDisplayName: "Grant Wood",
+                    primaryImageSmall: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop&auto=format"
+                }
+            ],
+            asian: [
+                {
+                    title: "The Great Wave",
+                    artistDisplayName: "Hokusai",
+                    primaryImageSmall: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop&auto=format"
+                }
+            ],
+            modern: [
+                {
+                    title: "Guernica",
+                    artistDisplayName: "Pablo Picasso",
+                    primaryImageSmall: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop&auto=format"
+                }
+            ]
+        };
+
+        // Simple working approach with fallback when API is down
         async function getCuratedArtworks(collectionKey) {
             try {
                 // Show loading state
@@ -261,8 +317,7 @@
                 const objectIDs = data.objectIDs;
 
                 if (!objectIDs || objectIDs.length === 0) {
-                    showErrorState('No artworks found in the Met Museum collection');
-                    return;
+                    throw new Error('No artworks found in the Met Museum collection');
                 }
 
                 console.log(`Found ${objectIDs.length} artworks, fetching first 20...`);
@@ -284,32 +339,46 @@
                 console.log(`Found ${validArtworks.length} artworks with images`);
                 
                 if (validArtworks.length === 0) {
-                    showErrorState('No artworks with images available at this time');
-                    return;
+                    throw new Error('No artworks with images available at this time');
                 }
                 
                 displayArtworks(validArtworks);
                 
             } catch (error) {
                 console.error('Error fetching artworks:', error);
+                console.log('Falling back to sample artworks...');
                 
-                if (error.message.includes('HTTP 403') || error.message.includes('Incapsula')) {
-                    showErrorState('The Met Museum API is temporarily unavailable due to security restrictions. Please try again in a few minutes.');
-                } else if (error.message.includes('NetworkError') || error.message.includes('Failed to fetch')) {
-                    showErrorState('Unable to connect to the Met Museum API. Please check your internet connection and try again.');
-                } else {
-                    showErrorState(`API Error: ${error.message}. Please try again later.`);
-                }
+                // Use sample artworks as fallback
+                const fallbackArtworks = sampleArtworks[collectionKey] || sampleArtworks.impressionist;
+                
+                // Add a notice that we're showing sample data
+                gallery.innerHTML = `
+                    <div class="col-span-full mb-6">
+                        <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 text-center">
+                            <i class="fas fa-info-circle text-blue-500 mr-2"></i>
+                            <span class="text-blue-700 text-sm">
+                                The Met Museum API is temporarily unavailable. Showing sample artworks to demonstrate the gallery.
+                            </span>
+                        </div>
+                    </div>
+                `;
+                
+                displayArtworks(fallbackArtworks, true);
             } finally {
                 loadingIndicator.style.display = 'none';
             }
         }
         
-        function displayArtworks(artworks) {
-            gallery.innerHTML = '';
+        function displayArtworks(artworks, isFallback = false) {
+            // Don't clear gallery if we're adding fallback notice
+            if (!isFallback) {
+                gallery.innerHTML = '';
+            }
             
             if (!Array.isArray(artworks) || artworks.length === 0) {
-                showErrorState('No artworks to display');
+                if (!isFallback) {
+                    showErrorState('No artworks to display');
+                }
                 return;
             }
             
