@@ -237,101 +237,36 @@
             `;
         }
         
-        // Main function to get curated artworks
+        // Simple working approach based on user's example
         async function getCuratedArtworks(collectionKey) {
-            const collection = collections[collectionKey];
-            const cacheKey = `artworks_v2_${collectionKey}`; // v2 to clear old cache
-            const timestampKey = `timestamp_v2_${collectionKey}`;
-            
             try {
-                // Check cache first
-                const cachedArtworks = localStorage.getItem(cacheKey);
-                const cacheTimestamp = localStorage.getItem(timestampKey);
-                
-                if (cachedArtworks && cacheTimestamp && (Date.now() - parseInt(cacheTimestamp) < 1000 * 60 * 60 * 24)) {
-                    const artworks = safeJSONParse(cachedArtworks);
-                    if (artworks && artworks.length > 0) {
-                        displayArtworks(artworks);
-                        return;
-                    }
-                }
-                
                 // Show loading state
                 loadingIndicator.style.display = 'block';
                 gallery.innerHTML = '';
                 
-                // Search for artworks with hasImages=true (works with simple search terms)
-                const searchUrl = `https://collectionapi.metmuseum.org/public/collection/v1/search?isHighlight=true&hasImages=true&q=${encodeURIComponent(collection.search)}`;
-                const response = await fetchWithTimeout(searchUrl);
-                
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                
+                // Use the exact same approach as the working example
+                const response = await fetch('https://collectionapi.metmuseum.org/public/collection/v1/search?isHighlight=true&hasImages=true&q=a');
                 const data = await response.json();
                 const objectIDs = data.objectIDs;
-                
-                if (!objectIDs || !Array.isArray(objectIDs) || objectIDs.length === 0) {
-                    throw new Error('No artworks found for this collection');
+
+                if (!objectIDs) {
+                    showErrorState('No artworks found');
+                    return;
                 }
-                
-                // Fetch artwork details in batches - increase to account for missing images
-                const batchSize = 10;
-                const maxArtworks = 50; // Fetch more to filter for ones with images
-                const selectedIDs = objectIDs.slice(0, maxArtworks);
-                const artworks = [];
-                
-                for (let i = 0; i < selectedIDs.length; i += batchSize) {
-                    const batch = selectedIDs.slice(i, i + batchSize);
-                    const batchPromises = batch.map(async (id) => {
-                        try {
-                            const res = await fetchWithTimeout(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`, 10000);
-                            if (!res.ok) return null;
-                            const artwork = await res.json();
-                            // Check for images with fallback options
-                            const hasImage = artwork.primaryImageSmall || artwork.primaryImage;
-                            if (hasImage && artwork.title) {
-                                // Ensure we use the best available image
-                                if (!artwork.primaryImageSmall && artwork.primaryImage) {
-                                    artwork.primaryImageSmall = artwork.primaryImage;
-                                }
-                                return artwork;
-                            }
-                            return null;
-                        } catch (error) {
-                            console.warn(`Failed to fetch artwork ${id}:`, error);
-                            return null;
-                        }
-                    });
-                    
-                    const batchResults = await Promise.all(batchPromises);
-                    artworks.push(...batchResults.filter(artwork => artwork !== null));
-                    
-                    // Small delay between batches
-                    if (i + batchSize < selectedIDs.length) {
-                        await delay(600);
-                    }
-                }
-                
-                if (artworks.length === 0) {
-                    throw new Error('No valid artworks found');
-                }
-                
-                // Cache the results
-                try {
-                    localStorage.setItem(cacheKey, JSON.stringify(artworks));
-                    localStorage.setItem(timestampKey, Date.now().toString());
-                } catch (storageError) {
-                    console.warn('Failed to cache artworks:', storageError);
-                }
-                
-                // Limit to 24 artworks for display
-                const limitedArtworks = artworks.slice(0, 24);
-                displayArtworks(limitedArtworks);
+
+                // Fetch details for a selection of artworks (exactly like the working example)
+                const artworks = await Promise.all(objectIDs.slice(0, 20).map(async (id) => {
+                    const res = await fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`);
+                    return res.json();
+                }));
+
+                // Filter and display only artworks with images
+                const validArtworks = artworks.filter(artwork => artwork.primaryImageSmall);
+                displayArtworks(validArtworks);
                 
             } catch (error) {
-                console.error('Error fetching curated artworks:', error);
-                showErrorState(error.message);
+                console.error('Error fetching artworks:', error);
+                showErrorState('There was an error fetching the artworks. Please try again later.');
             } finally {
                 loadingIndicator.style.display = 'none';
             }
@@ -345,44 +280,20 @@
                 return;
             }
             
-            // Show immediate placeholders for better perceived performance
-            artworks.forEach((artwork, index) => {
-                if (!artwork || !artwork.primaryImageSmall || !artwork.title) return;
-                
-                const artworkCard = document.createElement('div');
-                artworkCard.className = 'artwork-card';
-                
-                // Safely escape HTML content
-                const title = (artwork.title || 'Untitled').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-                const artist = (artwork.artistDisplayName || 'Unknown Artist').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-                const date = artwork.objectDate ? artwork.objectDate.replace(/</g, '&lt;').replace(/>/g, '&gt;') : '';
-                const medium = artwork.medium ? artwork.medium.replace(/</g, '&lt;').replace(/>/g, '&gt;') : '';
-                const altText = `${title} by ${artist}`.replace(/"/g, '&quot;');
-                
-                // Create card with placeholder first
-                artworkCard.innerHTML = `
-                    <div class="relative overflow-hidden">
-                        <div class="image-placeholder absolute inset-0 z-0" id="placeholder-${index}">
-                            <i class="fas fa-image text-gray-400 text-2xl"></i>
+            // Display artworks exactly like the working example
+            artworks.forEach(artwork => {
+                if (artwork.primaryImageSmall) {
+                    const artworkCard = document.createElement('div');
+                    artworkCard.className = 'artwork-card';
+                    artworkCard.innerHTML = `
+                        <img src="${artwork.primaryImageSmall}" alt="${artwork.title}" class="artwork-image">
+                        <div class="p-4">
+                            <h3 class="font-semibold text-gray-800 text-sm mb-1">${artwork.title}</h3>
+                            <p class="text-gray-600 text-xs">${artwork.artistDisplayName || 'Unknown Artist'}</p>
                         </div>
-                        <img src="${artwork.primaryImageSmall}" 
-                             alt="${altText}" 
-                             class="artwork-image absolute inset-0 w-full h-64 object-cover z-10"
-                             loading="lazy"
-                             style="opacity: 0; transition: opacity 0.5s ease;"
-                             onload="this.style.opacity='1'; document.getElementById('placeholder-${index}').style.opacity='0';"
-                             onerror="this.closest('.artwork-card').style.display='none';">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 z-20"></div>
-                    </div>
-                    <div class="p-4">
-                        <h3 class="font-semibold text-gray-800 text-sm mb-1 line-clamp-2">${title}</h3>
-                        <p class="text-gray-600 text-xs mb-1">${artist}</p>
-                        ${date ? `<p class="text-gray-500 text-xs mb-1">${date}</p>` : ''}
-                        ${medium ? `<p class="text-gray-400 text-xs line-clamp-1">${medium}</p>` : ''}
-                    </div>
-                `;
-                
-                gallery.appendChild(artworkCard);
+                    `;
+                    gallery.appendChild(artworkCard);
+                }
             });
         }
         
