@@ -260,8 +260,8 @@
                 loadingIndicator.style.display = 'block';
                 gallery.innerHTML = '';
                 
-                // Search for artworks
-                const searchUrl = `https://collectionapi.metmuseum.org/public/collection/v1/search?isHighlight=true&hasImages=true&q=${encodeURIComponent(collection.search)}`;
+                // Search for artworks - remove hasImages=true as it's not reliable
+                const searchUrl = `https://collectionapi.metmuseum.org/public/collection/v1/search?isHighlight=true&q=${encodeURIComponent(collection.search)}`;
                 const response = await fetchWithTimeout(searchUrl);
                 
                 if (!response.ok) {
@@ -275,9 +275,9 @@
                     throw new Error('No artworks found for this collection');
                 }
                 
-                // Fetch artwork details in batches
-                const batchSize = 8;
-                const maxArtworks = 24;
+                // Fetch artwork details in batches - increase to account for missing images
+                const batchSize = 10;
+                const maxArtworks = 50; // Fetch more to filter for ones with images
                 const selectedIDs = objectIDs.slice(0, maxArtworks);
                 const artworks = [];
                 
@@ -288,8 +288,13 @@
                             const res = await fetchWithTimeout(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`, 10000);
                             if (!res.ok) return null;
                             const artwork = await res.json();
-                            // Only include if it has image and basic info
-                            if (artwork.primaryImageSmall && artwork.title) {
+                            // Check for images with fallback options
+                            const hasImage = artwork.primaryImageSmall || artwork.primaryImage;
+                            if (hasImage && artwork.title) {
+                                // Ensure we use the best available image
+                                if (!artwork.primaryImageSmall && artwork.primaryImage) {
+                                    artwork.primaryImageSmall = artwork.primaryImage;
+                                }
                                 return artwork;
                             }
                             return null;
@@ -320,7 +325,9 @@
                     console.warn('Failed to cache artworks:', storageError);
                 }
                 
-                displayArtworks(artworks);
+                // Limit to 24 artworks for display
+                const limitedArtworks = artworks.slice(0, 24);
+                displayArtworks(limitedArtworks);
                 
             } catch (error) {
                 console.error('Error fetching curated artworks:', error);
