@@ -205,6 +205,10 @@
         
         let currentCollection = 'impressionist';
         
+        // Cache for API results to prevent re-fetching
+        const artworkCache = new Map();
+        const CACHE_DURATION = 10 * 60 * 1000; // 10 minutes
+        
         // Utility functions
         function fetchWithTimeout(url, timeout = 12000) {
             return Promise.race([
@@ -295,12 +299,37 @@
 
         // Robust API fetching with rate limiting and retry logic
         async function getCuratedArtworks(collectionKey) {
+            // Check cache first
+            const cacheKey = `collection_${collectionKey}`;
+            const cachedData = artworkCache.get(cacheKey);
+            
+            if (cachedData && (Date.now() - cachedData.timestamp) < CACHE_DURATION) {
+                console.log(`Loading ${collectionKey} from cache...`);
+                
+                // Show quick cache indicator
+                gallery.innerHTML = `
+                    <div class="col-span-full mb-6">
+                        <div class="bg-green-50 border border-green-200 rounded-lg p-2 text-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            <span class="text-green-700 text-xs">Loaded from cache (${cachedData.artworks.length} artworks)</span>
+                        </div>
+                    </div>
+                `;
+                
+                // Small delay to show the cache message, then display artworks
+                setTimeout(() => {
+                    displayArtworks(cachedData.artworks);
+                }, 500);
+                
+                return;
+            }
+            
             try {
                 // Show loading state
                 loadingIndicator.style.display = 'block';
                 gallery.innerHTML = '';
                 
-                console.log('Attempting to fetch from Met Museum API...');
+                console.log(`Fetching fresh ${collectionKey} artworks from Met Museum API...`);
                 
                 // Fetch search results with timeout
                 const controller = new AbortController();
@@ -372,6 +401,13 @@
                 if (validArtworks.length === 0) {
                     throw new Error('No artworks with images found in current batch');
                 }
+                
+                // Cache the successful results
+                artworkCache.set(cacheKey, {
+                    artworks: validArtworks,
+                    timestamp: Date.now()
+                });
+                console.log(`Cached ${validArtworks.length} artworks for ${collectionKey}`);
                 
                 displayArtworks(validArtworks);
                 
