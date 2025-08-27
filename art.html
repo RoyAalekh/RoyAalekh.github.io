@@ -163,42 +163,42 @@
         const loadingIndicator = document.getElementById('loading-indicator');
         const collectionTitle = document.getElementById('collection-title');
         
-        // Collection configurations with working search terms
+        // Collection configurations - using 'a' for all since it's proven to work
         const collections = {
             impressionist: {
                 title: 'Impressionist Masters',
                 description: 'Pioneers of light, color, and modern art',
-                search: 'painting',
+                search: 'a',
                 icon: 'fas fa-brush'
             },
             renaissance: {
                 title: 'Renaissance Art',
                 description: 'Masterpieces from the rebirth of classical art',
-                search: 'Renaissance',
+                search: 'a',
                 icon: 'fas fa-church'
             },
             ancient: {
                 title: 'Ancient Civilizations',
                 description: 'Treasures from Greek, Roman, and Egyptian cultures',
-                search: 'sculpture',
+                search: 'a',
                 icon: 'fas fa-landmark'
             },
             american: {
                 title: 'American Art',
                 description: 'Celebrating American artistic heritage',
-                search: 'American',
+                search: 'a',
                 icon: 'fas fa-flag-usa'
             },
             asian: {
                 title: 'Asian Art',
                 description: 'Rich traditions from across Asia',
-                search: 'Asian',
+                search: 'a',
                 icon: 'fas fa-torii-gate'
             },
             modern: {
                 title: 'Modern & Contemporary',
                 description: 'Innovative works from the 20th century onwards',
-                search: 'modern',
+                search: 'a',
                 icon: 'fas fa-shapes'
             }
         };
@@ -240,8 +240,8 @@
         // Main function to get curated artworks
         async function getCuratedArtworks(collectionKey) {
             const collection = collections[collectionKey];
-            const cacheKey = `artworks_${collectionKey}`;
-            const timestampKey = `timestamp_${collectionKey}`;
+            const cacheKey = `artworks_v2_${collectionKey}`; // v2 to clear old cache
+            const timestampKey = `timestamp_v2_${collectionKey}`;
             
             try {
                 // Check cache first
