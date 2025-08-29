@@ -45,178 +45,110 @@
     </div>
   </div>
 
-<!-- Interactive Journey Map -->
-<section id="about" class="py-24 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 relative z-10 overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-br from-blue-900/20 to-purple-900/20"></div>
-    <div class="absolute inset-0">
-        <div class="stars"></div>
-    </div>
-    
-    <div class="max-w-7xl mx-auto px-4 relative z-10">
+<!-- Clean Journey Section -->
+<section id="about" class="py-20 bg-gray-50 relative z-10">
+    <div class="max-w-4xl mx-auto px-4">
         <div class="text-center mb-16">
-            <h2 class="text-4xl font-light text-white mb-4">My Journey</h2>
-            <p class="text-blue-200 text-lg">Tracing the path across places that shaped my story</p>
-            <div class="interaction-hint mt-4 opacity-75">
-                <p class="text-sm text-blue-300">
-                    <i class="fas fa-hand-pointer mr-2"></i>
-                    Click locations on the map • Use ← → arrow keys to navigate • Hover for details
-                </p>
-            </div>
+            <h2 class="text-3xl font-light text-gray-900 mb-3">Journey</h2>
+            <p class="text-gray-600">From mathematics to data science across India</p>
         </div>
         
-        <!-- Journey Map Container -->
-        <div class="journey-map-container relative bg-white/5 backdrop-blur-sm rounded-3xl border border-white/10 p-8 md:p-12">
-            <!-- India Map SVG -->
-            <svg class="journey-map" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
-                <!-- Stylized India outline -->
-                <path class="india-outline" d="M200 50 L250 40 L300 45 L350 40 L400 50 L450 65 L480 80 L500 100 L520 130 L530 160 L535 200 L530 240 L520 280 L500 320 L480 360 L460 400 L440 440 L420 470 L400 490 L380 500 L350 505 L320 500 L290 495 L260 485 L230 470 L200 450 L180 420 L160 380 L150 340 L145 300 L150 260 L160 220 L170 180 L180 140 L190 100 L200 50 Z" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
-                
-                <!-- Journey Path (animated) -->
-                <path class="journey-path" d="M200 380 Q300 300 400 250 Q500 200 600 180" fill="none" stroke="url(#journeyGradient)" stroke-width="3" stroke-dasharray="10,5" opacity="0.8"/>
-                
-                <!-- Gradient definitions -->
-                <defs>
-                    <linearGradient id="journeyGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.8"/>
-                        <stop offset="50%" stop-color="#8b5cf6" stop-opacity="0.8"/>
-                        <stop offset="100%" stop-color="#06d6a0" stop-opacity="0.8"/>
-                    </linearGradient>
-                    
-                    <filter id="glow">
-                        <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-                        <feMerge> 
-                            <feMergeNode in="coloredBlur"/>
-                            <feMergeNode in="SourceGraphic"/>
-                        </feMerge>
-                    </filter>
-                </defs>
-            </svg>
+        <!-- Timeline Path -->
+        <div class="journey-timeline relative">
+            <!-- Timeline Line -->
+            <div class="timeline-line absolute left-8 top-0 bottom-0 w-px bg-gray-200"></div>
             
-            <!-- Location Markers -->
-            <div class="location-marker" data-location="delhi" style="position: absolute; top: 30%; left: 25%;">
-                <div class="marker-pin marker-pin-1">
-                    <div class="pin-dot"></div>
-                    <div class="pin-pulse"></div>
-                </div>
-                <span class="location-label">Delhi</span>
-            </div>
-            
-            <div class="location-marker" data-location="bhubaneswar" style="position: absolute; top: 45%; left: 50%;">
-                <div class="marker-pin marker-pin-2">
-                    <div class="pin-dot"></div>
-                    <div class="pin-pulse"></div>
-                </div>
-                <span class="location-label">Bhubaneswar</span>
-            </div>
-            
-            <div class="location-marker" data-location="current" style="position: absolute; top: 32%; left: 75%;">
-                <div class="marker-pin marker-pin-3">
-                    <div class="pin-dot"></div>
-                    <div class="pin-pulse"></div>
-                </div>
-                <span class="location-label">Remote Work</span>
-            </div>
-        </div>
-        
-        <!-- Journey Cards -->
-        <div class="journey-cards mt-16">
-            <!-- Delhi Card -->
-            <div class="journey-card" id="card-delhi" data-location="delhi">
-                <div class="card-header">
-                    <div class="location-icon">
-                        <i class="fas fa-university"></i>
+            <!-- Journey Steps -->
+            <div class="space-y-12">
+                <!-- Delhi -->
+                <div class="journey-step" data-location="delhi">
+                    <div class="step-marker">
+                        <div class="marker-dot bg-blue-500"></div>
+                        <div class="marker-line"></div>
                     </div>
-                    <div class="location-info">
-                        <h3 class="location-name">New Delhi</h3>
-                        <p class="location-period">May 2015 - May 2020</p>
-                    </div>
-                </div>
-                <div class="card-content">
-                    <h4 class="experience-title">BA (Honors) in Mathematics</h4>
-                    <p class="institution">Dr. B.R. Ambedkar University Delhi (AUD)</p>
-                    <div class="experience-details">
-                        <p class="details-label">Interdisciplinary Focus:</p>
-                        <ul class="experience-list">
-                            <li>Real & Complex Analysis, Abstract Algebra</li>
-                            <li>Probability Theory & Mathematical Statistics</li>
-                            <li>Linear Algebra & Differential Equations</li>
-                            <li>Social Theory & Philosophy of Science</li>
-                            <li>Research Methodology & Critical Thinking</li>
-                            <li>Game Theory & Decision Sciences</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Bhubaneswar Card -->
-            <div class="journey-card" id="card-bhubaneswar" data-location="bhubaneswar">
-                <div class="card-header">
-                    <div class="location-icon">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <div class="location-info">
-                        <h3 class="location-name">Bhubaneswar</h3>
-                        <p class="location-period">Aug 2020 - Aug 2022</p>
-                    </div>
-                </div>
-                <div class="card-content">
-                    <h4 class="experience-title">MSc in Mathematics with Data Science</h4>
-                    <p class="institution">Institute of Mathematics and Applications</p>
-                    <div class="experience-details">
-                        <p class="details-label">Key Coursework:</p>
-                        <ul class="experience-list">
-                            <li>Advanced Statistical Methods & Machine Learning</li>
-                            <li>Complex Networks & Graph Theory</li>
-                            <li>Computational Mathematics & Numerical Analysis</li>
-                            <li>Data Mining & Knowledge Discovery</li>
-                            <li>Mathematical Modeling & Optimization</li>
-                            <li>Time Series Analysis & Forecasting</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Current Work Card -->
-            <div class="journey-card" id="card-current" data-location="current">
-                <div class="card-header">
-                    <div class="location-icon">
-                        <i class="fas fa-solar-panel"></i>
-                    </div>
-                    <div class="location-info">
-                        <h3 class="location-name">Remote / Global</h3>
-                        <p class="location-period">Sept 2022 - Present</p>
-                    </div>
-                </div>
-                <div class="card-content">
-                    <h4 class="experience-title">Data Scientist</h4>
-                    <p class="institution">SmartHelio (YC-22)</p>
-                    <div class="experience-details">
-                        <div class="role-progression">
-                            <div class="role-item">
-                                <span class="role-period">Jan 2024 – Present</span>
-                                <span class="role-title">Data Scientist</span>
-                                <ul class="role-achievements">
-                                    <li>Lead the data and analytics team, architecting intelligent systems for SmartHelio's SaaS platform</li>
-                                    <li>Scaling all data pipelines and models to support a 10x increase in managed assets (500 to 5,000 PV plants)</li>
-                                </ul>
+                    <div class="step-content">
+                        <div class="step-header">
+                            <div class="flex items-center gap-3 mb-2">
+                                <h3 class="text-lg font-medium text-gray-900">New Delhi</h3>
+                                <span class="text-sm text-gray-500">2015 – 2020</span>
                             </div>
-                            <div class="role-item">
-                                <span class="role-period">July 2023 – Dec 2023</span>
-                                <span class="role-title">Associate Data Scientist</span>
-                                <ul class="role-achievements">
-                                    <li>Developed predictive maintenance model for soiling-induced energy losses</li>
-                                    <li>Authored centralized Python library for analytics, accelerating team development</li>
-                                </ul>
-                            </div>
-                            <div class="role-item">
-                                <span class="role-period">Sept 2022 – July 2023</span>
-                                <span class="role-title">Data Analyst</span>
-                                <ul class="role-achievements">
-                                    <li>Designed diagnostic pipelines for large-scale solar PV systems</li>
-                                    <li>Integrated core analytics modules into SmartHelio's flagship SaaS platform</li>
-                                </ul>
+                            <p class="text-gray-700 font-medium mb-1">BA (Honors) Mathematics</p>
+                            <p class="text-sm text-gray-600 mb-3">Dr. B.R. Ambedkar University Delhi</p>
+                        </div>
+                        <div class="step-details hidden">
+                            <p class="text-sm text-gray-600 mb-2">Interdisciplinary foundation combining:</p>
+                            <div class="text-sm text-gray-600 space-y-1">
+                                <p>• Mathematical Analysis & Abstract Algebra</p>
+                                <p>• Probability Theory & Statistics</p>
+                                <p>• Social Theory & Philosophy of Science</p>
+                                <p>• Research Methodology & Critical Thinking</p>
                             </div>
                         </div>
+                        <button class="step-toggle text-blue-600 text-sm hover:text-blue-700 mt-2">View details</button>
+                    </div>
+                </div>
+                
+                <!-- Bhubaneswar -->
+                <div class="journey-step" data-location="bhubaneswar">
+                    <div class="step-marker">
+                        <div class="marker-dot bg-purple-500"></div>
+                        <div class="marker-line"></div>
+                    </div>
+                    <div class="step-content">
+                        <div class="step-header">
+                            <div class="flex items-center gap-3 mb-2">
+                                <h3 class="text-lg font-medium text-gray-900">Bhubaneswar</h3>
+                                <span class="text-sm text-gray-500">2020 – 2022</span>
+                            </div>
+                            <p class="text-gray-700 font-medium mb-1">MSc Mathematics with Data Science</p>
+                            <p class="text-sm text-gray-600 mb-3">Institute of Mathematics and Applications</p>
+                        </div>
+                        <div class="step-details hidden">
+                            <p class="text-sm text-gray-600 mb-2">Specialized coursework in:</p>
+                            <div class="text-sm text-gray-600 space-y-1">
+                                <p>• Advanced Statistical Methods & Machine Learning</p>
+                                <p>• Complex Networks & Graph Theory</p>
+                                <p>• Computational Mathematics & Analysis</p>
+                                <p>• Data Mining & Knowledge Discovery</p>
+                            </div>
+                        </div>
+                        <button class="step-toggle text-purple-600 text-sm hover:text-purple-700 mt-2">View details</button>
+                    </div>
+                </div>
+                
+                <!-- Current Work -->
+                <div class="journey-step" data-location="current">
+                    <div class="step-marker">
+                        <div class="marker-dot bg-green-500"></div>
+                        <div class="marker-line"></div>
+                    </div>
+                    <div class="step-content">
+                        <div class="step-header">
+                            <div class="flex items-center gap-3 mb-2">
+                                <h3 class="text-lg font-medium text-gray-900">Remote</h3>
+                                <span class="text-sm text-gray-500">2022 – Present</span>
+                            </div>
+                            <p class="text-gray-700 font-medium mb-1">Data Scientist</p>
+                            <p class="text-sm text-gray-600 mb-3">SmartHelio (YC-22)</p>
+                        </div>
+                        <div class="step-details hidden">
+                            <p class="text-sm text-gray-600 mb-2">Career progression:</p>
+                            <div class="text-sm text-gray-600 space-y-2">
+                                <div class="border-l-2 border-green-200 pl-3">
+                                    <p class="font-medium text-gray-700">Data Scientist <span class="text-gray-500">(Jan 2024 – Present)</span></p>
+                                    <p>Leading analytics team, scaling data pipelines for 5,000+ solar plants</p>
+                                </div>
+                                <div class="border-l-2 border-green-200 pl-3">
+                                    <p class="font-medium text-gray-700">Associate Data Scientist <span class="text-gray-500">(Jul 2023 – Dec 2023)</span></p>
+                                    <p>Predictive maintenance models and centralized analytics library</p>
+                                </div>
+                                <div class="border-l-2 border-green-200 pl-3">
+                                    <p class="font-medium text-gray-700">Data Analyst <span class="text-gray-500">(Sep 2022 – Jul 2023)</span></p>
+                                    <p>Solar PV diagnostic pipelines and SaaS platform integration</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="step-toggle text-green-600 text-sm hover:text-green-700 mt-2">View details</button>
                     </div>
                 </div>
             </div>

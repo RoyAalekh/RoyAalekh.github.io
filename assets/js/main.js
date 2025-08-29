@@ -130,203 +130,56 @@ newSections.forEach(section => {
   newObserver.observe(section);
 });
 
-// Journey Map Interactive Features
-class JourneyMapController {
+// Clean Journey Timeline Functionality
+class CleanJourneyController {
   constructor() {
-    this.locationMarkers = document.querySelectorAll('.location-marker');
-    this.journeyCards = document.querySelectorAll('.journey-card');
-    this.activeLocation = null;
-    this.isScrolling = false;
-    
     this.init();
   }
   
   init() {
-    this.setupLocationMarkers();
+    this.setupToggleButtons();
     this.setupSmoothScrolling();
-    this.setupJourneyCardObserver();
-    this.setupKeyboardNavigation();
-    this.setupCardHoverSync();
   }
   
-  setupLocationMarkers() {
-    this.locationMarkers.forEach((marker, index) => {
-      // Click/Tap events
-      marker.addEventListener('click', (e) => {
+  setupToggleButtons() {
+    const toggleButtons = document.querySelectorAll('.step-toggle');
+    
+    toggleButtons.forEach(button => {
+      button.addEventListener('click', (e) => {
         e.preventDefault();
-        const location = marker.dataset.location;
-        this.focusLocation(location, true);
-      });
-      
-      // Touch events for mobile
-      let touchStartTime = 0;
-      marker.addEventListener('touchstart', (e) => {
-        touchStartTime = Date.now();
-        const location = marker.dataset.location;
-        this.highlightCard(location, false);
-      }, { passive: true });
-      
-      marker.addEventListener('touchend', (e) => {
-        e.preventDefault();
-        const touchDuration = Date.now() - touchStartTime;
         
-        // Only trigger if it's a quick tap (not a scroll)
-        if (touchDuration < 200) {
-          const location = marker.dataset.location;
-          this.focusLocation(location, true);
-        }
-      });
-      
-      marker.addEventListener('touchcancel', () => {
-        // Clean up any highlights if touch is cancelled
-        if (this.activeLocation !== marker.dataset.location) {
-          this.removeCardHighlight(marker.dataset.location);
-        }
-      });
-      
-      // Mouse events for desktop
-      marker.addEventListener('mouseenter', () => {
-        if (!this.isScrolling && !this.isMobileDevice()) {
-          this.highlightCard(marker.dataset.location, false);
-        }
-      });
-      
-      marker.addEventListener('mouseleave', () => {
-        if (!this.isScrolling && this.activeLocation !== marker.dataset.location && !this.isMobileDevice()) {
-          this.removeCardHighlight(marker.dataset.location);
+        const journeyStep = button.closest('.journey-step');
+        const stepDetails = journeyStep.querySelector('.step-details');
+        const isHidden = stepDetails.classList.contains('hidden');
+        
+        if (isHidden) {
+          // Expand details
+          stepDetails.classList.remove('hidden');
+          button.textContent = 'Hide details';
+          
+          // Optional: Scroll to keep the expanded content in view
+          setTimeout(() => {
+            journeyStep.scrollIntoView({
+              behavior: 'smooth',
+              block: 'center',
+              inline: 'nearest'
+            });
+          }, 100);
+        } else {
+          // Collapse details
+          stepDetails.classList.add('hidden');
+          button.textContent = 'View details';
         }
       });
       
       // Add keyboard support
-      marker.setAttribute('tabindex', '0');
-      marker.setAttribute('role', 'button');
-      marker.setAttribute('aria-label', `View details for ${marker.querySelector('.location-label').textContent}`);
-      
-      marker.addEventListener('keydown', (e) => {
+      button.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
-          const location = marker.dataset.location;
-          this.focusLocation(location, true);
+          button.click();
         }
       });
     });
-  }
-  
-  setupCardHoverSync() {
-    this.journeyCards.forEach(card => {
-      card.addEventListener('mouseenter', () => {
-        const location = card.dataset.location;
-        this.highlightMarker(location);
-      });
-      
-      card.addEventListener('mouseleave', () => {
-        const location = card.dataset.location;
-        if (this.activeLocation !== location) {
-          this.removeMarkerHighlight(location);
-        }
-      });
-    });
-  }
-  
-  focusLocation(location, scrollToCard = false) {
-    // Remove previous active states
-    this.clearActiveStates();
-    
-    // Set new active location
-    this.activeLocation = location;
-    
-    // Highlight marker and card
-    this.highlightMarker(location);
-    this.highlightCard(location, true);
-    
-    // Scroll to card if requested
-    if (scrollToCard) {
-      this.scrollToCard(location);
-    }
-    
-    // Add focused state for accessibility
-    const marker = document.querySelector(`[data-location="${location}"]`);
-    if (marker) {
-      marker.focus();
-    }
-  }
-  
-  highlightMarker(location) {
-    const marker = document.querySelector(`.location-marker[data-location="${location}"]`);
-    if (marker) {
-      marker.classList.add('active');
-      marker.style.transform = 'scale(1.2)';
-      marker.style.zIndex = '20';
-    }
-  }
-  
-  removeMarkerHighlight(location) {
-    const marker = document.querySelector(`.location-marker[data-location="${location}"]`);
-    if (marker && this.activeLocation !== location) {
-      marker.classList.remove('active');
-      marker.style.transform = '';
-      marker.style.zIndex = '';
-    }
-  }
-  
-  highlightCard(location, isActive = false) {
-    const card = document.querySelector(`#card-${location}`);
-    if (card) {
-      card.classList.add('highlighted');
-      if (isActive) {
-        card.classList.add('active');
-      }
-      card.style.transform = 'translateY(-8px) scale(1.02)';
-      card.style.boxShadow = '0 12px 40px rgba(0, 0, 0, 0.2)';
-      card.style.borderColor = 'rgba(59, 130, 246, 0.4)';
-    }
-  }
-  
-  removeCardHighlight(location) {
-    const card = document.querySelector(`#card-${location}`);
-    if (card && this.activeLocation !== location) {
-      card.classList.remove('highlighted');
-      card.style.transform = '';
-      card.style.boxShadow = '';
-      card.style.borderColor = '';
-    }
-  }
-  
-  clearActiveStates() {
-    // Clear all markers
-    this.locationMarkers.forEach(marker => {
-      marker.classList.remove('active');
-      marker.style.transform = '';
-      marker.style.zIndex = '';
-    });
-    
-    // Clear all cards
-    this.journeyCards.forEach(card => {
-      card.classList.remove('highlighted', 'active');
-      card.style.transform = '';
-      card.style.boxShadow = '';
-      card.style.borderColor = '';
-    });
-    
-    this.activeLocation = null;
-  }
-  
-  scrollToCard(location) {
-    const card = document.querySelector(`#card-${location}`);
-    if (card) {
-      this.isScrolling = true;
-      
-      card.scrollIntoView({
-        behavior: 'smooth',
-        block: 'center',
-        inline: 'nearest'
-      });
-      
-      // Reset scrolling flag after animation
-      setTimeout(() => {
-        this.isScrolling = false;
-      }, 1000);
-    }
   }
   
   setupSmoothScrolling() {
@@ -351,126 +204,10 @@ class JourneyMapController {
       });
     });
   }
-  
-  setupJourneyCardObserver() {
-    const journeyObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
-          
-          // Add staggered animation
-          const cards = Array.from(this.journeyCards);
-          const index = cards.indexOf(entry.target);
-          entry.target.style.animationDelay = `${index * 0.2}s`;
-        }
-      });
-    }, { 
-      threshold: 0.1, 
-      rootMargin: '0px 0px -50px 0px' 
-    });
-    
-    this.journeyCards.forEach(card => {
-      journeyObserver.observe(card);
-    });
-  }
-  
-  setupKeyboardNavigation() {
-    document.addEventListener('keydown', (e) => {
-      // Arrow key navigation between locations
-      if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
-        e.preventDefault();
-        
-        const locations = ['delhi', 'bhubaneswar', 'current'];
-        let currentIndex = this.activeLocation ? locations.indexOf(this.activeLocation) : -1;
-        
-        if (e.key === 'ArrowRight') {
-          currentIndex = (currentIndex + 1) % locations.length;
-        } else {
-          currentIndex = currentIndex <= 0 ? locations.length - 1 : currentIndex - 1;
-        }
-        
-        this.focusLocation(locations[currentIndex], true);
-      }
-      
-      // Escape to clear selection
-      if (e.key === 'Escape') {
-        this.clearActiveStates();
-      }
-    });
-  }
-  
-  isMobileDevice() {
-    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
-           window.innerWidth <= 768 || 
-           ('ontouchstart' in window);
-  }
 }
 
-// Initialize Journey Map when DOM is loaded
+// Initialize Clean Journey Timeline when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-  // Wait a bit for the map to render
-  setTimeout(() => {
-    new JourneyMapController();
-  }, 500);
+  new CleanJourneyController();
 });
-
-// Add custom styles for journey map interactions
-const journeyStyles = document.createElement('style');
-journeyStyles.textContent = `
-  .location-marker:focus {
-    outline: 3px solid rgba(59, 130, 246, 0.6);
-    outline-offset: 4px;
-    border-radius: 50%;
-  }
-  
-  .journey-card.highlighted {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  }
-  
-  .journey-card.active {
-    position: relative;
-  }
-  
-  .journey-card.active::before {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    background: linear-gradient(45deg, #3b82f6, #8b5cf6, #06d6a0);
-    border-radius: 22px;
-    z-index: -1;
-    opacity: 0.7;
-    animation: borderGlow 2s ease-in-out infinite alternate;
-  }
-  
-  @keyframes borderGlow {
-    0% { opacity: 0.7; transform: scale(1); }
-    100% { opacity: 1; transform: scale(1.01); }
-  }
-  
-  .marker-pin.active-marker {
-    animation: markerBounce 0.6s ease-out;
-  }
-  
-  @keyframes markerBounce {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.3); }
-    100% { transform: scale(1.2); }
-  }
-  
-  @media (prefers-reduced-motion: reduce) {
-    .journey-card.highlighted,
-    .location-marker {
-      transition: none !important;
-    }
-    
-    .journey-card.active::before {
-      animation: none;
-    }
-  }
-`;
-document.head.appendChild(journeyStyles);
 
