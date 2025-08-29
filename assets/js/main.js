@@ -220,7 +220,17 @@ class HorizontalJourneyController {
     const stepIndex = this.steps.indexOf(this.currentStep);
     const progressPercentage = (stepIndex / (this.steps.length - 1)) * 100;
     
+    // Smooth animation with easing
     progressFill.style.width = `${progressPercentage}%`;
+    
+    // Update the progress indicator color based on the current step
+    if (stepIndex === 0) {
+      progressFill.style.background = 'linear-gradient(90deg, #3b82f6 0%, #3b82f6 100%)';
+    } else if (stepIndex === 1) {
+      progressFill.style.background = 'linear-gradient(90deg, #3b82f6 0%, #8b5cf6 100%)';
+    } else {
+      progressFill.style.background = 'linear-gradient(90deg, #3b82f6 0%, #8b5cf6 50%, #10b981 100%)';
+    }
   }
   
   setupAutoCycle() {
