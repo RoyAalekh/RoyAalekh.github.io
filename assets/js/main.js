@@ -133,8 +133,8 @@ newSections.forEach(section => {
 // Horizontal Progress Journey Controller
 class HorizontalJourneyController {
   constructor() {
-    this.currentStep = 'delhi';
-    this.steps = ['delhi', 'bhubaneswar', 'current'];
+    this.currentStep = 'bachelors';
+    this.steps = ['bachelors', 'masters', 'career'];
     this.init();
   }
   
