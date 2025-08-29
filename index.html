@@ -45,110 +45,116 @@
     </div>
   </div>
 
-<!-- Clean Journey Section -->
+<!-- Horizontal Journey Progress Bar -->
 <section id="about" class="py-20 bg-gray-50 relative z-10">
-    <div class="max-w-4xl mx-auto px-4">
-        <div class="text-center mb-16">
+    <div class="max-w-6xl mx-auto px-4">
+        <div class="text-center mb-12">
             <h2 class="text-3xl font-light text-gray-900 mb-3">Journey</h2>
             <p class="text-gray-600">From mathematics to data science across India</p>
         </div>
         
-        <!-- Timeline Path -->
-        <div class="journey-timeline relative">
-            <!-- Timeline Line -->
-            <div class="timeline-line absolute left-8 top-0 bottom-0 w-px bg-gray-200"></div>
+        <!-- Horizontal Progress Bar -->
+        <div class="journey-progress-container">
+            <!-- Progress Track -->
+            <div class="progress-track">
+                <div class="progress-line"></div>
+                <div class="progress-fill" id="progress-fill"></div>
+                
+                <!-- Progress Steps -->
+                <div class="progress-steps">
+                    <!-- Delhi Step -->
+                    <div class="progress-step active" data-step="delhi">
+                        <div class="step-circle">
+                            <div class="step-dot bg-blue-500"></div>
+                        </div>
+                        <div class="step-label">
+                            <span class="step-title">New Delhi</span>
+                            <span class="step-years">2015-2020</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Bhubaneswar Step -->
+                    <div class="progress-step" data-step="bhubaneswar">
+                        <div class="step-circle">
+                            <div class="step-dot bg-purple-500"></div>
+                        </div>
+                        <div class="step-label">
+                            <span class="step-title">Bhubaneswar</span>
+                            <span class="step-years">2020-2022</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Noida Step -->
+                    <div class="progress-step" data-step="current">
+                        <div class="step-circle">
+                            <div class="step-dot bg-green-500"></div>
+                        </div>
+                        <div class="step-label">
+                            <span class="step-title">Noida, UP</span>
+                            <span class="step-years">2022-Present</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
             
-            <!-- Journey Steps -->
-            <div class="space-y-12">
-                <!-- Delhi -->
-                <div class="journey-step" data-location="delhi">
-                    <div class="step-marker">
-                        <div class="marker-dot bg-blue-500"></div>
-                        <div class="marker-line"></div>
+            <!-- Details Panel -->
+            <div class="details-panel">
+                <!-- Delhi Details -->
+                <div class="step-details active" data-step="delhi">
+                    <div class="details-header">
+                        <h3 class="details-title">BA (Honors) Mathematics</h3>
+                        <p class="details-institution">Dr. B.R. Ambedkar University Delhi</p>
                     </div>
-                    <div class="step-content">
-                        <div class="step-header">
-                            <div class="flex items-center gap-3 mb-2">
-                                <h3 class="text-lg font-medium text-gray-900">New Delhi</h3>
-                                <span class="text-sm text-gray-500">2015 – 2020</span>
-                            </div>
-                            <p class="text-gray-700 font-medium mb-1">BA (Honors) Mathematics</p>
-                            <p class="text-sm text-gray-600 mb-3">Dr. B.R. Ambedkar University Delhi</p>
+                    <div class="details-content">
+                        <p class="details-description">Interdisciplinary foundation combining mathematical rigor with social sciences perspective.</p>
+                        <div class="details-highlights">
+                            <span class="highlight-tag">Mathematical Analysis</span>
+                            <span class="highlight-tag">Abstract Algebra</span>
+                            <span class="highlight-tag">Statistics</span>
+                            <span class="highlight-tag">Philosophy of Science</span>
                         </div>
-                        <div class="step-details hidden">
-                            <p class="text-sm text-gray-600 mb-2">Interdisciplinary foundation combining:</p>
-                            <div class="text-sm text-gray-600 space-y-1">
-                                <p>• Mathematical Analysis & Abstract Algebra</p>
-                                <p>• Probability Theory & Statistics</p>
-                                <p>• Social Theory & Philosophy of Science</p>
-                                <p>• Research Methodology & Critical Thinking</p>
-                            </div>
-                        </div>
-                        <button class="step-toggle text-blue-600 text-sm hover:text-blue-700 mt-2">View details</button>
                     </div>
                 </div>
                 
-                <!-- Bhubaneswar -->
-                <div class="journey-step" data-location="bhubaneswar">
-                    <div class="step-marker">
-                        <div class="marker-dot bg-purple-500"></div>
-                        <div class="marker-line"></div>
+                <!-- Bhubaneswar Details -->
+                <div class="step-details" data-step="bhubaneswar">
+                    <div class="details-header">
+                        <h3 class="details-title">MSc Mathematics with Data Science</h3>
+                        <p class="details-institution">Institute of Mathematics and Applications</p>
                     </div>
-                    <div class="step-content">
-                        <div class="step-header">
-                            <div class="flex items-center gap-3 mb-2">
-                                <h3 class="text-lg font-medium text-gray-900">Bhubaneswar</h3>
-                                <span class="text-sm text-gray-500">2020 – 2022</span>
-                            </div>
-                            <p class="text-gray-700 font-medium mb-1">MSc Mathematics with Data Science</p>
-                            <p class="text-sm text-gray-600 mb-3">Institute of Mathematics and Applications</p>
+                    <div class="details-content">
+                        <p class="details-description">Advanced specialization bridging mathematical theory with modern data science applications.</p>
+                        <div class="details-highlights">
+                            <span class="highlight-tag">Machine Learning</span>
+                            <span class="highlight-tag">Complex Networks</span>
+                            <span class="highlight-tag">Computational Mathematics</span>
+                            <span class="highlight-tag">Data Mining</span>
                         </div>
-                        <div class="step-details hidden">
-                            <p class="text-sm text-gray-600 mb-2">Specialized coursework in:</p>
-                            <div class="text-sm text-gray-600 space-y-1">
-                                <p>• Advanced Statistical Methods & Machine Learning</p>
-                                <p>• Complex Networks & Graph Theory</p>
-                                <p>• Computational Mathematics & Analysis</p>
-                                <p>• Data Mining & Knowledge Discovery</p>
-                            </div>
-                        </div>
-                        <button class="step-toggle text-purple-600 text-sm hover:text-purple-700 mt-2">View details</button>
                     </div>
                 </div>
                 
-                <!-- Current Work -->
-                <div class="journey-step" data-location="current">
-                    <div class="step-marker">
-                        <div class="marker-dot bg-green-500"></div>
-                        <div class="marker-line"></div>
+                <!-- Current Work Details -->
+                <div class="step-details" data-step="current">
+                    <div class="details-header">
+                        <h3 class="details-title">Data Scientist</h3>
+                        <p class="details-institution">SmartHelio (YC-22) • Sector 16, Noida</p>
                     </div>
-                    <div class="step-content">
-                        <div class="step-header">
-                            <div class="flex items-center gap-3 mb-2">
-                                <h3 class="text-lg font-medium text-gray-900">Remote</h3>
-                                <span class="text-sm text-gray-500">2022 – Present</span>
+                    <div class="details-content">
+                        <p class="details-description">Leading data analytics for solar energy optimization, scaling from 500 to 5,000+ PV plants across global markets.</p>
+                        <div class="career-progression">
+                            <div class="progression-item">
+                                <span class="progression-role">Data Scientist</span>
+                                <span class="progression-period">Jan 2024 – Present</span>
                             </div>
-                            <p class="text-gray-700 font-medium mb-1">Data Scientist</p>
-                            <p class="text-sm text-gray-600 mb-3">SmartHelio (YC-22)</p>
-                        </div>
-                        <div class="step-details hidden">
-                            <p class="text-sm text-gray-600 mb-2">Career progression:</p>
-                            <div class="text-sm text-gray-600 space-y-2">
-                                <div class="border-l-2 border-green-200 pl-3">
-                                    <p class="font-medium text-gray-700">Data Scientist <span class="text-gray-500">(Jan 2024 – Present)</span></p>
-                                    <p>Leading analytics team, scaling data pipelines for 5,000+ solar plants</p>
-                                </div>
-                                <div class="border-l-2 border-green-200 pl-3">
-                                    <p class="font-medium text-gray-700">Associate Data Scientist <span class="text-gray-500">(Jul 2023 – Dec 2023)</span></p>
-                                    <p>Predictive maintenance models and centralized analytics library</p>
-                                </div>
-                                <div class="border-l-2 border-green-200 pl-3">
-                                    <p class="font-medium text-gray-700">Data Analyst <span class="text-gray-500">(Sep 2022 – Jul 2023)</span></p>
-                                    <p>Solar PV diagnostic pipelines and SaaS platform integration</p>
-                                </div>
+                            <div class="progression-item">
+                                <span class="progression-role">Associate Data Scientist</span>
+                                <span class="progression-period">Jul 2023 – Dec 2023</span>
+                            </div>
+                            <div class="progression-item">
+                                <span class="progression-role">Data Analyst</span>
+                                <span class="progression-period">Sep 2022 – Jul 2023</span>
                             </div>
                         </div>
-                        <button class="step-toggle text-green-600 text-sm hover:text-green-700 mt-2">View details</button>
                     </div>
                 </div>
             </div>

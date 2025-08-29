@@ -130,56 +130,119 @@ newSections.forEach(section => {
   newObserver.observe(section);
 });
 
-// Clean Journey Timeline Functionality
-class CleanJourneyController {
+// Horizontal Progress Journey Controller
+class HorizontalJourneyController {
   constructor() {
+    this.currentStep = 'delhi';
+    this.steps = ['delhi', 'bhubaneswar', 'current'];
     this.init();
   }
   
   init() {
-    this.setupToggleButtons();
+    this.setupProgressSteps();
     this.setupSmoothScrolling();
+    this.updateProgressFill();
   }
   
-  setupToggleButtons() {
-    const toggleButtons = document.querySelectorAll('.step-toggle');
+  setupProgressSteps() {
+    const progressSteps = document.querySelectorAll('.progress-step');
     
-    toggleButtons.forEach(button => {
-      button.addEventListener('click', (e) => {
+    progressSteps.forEach(step => {
+      step.addEventListener('click', (e) => {
         e.preventDefault();
-        
-        const journeyStep = button.closest('.journey-step');
-        const stepDetails = journeyStep.querySelector('.step-details');
-        const isHidden = stepDetails.classList.contains('hidden');
-        
-        if (isHidden) {
-          // Expand details
-          stepDetails.classList.remove('hidden');
-          button.textContent = 'Hide details';
-          
-          // Optional: Scroll to keep the expanded content in view
-          setTimeout(() => {
-            journeyStep.scrollIntoView({
-              behavior: 'smooth',
-              block: 'center',
-              inline: 'nearest'
-            });
-          }, 100);
-        } else {
-          // Collapse details
-          stepDetails.classList.add('hidden');
-          button.textContent = 'View details';
-        }
+        const stepData = step.dataset.step;
+        this.setActiveStep(stepData);
       });
       
       // Add keyboard support
-      button.addEventListener('keydown', (e) => {
+      step.setAttribute('tabindex', '0');
+      step.setAttribute('role', 'button');
+      
+      step.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
-          button.click();
+          const stepData = step.dataset.step;
+          this.setActiveStep(stepData);
+        }
+        
+        // Arrow key navigation
+        if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+          e.preventDefault();
+          const currentIndex = this.steps.indexOf(this.currentStep);
+          let nextIndex;
+          
+          if (e.key === 'ArrowRight') {
+            nextIndex = (currentIndex + 1) % this.steps.length;
+          } else {
+            nextIndex = currentIndex <= 0 ? this.steps.length - 1 : currentIndex - 1;
+          }
+          
+          this.setActiveStep(this.steps[nextIndex]);
         }
       });
     });
+    
+    // Auto-cycle through steps for initial demo (optional)
+    this.setupAutoCycle();
+  }
+  
+  setActiveStep(stepData) {
+    this.currentStep = stepData;
+    
+    // Update progress steps
+    document.querySelectorAll('.progress-step').forEach(step => {
+      step.classList.remove('active');
+    });
+    
+    const activeStep = document.querySelector(`[data-step="${stepData}"]`);
+    if (activeStep) {
+      activeStep.classList.add('active');
+    }
+    
+    // Update details panels
+    document.querySelectorAll('.step-details').forEach(detail => {
+      detail.classList.remove('active');
+    });
+    
+    const activeDetail = document.querySelector(`.step-details[data-step="${stepData}"]`);
+    if (activeDetail) {
+      activeDetail.classList.add('active');
+    }
+    
+    // Update progress fill
+    this.updateProgressFill();
+  }
+  
+  updateProgressFill() {
+    const progressFill = document.getElementById('progress-fill');
+    if (!progressFill) return;
+    
+    const stepIndex = this.steps.indexOf(this.currentStep);
+    const progressPercentage = (stepIndex / (this.steps.length - 1)) * 100;
+    
+    progressFill.style.width = `${progressPercentage}%`;
+  }
+  
+  setupAutoCycle() {
+    // Optional: Auto-cycle through steps on page load for demonstration
+    let cycleIndex = 0;
+    
+    const cycle = () => {
+      if (cycleIndex < this.steps.length) {
+        setTimeout(() => {
+          this.setActiveStep(this.steps[cycleIndex]);
+          cycleIndex++;
+          if (cycleIndex < this.steps.length) {
+            cycle();
+          }
+        }, cycleIndex === 0 ? 500 : 1500); // First step faster, others slower
+      }
+    };
+    
+    // Start auto-cycle after initial load
+    setTimeout(() => {
+      cycle();
+    }, 1000);
   }
   
   setupSmoothScrolling() {
@@ -206,8 +269,11 @@ class CleanJourneyController {
   }
 }
 
-// Initialize Clean Journey Timeline when DOM is loaded
+// Initialize Horizontal Journey Controller when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-  new CleanJourneyController();
+  // Wait for elements to be rendered
+  setTimeout(() => {
+    new HorizontalJourneyController();
+  }, 100);
 });
 
