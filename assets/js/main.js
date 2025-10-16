@@ -35,6 +35,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
       repos
         .filter((repo) => reposToShow.includes(repo.name))
+        .sort((a, b) => reposToShow.indexOf(a.name) - reposToShow.indexOf(b.name))
         .forEach((repo) => {
           const repoCard = `
             <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow flex flex-col">
