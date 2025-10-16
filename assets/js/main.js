@@ -1,7 +1,7 @@
 // GitHub Projects Loader
 document.addEventListener('DOMContentLoaded', (event) => {
   const username = "RoyAalekh";
-  const reposToShow = ["temporal-network-analysis-thesis", "network-models-visualization", "PyPI-Lens", "arbor", "Snap2Sketch", "R-for-basic-linear-Matrix-algebra"];
+  const reposToShow = ["temporal-network-analysis-thesis", "R-for-basic-linear-Matrix-algebra", "PyPI-Lens", "Snap2Sketch", "network-models-visualization", "arbor"];
   const projectDetails = {
     "temporal-network-analysis-thesis": {
       description: "Master's thesis: Temporal Network Analysis of Global Armed Conflicts - Comprehensive study of 522 years of global conflicts using network science methodologies and data engineering."
