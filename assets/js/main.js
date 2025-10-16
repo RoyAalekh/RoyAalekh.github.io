@@ -1,37 +1,30 @@
 // GitHub Projects Loader
 document.addEventListener('DOMContentLoaded', (event) => {
   const username = "RoyAalekh";
-  const reposToShow = ["Snap2Sketch", "PyPI-Lens", "suntimes", "arbor", "ruvo", "network-analysis-nutrients", "one-piece-network-analysis", "virtualize"];
+  const reposToShow = ["temporal-network-analysis-thesis", "network-models-visualization", "PyPI-Lens", "arbor", "Snap2Sketch", "R-for-basic-linear-Matrix-algebra"];
   const projectDetails = {
-    Snap2Sketch: {
-      description: "A simple web app to convert images into pencil sketches with adjustable quality levels."
+    "temporal-network-analysis-thesis": {
+      description: "Master's thesis: Temporal Network Analysis of Global Armed Conflicts - Comprehensive study of 522 years of global conflicts using network science methodologies and data engineering."
+    },
+    "network-models-visualization": {
+      description: "Interactive educational web application for learning and visualizing classical network generation models with real-time parameter adjustments."
     },
     "PyPI-Lens": {
-      description: "A semantic search engine for PyPI to help developers find the right packages more effectively."
-    },
-    suntimes: {
-      description: "A sleek web app to find accurate sunrise and sunset times for any location with timezone awareness."
+      description: "A semantic search engine for PyPI to help developers find the right packages more effectively using advanced search algorithms."
     },
     arbor: {
-      description: "A blazing-fast CLI tool in Rust to visualize directory structures in a clear, tree-like format."
+      description: "A blazing-fast CLI tool in Rust to visualize directory structures in a clear, tree-like format with customizable output options."
     },
-    ruvo: {
-      description: "A lightweight virtual environment manager in Rust to simplify Python venv management."
+    Snap2Sketch: {
+      description: "Web app to convert images into pencil sketches with varying quality levels and step-by-step transformation features."
     },
-    "network-analysis-nutrients": {
-      description: "An application of network analysis to visualize and explore the relationships between various nutrients."
-    },
-    "one-piece-network-analysis": {
-      description: "A creative network analysis of One Piece character appearances to uncover key relationships."
-    },
-    virtualize: {
-      description: "A Textual User Interface (TUI) to provide a more intuitive way to manage Python virtual environments."
+    "R-for-basic-linear-Matrix-algebra": {
+      description: "Computational Linear Algebra course materials demonstrating matrix operations, decompositions, and numerical methods using R programming."
     }
   };
   const streamlitLinks = {
     Snap2Sketch: "https://snap2sketch.streamlit.app",
-    "PyPI-Lens": "https://pypi-lens.streamlit.app",
-    suntimes: "https://suntimes-mmiw.onrender.com/",
+    "PyPI-Lens": "https://pypi-lens.streamlit.app"
   };
   const container = document.getElementById("repo-container");
 
