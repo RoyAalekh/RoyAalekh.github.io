@@ -2,7 +2,7 @@
 
 This repository contains the code for my personal portfolio website built with Jekyll and GitHub Pages.
 
-🌐 **Live Site**: [https://royaalekh.github.io](https://royaalekh.github.io)
+**Portfolio**: [https://royaalekh.github.io](https://royaalekh.github.io)
 
 ## Features
 
