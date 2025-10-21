@@ -1,0 +1,25 @@
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Jekyll build artifacts
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.bak
+
+# Node modules (if using any JS build tools)
+node_modules/
