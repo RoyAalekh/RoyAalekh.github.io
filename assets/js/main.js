@@ -1,8 +1,11 @@
 // GitHub Projects Loader
 document.addEventListener('DOMContentLoaded', (event) => {
-  const username = "RoyAalekh";
-  const reposToShow = ["temporal-network-analysis-thesis", "R-for-basic-linear-Matrix-algebra", "PyPI-Lens", "Snap2Sketch", "network-models-visualization", "arbor"];
+  const defaultUsername = "RoyAalekh";
+  const reposToShow = ["PieceWiseProjects/formatify", "temporal-network-analysis-thesis", "R-for-basic-linear-Matrix-algebra", "PyPI-Lens", "Snap2Sketch", "network-models-visualization", "arbor"];
   const projectDetails = {
+    "formatify": {
+      description: "Auto-detect and standardize messy timestamp formats. Perfect for log parsers, data pipelines, or anyone tired of wrestling with inconsistent datetime strings."
+    },
     "temporal-network-analysis-thesis": {
       description: "Master's thesis: Temporal Network Analysis of Global Armed Conflicts - Comprehensive study of 522 years of global conflicts using network science methodologies and data engineering."
     },
@@ -28,14 +31,37 @@ document.addEventListener('DOMContentLoaded', (event) => {
   };
   const container = document.getElementById("repo-container");
 
+  function parseRepoId(repoId) {
+    if (repoId.includes('/')) {
+      const [owner, repo] = repoId.split('/');
+      return { owner, repo };
+    }
+    return { owner: defaultUsername, repo: repoId };
+  }
+
   async function fetchRepos() {
     try {
-      const response = await fetch(`https://api.github.com/users/${username}/repos`);
-      const repos = await response.json();
+      const allRepos = [];
+      
+      // Fetch repos from different owners
+      for (const repoId of reposToShow) {
+        const { owner, repo } = parseRepoId(repoId);
+        const response = await fetch(`https://api.github.com/repos/${owner}/${repo}`);
+        if (response.ok) {
+          const repoData = await response.json();
+          allRepos.push(repoData);
+        }
+      }
 
-      repos
-        .filter((repo) => reposToShow.includes(repo.name))
-        .sort((a, b) => reposToShow.indexOf(a.name) - reposToShow.indexOf(b.name))
+      // Sort by order in reposToShow array
+      allRepos
+        .sort((a, b) => {
+          const aId = `${a.owner.login}/${a.name}`.replace(`${defaultUsername}/`, '');
+          const bId = `${b.owner.login}/${b.name}`.replace(`${defaultUsername}/`, '');
+          const aIndex = reposToShow.findIndex(r => r === aId || r === `${a.owner.login}/${a.name}`);
+          const bIndex = reposToShow.findIndex(r => r === bId || r === `${b.owner.login}/${b.name}`);
+          return aIndex - bIndex;
+        })
         .forEach((repo) => {
           const repoCard = `
             <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow flex flex-col">
