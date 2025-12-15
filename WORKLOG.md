@@ -64,3 +64,23 @@ Replaced hard-coded "© 2024" footers with a dynamic year using Jekyll’s build
 
 Rationale
 Static year values become outdated and subtly signal neglect. This keeps the site evergreen with near-zero maintenance.
+
+## 2025-12-15 — Networks Lab (interactive network visualization)
+Change
+Added a new page, Networks Lab, and the first interactive visualization:
+- /networks.html: a dedicated space for interactive network science demos.
+- WikiArt Artist Relations: a canvas + force-simulation directed graph with zoom/pan, drag, click-to-select, and search.
+- Added a homepage callout linking to Networks Lab.
+
+Implementation notes
+- Chose canvas rendering for smooth interactivity and to keep SVG DOM overhead low.
+- Kept computation in-browser minimal (dataset is small) and structured the code so larger datasets can be supported later.
+- Data is shipped as a static CSV under assets/data so the demo works fully offline.
+
+Also updated
+- Added a brief mention of membership in the Network Science & Graph Theory Group (IIIT Kottayam) with mentorship attribution, linked from the Research interests card.
+
+## 2025-12-15 — Bio refresh (resume-aligned)
+Change
+Updated the homepage hero bio to reflect a more mature, resume-aligned positioning (SmartHelio scope + impact).
+Kept the original “How I Work” messaging and added a small, explicit note about engineering rigor and cross-functional clarity.

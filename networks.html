@@ -1,0 +1,114 @@
+---
+title: Networks Lab
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#ffffff" />
+  <title>Networks Lab | AR</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <link rel="stylesheet" href="assets/css/main.css" />
+</head>
+<body class="bg-gray-50 relative overflow-x-hidden">
+  <!-- Navigation -->
+  <nav class="bg-white/80 backdrop-blur-sm fixed w-full z-10">
+    <div class="max-w-5xl mx-auto px-4">
+      <div class="flex justify-between items-center h-16">
+        <a href="/" class="text-2xl font-light text-gray-800">AR</a>
+        <div class="flex space-x-8">
+          <a href="/#about" class="text-gray-600 hover:text-blue-500 transition-colors">About</a>
+          <a href="/#tech-stack" class="text-gray-600 hover:text-blue-500 transition-colors">Tech</a>
+          <a href="/#interests" class="text-gray-600 hover:text-blue-500 transition-colors">Interests</a>
+          <a href="/#projects" class="text-gray-600 hover:text-blue-500 transition-colors">Projects</a>
+          <a href="/networks.html" class="text-blue-500 font-medium transition-colors">Networks Lab</a>
+          <a href="/art.html" class="text-gray-600 hover:text-blue-500 transition-colors">The Art Corner</a>
+          <a href="/blog.html" class="text-gray-600 hover:text-blue-500 transition-colors">Blog</a>
+          <a href="/#contact" class="text-gray-600 hover:text-blue-500 transition-colors">Contact</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="pt-24 pb-16">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="text-center mb-10">
+        <h1 class="text-4xl font-light text-gray-900 mb-3">Networks Lab</h1>
+        <p class="text-gray-600 max-w-3xl mx-auto">
+          Small interactive experiments in network science — force layouts, directed graphs, and graph-based reasoning.
+        </p>
+      </div>
+
+      <div class="net-lab-card">
+        <div class="net-lab-header">
+          <div>
+            <div class="net-lab-title">WikiArt Artist Relations (Directed Graph)</div>
+            <div class="net-lab-subtitle">
+              A directed network encoding semantic relationships between artists (e.g., influence / collaboration). Drag nodes, zoom/pan, and search to explore structure.
+            </div>
+          </div>
+          <div class="net-lab-stats" id="artist-network-stats">Loading…</div>
+        </div>
+
+        <div class="net-lab-controls">
+          <div class="net-control">
+            <label class="net-control-label" for="artist-network-search">Search artist</label>
+            <input id="artist-network-search" class="net-control-input" placeholder="e.g., Picasso" autocomplete="off" />
+          </div>
+          <div class="net-control net-control-actions">
+            <button id="artist-network-reset" class="net-control-button" type="button">Reset view</button>
+          </div>
+        </div>
+
+        <div class="net-lab-grid">
+          <div class="net-viz" id="artist-network-wrapper">
+            <canvas
+              id="artist-network-canvas"
+              class="net-canvas"
+              data-csv="{{ '/assets/data/artistRelations.csv' | relative_url }}"
+              aria-label="Artist relationship network"
+              role="img"
+            ></canvas>
+            <div class="net-hint">
+              <span>Tip:</span> scroll to zoom, drag to move nodes, click a node to pin details.
+            </div>
+          </div>
+          <aside class="net-side">
+            <div class="net-side-title">Details</div>
+            <div id="artist-network-info" class="net-info"></div>
+            <div class="net-side-footer">
+              Dataset: <code>artistRelations.csv</code>
+            </div>
+          </aside>
+        </div>
+      </div>
+
+      <div class="net-lab-next mt-10">
+        <div class="net-lab-next-title">What’s next</div>
+        <ul class="net-lab-next-list">
+          <li>Add community detection labels (offline computed) and a toggle to color by community.</li>
+          <li>Add node importance metrics (PageRank / betweenness) and filter to the top-k subgraph.</li>
+          <li>Expand this into a small “Networks Gallery” with multiple datasets and demos.</li>
+        </ul>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-8 bg-gray-50">
+    <div class="max-w-5xl mx-auto px-4 text-center text-gray-500">
+      <p>© {{ 'now' | date: '%Y' }} Aalekh Roy</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+  <script src="assets/js/artist-network.js"></script>
+</body>
+</html>
