@@ -84,19 +84,68 @@ title: Networks Lab
             <div class="net-side-title">Details</div>
             <div id="artist-network-info" class="net-info"></div>
             <div class="net-side-footer">
-              Dataset: <code>artistRelations.csv</code>
+              <div>
+                Source: <a href="https://figshare.com/articles/dataset/MoMA_dataset/29179865" class="text-blue-600 hover:text-blue-700" target="_blank" rel="noopener noreferrer">MoMA dataset (Figshare)</a>
+              </div>
+              <div>
+                Dataset: <code>artistRelations.csv</code>
+              </div>
             </div>
           </aside>
         </div>
       </div>
 
-      <div class="net-lab-next mt-10">
-        <div class="net-lab-next-title">What’s next</div>
-        <ul class="net-lab-next-list">
-          <li>Add community detection labels (offline computed) and a toggle to color by community.</li>
-          <li>Add node importance metrics (PageRank / betweenness) and filter to the top-k subgraph.</li>
-          <li>Expand this into a small “Networks Gallery” with multiple datasets and demos.</li>
-        </ul>
+      <div class="net-lab-card mt-10">
+        <div class="net-lab-header">
+          <div>
+            <div class="net-lab-title">Artist Relations (Adjacency Matrix)</div>
+            <div class="net-lab-subtitle">
+              Same directed network, shown as a matrix. Rows represent outgoing links, columns represent incoming links. Useful for spotting dense blocks and structure.
+            </div>
+          </div>
+          <div class="net-lab-stats" id="artist-matrix-stats">Loading…</div>
+        </div>
+
+        <div class="net-lab-controls">
+          <div class="net-control">
+            <label class="net-control-label" for="artist-matrix-topn">Top N artists (by degree)</label>
+            <input id="artist-matrix-topn" class="net-control-range" type="range" min="20" max="120" step="5" value="60" />
+            <div class="net-control-help"><span id="artist-matrix-topn-value">60</span> shown</div>
+          </div>
+          <div class="net-control net-control-actions">
+            <button id="artist-matrix-reset" class="net-control-button" type="button">Reset</button>
+          </div>
+        </div>
+
+        <div class="net-lab-grid">
+          <div class="net-viz" id="artist-matrix-wrapper">
+            <canvas
+              id="artist-matrix-canvas"
+              class="net-canvas"
+              data-csv="{{ '/assets/data/artistRelations.csv' | relative_url }}"
+              aria-label="Artist relationship adjacency matrix"
+              role="img"
+            ></canvas>
+            <div class="net-tooltip" id="artist-matrix-tooltip" aria-hidden="true"></div>
+            <div class="net-hint">
+              <span>Tip:</span> hover cells to see an edge; use the slider to reduce clutter.
+            </div>
+          </div>
+          <aside class="net-side">
+            <div class="net-side-title">Hover</div>
+            <div id="artist-matrix-info" class="net-info">
+              <div class="net-info-empty">Hover over a filled cell to see the directed link.</div>
+            </div>
+            <div class="net-side-footer">
+              <div>
+                Source: <a href="https://figshare.com/articles/dataset/MoMA_dataset/29179865" class="text-blue-600 hover:text-blue-700" target="_blank" rel="noopener noreferrer">MoMA dataset (Figshare)</a>
+              </div>
+              <div>
+                Dataset: <code>artistRelations.csv</code>
+              </div>
+            </div>
+          </aside>
+        </div>
       </div>
     </div>
   </main>
@@ -110,5 +159,6 @@ title: Networks Lab
 
   <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
   <script src="assets/js/artist-network.js"></script>
+  <script src="assets/js/artist-matrix.js"></script>
 </body>
 </html>
