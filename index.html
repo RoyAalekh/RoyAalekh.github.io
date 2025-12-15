@@ -4,6 +4,12 @@
   <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#ffffff" />
   <title>AR | Data Science</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
@@ -48,147 +54,139 @@
     </div>
   </div>
 
-<!-- Horizontal Journey Progress Bar -->
+<!-- Journey -->
 <section id="about" class="py-20 bg-gray-50 relative z-10">
-    <div class="max-w-6xl mx-auto px-4">
-        <div class="text-center mb-12">
-            <h2 class="text-3xl font-light text-gray-900 mb-3">Journey</h2>
-            <p class="text-gray-600">Academic foundation to professional growth in data science</p>
-        </div>
-        
-        <!-- Horizontal Progress Bar -->
-        <div class="journey-progress-container">
-            <!-- Progress Track -->
-            <div class="progress-track">
-                <div class="progress-line"></div>
-                <div class="progress-fill" id="progress-fill"></div>
-                
-                <!-- Progress Steps -->
-                <div class="progress-steps">
-                    <!-- Bachelor's Degree Step -->
-                    <div class="progress-step active" data-step="bachelors">
-                        <div class="step-circle">
-                            <div class="step-dot bg-blue-500"></div>
-                        </div>
-                        <div class="step-label">
-                            <span class="step-title">Bachelor's</span>
-                            <span class="step-years">2015-2020</span>
-                        </div>
-                    </div>
-                    
-                    <!-- Master's Degree Step -->
-                    <div class="progress-step" data-step="masters">
-                        <div class="step-circle">
-                            <div class="step-dot bg-purple-500"></div>
-                        </div>
-                        <div class="step-label">
-                            <span class="step-title">Master's</span>
-                            <span class="step-years">2020-2022</span>
-                        </div>
-                    </div>
-                    
-                    <!-- Professional Career Step -->
-                    <div class="progress-step" data-step="career">
-                        <div class="step-circle">
-                            <div class="step-dot bg-green-500"></div>
-                        </div>
-                        <div class="step-label">
-                            <span class="step-title">Career</span>
-                            <span class="step-years">2022-Present</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Details Panel -->
-            <div class="details-panel">
-                <!-- Bachelor's Details -->
-                <div class="step-details active" data-step="bachelors">
-                    <div class="details-header">
-                        <h3 class="details-title">BA (Honors) Mathematics</h3>
-                        <p class="details-institution">Dr. B.R. Ambedkar University Delhi (AUD) • New Delhi</p>
-                    </div>
-                    <div class="details-content">
-                        <p class="details-description">Pursued an interdisciplinary liberal arts education combining mathematical rigor with social sciences and humanities. Received semester-wise merit scholarships for academic distinction (Top 5 rankers). This unique program provided a strong foundation in mathematical theory while fostering critical thinking about the social implications of quantitative methods.</p>
-                        <div class="details-highlights">
-                            <span class="highlight-tag">Real Analysis</span>
-                            <span class="highlight-tag">Abstract Algebra</span>
-                            <span class="highlight-tag">Calculus</span>
-                            <span class="highlight-tag">Optimization Theory</span>
-                            <span class="highlight-tag">Game Theory</span>
-                            <span class="highlight-tag">Social Theory</span>
-                            <span class="highlight-tag">Psychology</span>
-                            <span class="highlight-tag">Statistical Methods in Economics</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Master's Details -->
-                <div class="step-details" data-step="masters">
-                    <div class="details-header">
-                        <h3 class="details-title">MSc Mathematics with Data Science</h3>
-                        <p class="details-institution">Institute of Mathematics and Applications • Bhubaneswar, Odisha</p>
-                    </div>
-                    <div class="details-content">
-                        <p class="details-description">Awarded NBHM scholarship for academic excellence (Top 3 rankers). Founded and served as Head Coordinator of the Data Science Society, promoting interdisciplinary collaboration and technical workshops. This advanced program bridged pure mathematical theory with cutting-edge data science applications, providing rigorous training in both theoretical foundations and practical implementations.</p>
-                        <div class="details-highlights">
-                            <span class="highlight-tag">Graduate Algebra</span>
-                            <span class="highlight-tag">Linear Algebra</span>
-                            <span class="highlight-tag">Vector Calculus</span>
-                            <span class="highlight-tag">Functional Analysis</span>
-                            <span class="highlight-tag">Topology</span>
-                            <span class="highlight-tag">Stochastic Calculus</span>
-                            <span class="highlight-tag">Machine Learning</span>
-                            <span class="highlight-tag">Statistical Learning</span>
-                            <span class="highlight-tag">NLP</span>
-                            <span class="highlight-tag">Optimization</span>
-                            <span class="highlight-tag">Deep Learning</span>
-                            <span class="highlight-tag">Python for Data Science</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Career Details -->
-                <div class="step-details" data-step="career">
-                    <div class="details-header">
-                        <h3 class="details-title">Professional Career in Data Science</h3>
-                        <p class="details-institution">SmartHelio (YC-22) • Noida, Uttar Pradesh</p>
-                    </div>
-                    <div class="details-content">
-                        <p class="details-description">Joined as the 7th hire at this Y Combinator-backed cleantech startup, scaling analytics infrastructure during rapid growth. Evolved through three progressive roles from individual contributor to technical team lead, driving development of predictive analytics algorithms across system fault detection, performance degradation, and environmental forecasting. Currently leading a team of 5 data scientists and analysts in architecting a next-generation fault detection engine, achieving 30% runtime optimization and enhanced predictive accuracy. Developed LLM-based internal reporting automation and established test-driven development practices across the data science organization.</p>
-                        <div class="details-highlights">
-                            <span class="highlight-tag">PyTorch</span>
-                            <span class="highlight-tag">Langchain</span>
-                            <span class="highlight-tag">FastAPI</span>
-                            <span class="highlight-tag">Ollama</span>
-                            <span class="highlight-tag">AWS</span>
-                            <span class="highlight-tag">Azure</span>
-                            <span class="highlight-tag">MongoDB</span>
-                            <span class="highlight-tag">XGBoost</span>
-                            <span class="highlight-tag">Scikit-learn</span>
-                            <span class="highlight-tag">Stumpy</span>
-                            <span class="highlight-tag">Nixtla</span>
-                            <span class="highlight-tag">PVlib</span>
-                        </div>
-                        <div class="career-progression">
-                            <div class="progression-item">
-                                <span class="progression-role">Data Scientist</span>
-                                <span class="progression-period">Jan 2024 – Present</span>
-                            </div>
-                            <div class="progression-item">
-                                <span class="progression-role">Associate Data Scientist</span>
-                                <span class="progression-period">Jul 2023 – Dec 2023</span>
-                            </div>
-                            <div class="progression-item">
-                                <span class="progression-role">Data Analyst</span>
-                                <span class="progression-period">Sep 2022 – Jul 2023</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="text-center mb-10">
+      <h2 class="text-3xl font-light text-gray-900 mb-3">Journey</h2>
+      <p class="text-gray-600">Academic foundation to professional growth in data science</p>
     </div>
+
+    <div class="journey-card">
+      <div class="journey-tabs" role="tablist" aria-label="Journey">
+        <button class="journey-tab" type="button" data-step="bachelors" role="tab" aria-selected="true" aria-controls="journey-panel-bachelors" id="journey-tab-bachelors">Bachelor’s</button>
+        <button class="journey-tab" type="button" data-step="masters" role="tab" aria-selected="false" aria-controls="journey-panel-masters" id="journey-tab-masters">Master’s</button>
+        <button class="journey-tab" type="button" data-step="career" role="tab" aria-selected="false" aria-controls="journey-panel-career" id="journey-tab-career">Career</button>
+      </div>
+
+      <div class="journey-panels">
+        <div class="journey-panel active" data-step="bachelors" id="journey-panel-bachelors" role="tabpanel" tabindex="0" aria-labelledby="journey-tab-bachelors">
+          <div class="journey-header">
+            <h3 class="journey-title">BA (Honors) Mathematics</h3>
+            <div class="journey-meta">
+              <span>Dr. B.R. Ambedkar University Delhi (AUD)</span>
+              <span class="journey-meta-dot">•</span>
+              <span>New Delhi</span>
+              <span class="journey-meta-dot">•</span>
+              <span>2015–2020</span>
+            </div>
+          </div>
+          <div class="journey-body">
+            <ul class="journey-bullets">
+              <li>Interdisciplinary liberal arts curriculum combining mathematical rigor with social sciences and humanities.</li>
+              <li>Semester-wise merit scholarships for academic distinction (Top 5 rankers).</li>
+              <li>Built foundations in analysis, algebra, and quantitative thinking with attention to context and critique.</li>
+            </ul>
+            <div class="journey-tags" aria-label="Selected coursework">
+              <span class="journey-tag">Real Analysis</span>
+              <span class="journey-tag">Abstract Algebra</span>
+              <span class="journey-tag">Calculus</span>
+              <span class="journey-tag">Optimization Theory</span>
+              <span class="journey-tag">Game Theory</span>
+              <span class="journey-tag">Social Theory</span>
+              <span class="journey-tag">Psychology</span>
+              <span class="journey-tag">Statistical Methods in Economics</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="journey-panel" data-step="masters" id="journey-panel-masters" role="tabpanel" tabindex="0" aria-labelledby="journey-tab-masters">
+          <div class="journey-header">
+            <h3 class="journey-title">MSc Mathematics with Data Science</h3>
+            <div class="journey-meta">
+              <span>Institute of Mathematics and Applications</span>
+              <span class="journey-meta-dot">•</span>
+              <span>Bhubaneswar, Odisha</span>
+              <span class="journey-meta-dot">•</span>
+              <span>2020–2022</span>
+            </div>
+          </div>
+          <div class="journey-body">
+            <ul class="journey-bullets">
+              <li>Awarded NBHM scholarship for academic excellence (Top 3 rankers).</li>
+              <li>Founded and led the Data Science Society; organized workshops and interdisciplinary collaboration.</li>
+              <li>Bridged pure mathematics with applied ML and data-driven modeling.</li>
+            </ul>
+            <div class="journey-tags" aria-label="Selected coursework">
+              <span class="journey-tag">Functional Analysis</span>
+              <span class="journey-tag">Topology</span>
+              <span class="journey-tag">Stochastic Calculus</span>
+              <span class="journey-tag">Machine Learning</span>
+              <span class="journey-tag">Statistical Learning</span>
+              <span class="journey-tag">Numerical Optimization</span>
+              <span class="journey-tag">Deep Learning</span>
+              <span class="journey-tag">NLP</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="journey-panel" data-step="career" id="journey-panel-career" role="tabpanel" tabindex="0" aria-labelledby="journey-tab-career">
+          <div class="journey-header">
+            <h3 class="journey-title">SmartHelio (YC-22) — Data Science</h3>
+            <div class="journey-meta">
+              <span>Noida, India</span>
+              <span class="journey-meta-dot">•</span>
+              <span>Sep 2022–Nov 2025</span>
+            </div>
+          </div>
+          <div class="journey-body">
+            <div class="journey-metrics" aria-label="Impact metrics">
+              <div class="journey-metric">
+                <div class="journey-metric-value">3×</div>
+                <div class="journey-metric-label">delivery velocity</div>
+              </div>
+              <div class="journey-metric">
+                <div class="journey-metric-value">3000+</div>
+                <div class="journey-metric-label">PV assets monitored</div>
+              </div>
+              <div class="journey-metric">
+                <div class="journey-metric-value">40%</div>
+                <div class="journey-metric-label">fewer regressions</div>
+              </div>
+            </div>
+
+            <ul class="journey-bullets">
+              <li>Built and scaled the Data Science function (3 → 10), owning hiring, onboarding, mentorship, and execution discipline.</li>
+              <li>Drove the transition from an early-stage analytics offering to a scalable solar-intelligence platform.</li>
+              <li>Architected core algorithmic components across fault detection, performance modeling, downtime diagnostics, and weather simulation models.</li>
+              <li>Introduced engineering rigor: testing practices, CI/CD, and modular analytics libraries to improve reliability at scale.</li>
+              <li>Led cross-functional execution with Product/Engineering/Customer Success and aligned closely with CXOs on prioritization and operating cadence.</li>
+            </ul>
+
+            <div class="journey-subsection">
+              <div class="journey-subtitle">Role progression</div>
+              <div class="journey-roles">
+                <div class="journey-role"><span class="journey-role-title">Data Scientist</span><span class="journey-role-dates">Jan 2024 – Nov 2025</span></div>
+                <div class="journey-role"><span class="journey-role-title">Associate Data Scientist</span><span class="journey-role-dates">Jul 2023 – Dec 2023</span></div>
+                <div class="journey-role"><span class="journey-role-title">Data Analyst</span><span class="journey-role-dates">Sep 2022 – Jun 2023</span></div>
+              </div>
+            </div>
+
+            <div class="journey-tags" aria-label="Tools and domains">
+              <span class="journey-tag">Python</span>
+              <span class="journey-tag">Time Series</span>
+              <span class="journey-tag">PVlib</span>
+              <span class="journey-tag">XGBoost</span>
+              <span class="journey-tag">Signal Processing</span>
+              <span class="journey-tag">AWS</span>
+              <span class="journey-tag">CI/CD</span>
+              <span class="journey-tag">Microservices</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
   <!-- Skills & Technologies Section -->
@@ -414,7 +412,45 @@
   <!-- Projects Section -->
   <section id="projects" class="py-24 bg-white relative z-10">
     <div class="max-w-5xl mx-auto px-4">
-      <h2 class="text-3xl font-light text-center text-gray-800 mb-16">Featured Projects</h2>
+      <h2 class="text-3xl font-light text-center text-gray-800 mb-10">Featured Projects</h2>
+
+      <!-- Selected Work (Industry) -->
+      <div class="selected-work mb-12">
+        <h3 class="text-lg font-semibold text-gray-800 mb-4">Selected Work (Industry)</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="selected-work-card">
+            <div class="selected-work-title">Fast Diagnostic Service</div>
+            <div class="selected-work-subtitle">Cloud-based PV health assessment microservice (Jan 2025)</div>
+            <ul class="selected-work-bullets">
+              <li>Self-serve uploads (CSV/Excel) → automated diagnostics, KPIs, loss quantification, and benchmarking.</li>
+              <li>Robust input validation + timestamp repair; optimized for large plant datasets.</li>
+              <li>Enabled 300+ new client engagements in ~3 months by replacing multi-hour manual analysis.</li>
+            </ul>
+          </div>
+          <div class="selected-work-card">
+            <div class="selected-work-title">Cleaning Optimization Engine</div>
+            <div class="selected-work-subtitle">Cost–loss optimization + scenario simulation (2024)</div>
+            <ul class="selected-work-bullets">
+              <li>Decision pipeline across soiling estimation, rainfall modeling, and PV generation forecasting.</li>
+              <li>Constrained optimization to recommend high-value cleaning dates under operational rules.</li>
+              <li>Deployed across 300+ utility-scale PV assets as a commercial offering.</li>
+            </ul>
+          </div>
+          <div class="selected-work-card">
+            <div class="selected-work-title">formatify-py</div>
+            <div class="selected-work-subtitle">Datetime inference library for messy timestamps (May 2025 – Present)</div>
+            <ul class="selected-work-bullets">
+              <li>Pure-Python structural parsing engine for heterogeneous timestamp formats.</li>
+              <li>Validation suite + CI pipeline across thousands of variants.</li>
+              <li>
+                <a class="selected-work-link" href="https://github.com/PieceWiseProjects/formatify" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Open Source / GitHub -->
       <div id="repo-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
     </div>
   </section>
