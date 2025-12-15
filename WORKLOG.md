@@ -55,3 +55,12 @@ Files changed
 Notes / future improvements
 - If we later want to avoid editing HTML content directly, we can move Journey + Selected Work content into a Jekyll data file (e.g. _data/journey.yml) and render it via Liquid. This will make resume-driven updates easier and less error-prone.
 - Consider adding a minimal favicon (favicon.ico) to avoid 404 noise in dev logs.
+
+## 2025-12-15 — Dynamic footer year
+Change
+Replaced hard-coded "© 2024" footers with a dynamic year using Jekyll’s build time:
+- Used {{ 'now' | date: '%Y' }} so the footer stays current in future years.
+- Added empty front matter (---) to static HTML pages so Liquid is processed.
+
+Rationale
+Static year values become outdated and subtly signal neglect. This keeps the site evergreen with near-zero maintenance.
