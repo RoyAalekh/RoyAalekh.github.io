@@ -27,12 +27,9 @@
         <a href="#" class="text-2xl font-light text-gray-800">AR</a>
         <div class="flex space-x-8">
           <a href="#about" class="text-gray-600 hover:text-blue-500 transition-colors">About</a>
-          <a href="#tech-stack" class="text-gray-600 hover:text-blue-500 transition-colors">Tech</a>
           <a href="#interests" class="text-gray-600 hover:text-blue-500 transition-colors">Interests</a>
           <a href="#projects" class="text-gray-600 hover:text-blue-500 transition-colors">Projects</a>
           <a href="/networks.html" class="text-gray-600 hover:text-blue-500 transition-colors">Networks Lab</a>
-          <a href="art.html" class="text-gray-600 hover:text-blue-500 transition-colors">The Art Corner</a>
-          <a href="/blog.html" class="text-gray-600 hover:text-blue-500 transition-colors">Blog</a>
           <a href="#contact" class="text-gray-600 hover:text-blue-500 transition-colors">Contact</a>
         </div>
       </div>
@@ -43,12 +40,13 @@
   <div class="relative min-h-screen flex items-center justify-center pt-16 overflow-hidden">
     <div id="tsparticles" class="absolute inset-0 z-0"></div>
     <div class="max-w-3xl mx-auto px-4 text-center relative z-10">
-      <h1 class="text-5xl font-light text-gray-800 mb-6">Piecewise</h1>
+      <h1 class="text-5xl font-light text-gray-800 mb-4">Piecewise</h1>
+      <p class="text-sm text-gray-400 mb-6 font-light italic">Complex problems, manageable pieces</p>
       <p class="text-xl text-gray-600 mb-8 font-light tracking-wide">
         Mathematics · Data Science · Complex Systems
       </p>
       <p class="text-base text-gray-500 mb-8 max-w-2xl mx-auto leading-relaxed">
-        Data scientist with a mathematics and data science background. Previously at SmartHelio (YC-22), where I helped scale the Data Science function (3→10) and build diagnostic + forecasting systems for 3000+ PV assets. I work at the intersection of research and engineering, time-series modeling, complex networks, and reliable analytics systems.
+        Founding ML Engineer at Mendria, building AI underwriting infrastructure that prices hidden climate risks on physical assets. Previously scaled data science at SmartHelio (YC-22). I work at the intersection of research and production—uncertainty quantification, risk modeling, and ML systems for real-world decision-making.
       </p>
       <div class="flex justify-center space-x-4">
         <a href="https://www.linkedin.com/in/aalekhroy" class="bg-blue-500 text-white px-8 py-3 rounded-lg hover:bg-blue-600 transition-colors">Connect</a>
@@ -90,16 +88,6 @@
               <li>Semester-wise merit scholarships for academic distinction (Top 5 rankers).</li>
               <li>Built foundations in analysis, algebra, and quantitative thinking with attention to context and critique.</li>
             </ul>
-            <div class="journey-tags" aria-label="Selected coursework">
-              <span class="journey-tag">Real Analysis</span>
-              <span class="journey-tag">Abstract Algebra</span>
-              <span class="journey-tag">Calculus</span>
-              <span class="journey-tag">Optimization Theory</span>
-              <span class="journey-tag">Game Theory</span>
-              <span class="journey-tag">Social Theory</span>
-              <span class="journey-tag">Psychology</span>
-              <span class="journey-tag">Statistical Methods in Economics</span>
-            </div>
           </div>
         </div>
 
@@ -120,21 +108,35 @@
               <li>Founded and led the Data Science Society; organized workshops and interdisciplinary collaboration.</li>
               <li>Bridged pure mathematics with applied ML and data-driven modeling.</li>
             </ul>
-            <div class="journey-tags" aria-label="Selected coursework">
-              <span class="journey-tag">Functional Analysis</span>
-              <span class="journey-tag">Topology</span>
-              <span class="journey-tag">Stochastic Calculus</span>
-              <span class="journey-tag">Machine Learning</span>
-              <span class="journey-tag">Statistical Learning</span>
-              <span class="journey-tag">Numerical Optimization</span>
-              <span class="journey-tag">Deep Learning</span>
-              <span class="journey-tag">NLP</span>
-            </div>
           </div>
         </div>
 
         <div class="journey-panel" data-step="career" id="journey-panel-career" role="tabpanel" tabindex="0" aria-labelledby="journey-tab-career">
+          <!-- Mendria -->
           <div class="journey-header">
+            <h3 class="journey-title">Mendria — Founding ML Engineer</h3>
+            <div class="journey-meta">
+              <span>Remote</span>
+              <span class="journey-meta-dot">•</span>
+              <span>Jan 2026–Present</span>
+            </div>
+          </div>
+          <div class="journey-body">
+            <ul class="journey-bullets">
+              <li>Building AI underwriting infrastructure that detects, quantifies, and prices hidden climate risks on physical assets—insurance drift, energy volatility, regulatory penalties, and asset value decline.</li>
+              <li>Designing ML models for climate risk scoring, loss projections, and uncertainty-aware financial outputs for REITs, lenders, and insurers.</li>
+              <li>Translating domain logic into production-ready modeling pipelines across climate, real estate, and financial risk.</li>
+            </ul>
+
+            <div class="journey-tags" aria-label="Domains">
+              <span class="journey-tag">Complex Systems</span>
+              <span class="journey-tag">Risk & Decision Modeling</span>
+              <span class="journey-tag">Uncertainty Quantification</span>
+            </div>
+          </div>
+
+          <!-- SmartHelio -->
+          <div class="journey-header" style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #e5e7eb;">
             <h3 class="journey-title">SmartHelio (YC-22) — Data Science</h3>
             <div class="journey-meta">
               <span>Noida, India</span>
@@ -145,45 +147,29 @@
           <div class="journey-body">
             <div class="journey-metrics" aria-label="Impact metrics">
               <div class="journey-metric">
-                <div class="journey-metric-value">3×</div>
-                <div class="journey-metric-label">delivery velocity</div>
+                <div class="journey-metric-value">3→10</div>
+                <div class="journey-metric-label">team scaled</div>
               </div>
               <div class="journey-metric">
                 <div class="journey-metric-value">3000+</div>
-                <div class="journey-metric-label">PV assets monitored</div>
+                <div class="journey-metric-label">PV assets</div>
               </div>
               <div class="journey-metric">
-                <div class="journey-metric-value">40%</div>
-                <div class="journey-metric-label">fewer regressions</div>
+                <div class="journey-metric-value">3×</div>
+                <div class="journey-metric-label">delivery velocity</div>
               </div>
             </div>
 
             <ul class="journey-bullets">
-              <li>Built and scaled the Data Science function (3 → 10), owning hiring, onboarding, mentorship, and execution discipline.</li>
-              <li>Drove the transition from an early-stage analytics offering to a scalable solar-intelligence platform.</li>
-              <li>Architected core algorithmic components across fault detection, performance modeling, downtime diagnostics, and weather simulation models.</li>
-              <li>Introduced engineering rigor: testing practices, CI/CD, and modular analytics libraries to improve reliability at scale.</li>
-              <li>Led cross-functional execution with Product/Engineering/Customer Success and aligned closely with CXOs on prioritization and operating cadence.</li>
+              <li>Scaled Data Science function from 3 to 10, owning hiring, mentorship, and execution discipline.</li>
+              <li>Architected fault detection, performance modeling, and weather simulation for solar assets.</li>
+              <li>Introduced testing practices, CI/CD, and modular analytics libraries for reliability at scale.</li>
             </ul>
 
-            <div class="journey-subsection">
-              <div class="journey-subtitle">Role progression</div>
-              <div class="journey-roles">
-                <div class="journey-role"><span class="journey-role-title">Data Scientist</span><span class="journey-role-dates">Jan 2024 – Nov 2025</span></div>
-                <div class="journey-role"><span class="journey-role-title">Associate Data Scientist</span><span class="journey-role-dates">Jul 2023 – Dec 2023</span></div>
-                <div class="journey-role"><span class="journey-role-title">Data Analyst</span><span class="journey-role-dates">Sep 2022 – Jun 2023</span></div>
-              </div>
-            </div>
-
-            <div class="journey-tags" aria-label="Tools and domains">
-              <span class="journey-tag">Python</span>
-              <span class="journey-tag">Time Series</span>
-              <span class="journey-tag">PVlib</span>
-              <span class="journey-tag">XGBoost</span>
-              <span class="journey-tag">Signal Processing</span>
-              <span class="journey-tag">AWS</span>
-              <span class="journey-tag">CI/CD</span>
-              <span class="journey-tag">Microservices</span>
+            <div class="journey-tags" aria-label="Domains">
+              <span class="journey-tag">Energy Systems</span>
+              <span class="journey-tag">Performance Modeling</span>
+              <span class="journey-tag">Anomaly Detection</span>
             </div>
           </div>
         </div>
@@ -191,88 +177,6 @@
     </div>
   </div>
 </section>
-
-  <!-- Skills & Technologies Section -->
-<section id="tech-stack" class="py-24 bg-white relative z-10">
-    <div class="max-w-6xl mx-auto px-4">
-      <h2 class="text-3xl font-light text-center text-gray-800 mb-16">Skills & Technologies</h2>
-      
-      <!-- Legend -->
-      <div class="skills-legend">
-        <div class="legend-item"><span class="legend-box virtuoso"></span> Virtuoso</div>
-        <div class="legend-item"><span class="legend-box journeyman"></span> Journeyman</div>
-        <div class="legend-item"><span class="legend-box explorer"></span> Explorer</div>
-      </div>
-
-      <div class="skills-container">
-        <!-- Programming Languages -->
-        <div class="skills-category">
-            <h3 class="category-title-new">Programming Languages</h3>
-            <div class="skills-grid-new">
-                <div class="skill-badge virtuoso"><i class="devicon-python-plain"></i> Python</div>
-                <div class="skill-badge virtuoso"><i class="fas fa-database"></i> SQL</div>
-                <div class="skill-badge journeyman"><i class="devicon-r-original"></i> R</div>
-                <div class="skill-badge explorer"><i class="devicon-julia-plain"></i> Julia</div>
-                <div class="skill-badge explorer"><i class="devicon-javascript-plain"></i> JavaScript</div>
-            </div>
-        </div>
-
-        <!-- ML & Data Science -->
-        <div class="skills-category">
-            <h3 class="category-title-new">ML & Data Science</h3>
-            <div class="skills-grid-new">
-                <div class="skill-badge virtuoso">Pandas</div>
-                <div class="skill-badge virtuoso">NumPy</div>
-                <div class="skill-badge virtuoso">Scikit-learn</div>
-                <div class="skill-badge journeyman"><i class="devicon-pytorch-original"></i> PyTorch</div>
-                <div class="skill-badge journeyman"><i class="devicon-tensorflow-original"></i> TensorFlow</div>
-                <div class="skill-badge journeyman">Polars</div>
-                <div class="skill-badge explorer">NetworkX</div>
-                <div class="skill-badge explorer">SciPy</div>
-            </div>
-        </div>
-
-        <!-- Tools & Platforms -->
-        <div class="skills-category">
-            <h3 class="category-title-new">Tools & Platforms</h3>
-            <div class="skills-grid-new">
-                <div class="skill-badge virtuoso"><i class="devicon-amazonwebservices-original"></i> AWS</div>
-                <div class="skill-badge virtuoso"><i class="devicon-git-plain"></i> Git</div>
-                <div class="skill-badge virtuoso"><i class="devicon-mongodb-plain"></i> MongoDB</div>
-                <div class="skill-badge journeyman"><i class="devicon-docker-plain"></i> Docker</div>
-                <div class="skill-badge journeyman"><i class="devicon-mysql-plain"></i> MySQL</div>
-                <div class="skill-badge journeyman"><i class="devicon-postgresql-plain"></i> PostgreSQL</div>
-                <div class="skill-badge explorer">FastAPI</div>
-                <div class="skill-badge explorer"><i class="devicon-linux-plain"></i> Linux</div>
-                <div class="skill-badge explorer"><i class="devicon-azure-plain"></i> Azure</div>
-            </div>
-        </div>
-
-        <!-- Frameworks & Libraries -->
-        <div class="skills-category">
-            <h3 class="category-title-new">Frameworks & Libraries</h3>
-            <div class="skills-grid-new">
-                <div class="skill-badge virtuoso">Plotly</div>
-                <div class="skill-badge journeyman">Streamlit</div>
-                <div class="skill-badge journeyman"><i class="devicon-jupyter-plain"></i> Jupyter</div>
-                <div class="skill-badge explorer"><i class="fas fa-leaf"></i> Marimo</div>
-                <div class="skill-badge explorer">Skrub</div>
-            </div>
-        </div>
-
-        <!-- Generative AI -->
-        <div class="skills-category">
-            <h3 class="category-title-new">Generative AI</h3>
-            <div class="skills-grid-new">
-                <div class="skill-badge journeyman"><i class="devicon-github-original"></i> Copilot</div>
-                <div class="skill-badge journeyman">ChatGPT</div>
-                <div class="skill-badge journeyman">LangChain</div>
-                <div class="skill-badge journeyman">Ollama</div>
-            </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- How I Work Section -->
   <section id="approach" class="py-24 bg-gray-50 relative z-10">
@@ -472,16 +376,6 @@
 
       <!-- Open Source / GitHub -->
       <div id="repo-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
-    </div>
-  </section>
-
-  <!-- Contribution Graph Section -->
-  <section id="contributions" class="py-24 bg-white relative z-10">
-    <div class="max-w-5xl mx-auto px-4">
-      <h2 class="text-3xl font-light text-center text-gray-800 mb-16">Work Contributions</h2>
-      <div class="flex justify-center">
-        <img src="https://ghchart.rshah.org/AR-smarthelio" alt="AR-smarthelio's contribution calendar" style="width: 125%; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'" />
-      </div>
     </div>
   </section>
 

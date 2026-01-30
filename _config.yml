@@ -1,9 +1,8 @@
 title: "AR | Data Science"
-description: "Aalekh Roy's Portfolio and Blog on Data Science and Machine Learning"
+description: "Aalekh Roy - Founding ML Engineer at Mendria"
 theme: jekyll-theme-minimal
 
 include:
-  - blog.html
   - assets
 
 
